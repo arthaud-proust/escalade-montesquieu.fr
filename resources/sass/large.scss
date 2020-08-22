@@ -1,0 +1,846 @@
+
+header {
+    nav {
+        height: 70px;
+    }
+    .navbar-nav.mr-auto .nav-item {
+        margin-right: 30px !important;
+    }
+    .navbar-nav.ml-auto .nav-item {
+        margin-left: 30px !important;
+    }
+    a {
+        font-size: 0.9rem;
+        color: var(--lw7) !important;
+        font-weight: 300 !important;
+
+        img {
+            height: 20px;
+            width: 20px;
+        }
+
+        &:hover {
+            text-decoration: underline !important;
+        }
+    }
+
+    .dropdownContent {display: none;}
+
+    .nav-item:hover .dropdownContent {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        z-index: 1000;
+        background-color: var(--lw2);
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 1rem;
+        @include transform(translateX(-10px));
+
+        .link {
+            margin: 5px 2px;
+        }
+    }
+}
+
+main {
+    background: #fff;
+    min-height: calc(100vh - 70px);
+
+    .hero {
+        position: relative;
+        .hero-img {
+            position: relative;
+            width: 100%;
+            height: auto;
+            background: url('/assets/img/hero.webp');
+        }
+        .title-container {
+            z-index: 100;
+            position: absolute;
+            top: 83%;
+            left: 5%;
+            display: block;
+            .title {
+                display: inline-block;
+                font-size: 6rem;
+                font-weight: 500;
+                margin-left: 5px;
+            }
+            .title::before {
+                content: 'ESCALADE';
+                position: absolute;
+                display: inline-block;
+                font-size: 0.8rem;
+                font-weight: 500;
+                top: 3rem;
+                left: -1.8rem;
+                @include transform(rotateZ(-90deg));
+            }
+        }
+        
+    }
+
+    h2.title {
+        font-size: 2rem;
+        font-weight: 400;
+    }
+    p.paraph {
+        color: var(--lw4);
+        font-size: 1.1rem;
+        font-weight: 300;
+        line-height: 1.4;
+    }
+
+    .events {
+        padding: 60px 60px 0 0;
+
+        
+    }
+
+    .forum-list {
+        padding: 60px 30px;
+        background: var(--lw3);
+
+        .forums-desc {
+            padding: 0 25px 5px 25px;
+        }
+    }
+
+    .PostsList {
+        padding-top: 10px;
+
+        .date-group {
+            margin-top: 30px;
+            font-weight: 300;
+        }
+    }
+}
+
+
+.card-forum {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    text-decoration: none;
+            
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 5px 0;
+    transition: .2s;
+    cursor: pointer;
+
+    a:hover {
+        text-decoration: none;
+    }
+    .title {
+        color: var(--lw6);
+        margin-bottom: 2px;
+        font-weight: 500;
+        font-size: 1.5rem;
+    }
+
+    .desc {
+        color: var(--lw5);
+        font-size: 1rem;
+        font-size: 200;
+        margin-bottom: 0;
+        line-height: 1.4;
+    }
+
+    &:hover {
+        @include box-shadow(hsla(0, 0%, 0%, 0.05) 0px 0px 20px);
+        background: var(--lw2); 
+    }
+
+}
+
+
+.PageIntro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+.PageIntro-title {
+    color: var(--lw7);
+    font-weight: 400;
+    font-size: 2rem !important;
+
+    .adminAction.edit {
+        background:  var(--success1);
+        img {
+            filter: invert(100%)
+        }
+    }
+}
+.PageIntro-paraph {
+    color: var(--lw4);
+    font-size: 1.1rem;
+    line-height: 1.3;
+    font-weight: 300;
+}
+.PageIntro-backlink {
+    position: relative;
+    color: var(--lw6);
+    padding-left: 18px;
+    margin-bottom: 15px;
+    display: inline-block;
+    font-weight: 300;
+
+    &::before {
+        position: absolute;
+        display: inline-block;
+        content: '';
+        background: url('assets/svg/chevron-left.svg');
+        background-size: contain;
+        height: 16px;
+        width: 16px;
+        top: 50%;
+        left: 0;
+        @include transform(translateY(-50%));
+    }
+
+    &:hover {
+        color:initial;
+    }
+}
+
+.BlogsList {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+}
+.BlogsList-title {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--lw6);
+    padding-left: 3px;
+}
+
+.Blog {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--lw3);
+    border-radius: 10px;
+    margin: 0px 10px 15px 0;
+    transition: box-shadow .3s;
+    & > a {
+        display: flex;
+        flex-direction: column;
+        padding: 15px 20px;
+        text-decoration: none;
+    }
+
+    &:hover {
+        @include box-shadow(hsla(0, 0%, 0%, 0.15) 0 2px 20px 0px);
+
+        .Blog-adminActions {
+            display: flex;
+        }
+    }
+}
+.Blog-name {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--lw7);
+}
+.Blog-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--lw6);
+    margin: 0;
+}
+.Blog-adminActions {
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 10px;
+    left:100%;
+    border-radius: 0 10px 10px 0;
+    background: var(--success1);
+
+    .edit-blog {
+        background:  var(--success1);
+        img {
+            filter: invert(100%)
+        }
+    }
+}
+
+
+.PostCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--lw3);
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 5px 0;
+    transition: height .5s;
+    cursor: pointer;
+
+    .btn {
+        border-radius: 7px;
+        color: var(--lw1);
+        font-size: 1.1rem;
+    }
+    .btn.disabled {cursor: initial; &:focus{@include box-shadow(none);}}
+
+    .PostCard-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        transition: .4s;
+        h3 {
+            font-size: 1.4rem;
+            position: relative;
+            font-weight: 400;
+            margin-bottom: 0;
+            margin-left: 5px;
+        }
+        h3::after {
+            content: url('/assets/svg/chevron-down.svg');
+            position: absolute;
+            display: inline-block;
+            height: 10px;
+            padding-left: 7px;
+            top: 3px;
+            color: var(--lw3);
+        }
+
+        .particip {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .nb-availables {
+            font-size: 1rem;
+            color: var(--lw4);
+            margin-right: 10px;
+        }
+
+        
+        .join-post, .login-user {
+            background-color: var(--success1);
+        }
+
+        .unavailable-post {
+            background-color: var(--danger1);
+        }
+    }
+    
+
+    .PostCard-info, .PostCard-adminInfo, .PostCard-adminActions {
+        display: none;
+    }
+
+    &:hover {
+        cursor: default;
+
+        .PostCard-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 7px;
+
+            .location {
+                font-size: 1rem;
+            }
+
+            .desc {
+                font-size: 1.4rem;
+                font-weight: 300;
+                letter-spacing: -1px;
+                word-spacing: .1rem;
+                text-align: left;
+                line-height: 1.3;
+                margin: 15px 0;
+            }
+        }
+
+        .PostCard-adminInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 10px;
+            background: var(--lw6);
+            border-radius: 7px;
+            padding: 10px 15px;
+            margin: 15px 0;
+            span {
+                font-size: 1.1rem;
+                font-weight: 300;
+                color: var(--info2);
+            }
+            .availables {
+                color: var(--success1);
+            }
+            .unavailables {
+                color: var(--danger1);
+            }
+        }
+
+        .PostCard-adminActions {
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 10px;
+            left:100%;
+            border-radius: 0 10px 10px 0;
+            background: var(--success1);
+
+            .edit-post {
+                background:  var(--success1);
+                img {
+                    filter: invert(100%)
+                }
+            }
+        }
+
+        .PostCard-content h3::after {
+            content: url('/assets/svg/chevron-up.svg');
+        }
+    }
+}
+
+.ForumLayout {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 70px);
+}
+.ForumLayout-pageIntro {
+    flex: 1;
+}
+
+.ForumLayout-messagesList {
+    flex: 5;
+    overflow-y: scroll;
+}
+.ForumLayout-messageForm {
+    flex:1;
+}
+
+
+.MessageCard.theirMessage {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 24px;
+    margin-bottom: 20px;
+
+    .MessageCard-author {
+        .MessageCard-author-img {
+            position: absolute;
+            left: -24px;
+            top: 0;
+            height: 48px;
+            width: 48px;
+            border-radius: 50px;
+        }
+        .MessageCard-author-name {
+            color: var(--lw4);
+            font-weight: 300;
+            font-size: 1rem;
+            padding-left: 30px;
+            margin-bottom: 2px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    .MessageCard-text {
+        padding: 10px 20px 10px 30px;
+        border-radius: 20px;
+        margin:0;
+        background: var(--lw3);
+        color: var(--lw7);
+        font-weight: 300;
+        font-size: 1.1rem;
+    }
+    .MessageCard-datetime {
+        padding: 3px 0 0 5px;
+        font-size: 0.7rem;
+        color: var(--lw4);
+    }
+}
+.MessageCard.myMessage {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    align-self: flex-end;
+    margin-right: 24px;
+    margin-bottom: 20px;
+
+    .MessageCard-author {
+        .MessageCard-author-img {
+            position: absolute;
+            right: -24px;
+            top: 0;
+            height: 48px;
+            width: 48px;
+            border-radius: 50px;
+        }
+        .MessageCard-author-name {
+            display: none;
+            color: var(--lw4);
+            font-weight: 300;
+            font-size: 1rem;
+            padding-right: 30px;
+            margin-bottom: 2px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    .MessageCard-text {
+        padding: 10px 30px 10px 20px;
+        border-radius: 20px;
+        margin:0;
+        background: var(--lw3);
+        color: var(--lw7);
+        font-weight: 300;
+        font-size: 1.1rem;
+    }
+    .MessageCard-datetime {
+        align-self: flex-end;
+        padding: 3px 0 0 5px;
+        font-size: 0.7rem;
+        color: var(--lw4);
+    }
+}
+
+.MessageForm {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 20px 0;
+
+    input:focus, button:focus {
+        outline: none;
+        border-width: 2px;
+    }
+}
+.MessageForm-input {
+    flex: 5;
+    border: 1px solid var(--lw4);
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 10px;
+}
+.MessageForm-send {
+    flex: 1;
+    background: var(--lw6);
+    border: 1px solid var(--lw6);
+    border-radius: 10px;
+    margin-left: 10px;
+    color: var(--lw3);
+    font-size: 1rem;
+}
+
+
+.ProfilLayout {
+    height: calc(100vh - 70px);
+}
+.ProfilCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--lw1);
+    border-radius: 20px;
+    padding: 20px 20px 40px 20px;
+}
+.ProfilCard-identity {
+    position: absolute;
+    left: 50%;
+    top: -110px;
+    @include transform(translateX(-50%));
+}
+.ProfilCard-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        #disconnect {
+            border-color: var(--danger1);
+            color: var(--danger1); 
+            &:hover {
+                color: white;
+                background: var(--danger1);
+            }
+        }
+
+        #changePassword, #modifyProfil {
+            background: var(--lw5);
+            border-color: var(--lw5);
+            margin-bottom: 5px;
+            &:hover {
+                background: var(--lw6);
+            }
+        }
+    }
+}
+.ProfilCard-bio {
+    position: relative;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    font-style: oblique;
+    font-weight: 200;
+    align-self: center;
+
+    &.moreMargin {
+        margin-top:115px;
+    }
+
+    blockquote {
+        position: relative;
+
+        &::before {
+            position: absolute;
+            top:-5px;
+            left:-20px;
+            content: url('/assets/svg/quote-left.svg');
+        }
+        &::after {
+            position: absolute;
+            bottom:10px;
+            right:-10px;
+            content: url('/assets/svg/quote-right.svg');
+        }
+    }
+}
+
+
+.IdentityBloc {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.IdentityBloc-img {
+    height:160px;
+    width: 160px;
+    border-radius: 100%;
+    @include box-shadow(hsla(0,0,0,0.3) 0px 3px 15px);
+}
+.IdentityBloc-role {
+    position: absolute;
+    top: 140px;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    @include box-shadow(hsla(0,0,0,0.15) 0px 3px 15px);
+    &.climber {
+        background: var(--success2);
+        color: white;
+    }
+    &.modo {
+        background: var(--info2);
+        color: white;
+    }
+    &.admin {
+        background: var(--danger1);
+        color: white;
+    }
+}
+.IdentityBloc-name {
+    font-weight: 400;
+    font-size: 1.8rem;
+    margin-top: 20px;
+    margin-bottom: 3px;
+}
+.IdentityBloc-email {
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+.InfoBloc-title {
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+.InfoBloc-content {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.ProfilEditionLayout {
+    height: calc(100vh - 70px);
+}
+.ProfilEditionLayout-actions {
+    padding: 20px;
+
+    .backlink:hover {
+        border: 1px solid var(--lw4);
+    }
+    .btn-success {
+        margin-left: 10px;
+        background: var(--success1);
+        border: 1px solid var(--success1);
+        &:hover {
+            border-color: var(--lw6);
+        }
+    }
+}
+.ProfilEditionCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--lw1);
+    border-radius: 20px;
+    margin: 8px;
+    padding: 20px 30px 30px 30px;
+    &.large {
+        padding: 30px 70px 40px 70px;
+    }
+}
+.ProfilEditionCard-title {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--lw7);
+    &.little {
+        font-size: 1.6rem;
+        margin: 0 10px 0 10px;
+    }
+}
+.ProfilEditionCard-desc {
+    margin: 0 10px 0 10px;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color:var(--lw6);
+}
+.Field {
+    margin: 15px 10px 0 10px;
+    position: relative;
+
+    &.disabled {
+        .Field-input {
+            pointer-events: none;
+            color: var(--lw4) !important;
+            border-bottom-color: var(--lw4) !important;
+        }
+    }
+    &.img {
+        .Field-label{
+            position: relative;
+            border-radius: 100%;
+            cursor: pointer;
+            img {
+                position: relative;
+                width: 140px;
+                height: 140px;
+                border-radius: 100%;
+            }
+            &::before {
+                content: '';
+                background: url('/assets/svg/edit-2.svg');
+                background-size: cover;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                @include transform(translate(-50%, -50%));
+                height: 32px;
+                width: 32px;
+                z-index: 1000;
+            }
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 140px;
+                width: 140px;
+                border-radius: 100%;
+                background: hsla(0, 0%, 77%, 0.71);
+            }
+        }
+        
+        .Field-input {
+            display: none;
+        }
+    }
+
+    &.text, &.password, &.select, &.textarea, &.checkbox {
+        display: flex;
+        flex-direction: column;
+        .Field-label {
+            user-select: none;
+            color: var(--lw6);
+            font-weight: 400;
+            font-size: 0.9rem;
+            &.large {
+                font-size: 1.3rem !important;
+            }
+        }
+        .Field-input {
+            color: var(--lw6);
+            font-weight: 300;
+            font-size: 1rem;
+            border:none;
+            background:none;
+            border-bottom: 1px solid var(--lw4);
+        }
+        .Field-info {
+            color: var(--lw4);
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+    }
+
+    &.checkbox {
+        .Field-title {
+            user-select: none;
+            color: var(--lw6);
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+        .Field-label {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+    }
+
+    &.password {
+        .Field-toggleVisibility {
+            position: absolute;
+            right: 4px;
+            height: 18px;
+            width: 18px;
+            top: 35px;
+        }
+    } 
+}
+.Field-invalidFeedback {
+    padding: 5px;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 1px solid var(--danger2);
+    color: var(--danger0);
+}
+
+
+footer {
+    // background: var(--lw6);
+    // color: var(--lw1);
+}
