@@ -25,7 +25,7 @@
                     <ul class="list-unstyled">
                         @foreach(Session::get('forum_list'); as $forum)
                             <li>
-                                <a class="link" href="{{ route('showBlog', $forum->slug) }}">{{$forum->name}}</a>
+                                <a class="link" href="{{ route('showForum', $forum->slug) }}">{{$forum->name}}</a>
                             </li>
                         @endforeach
                     </ul>
