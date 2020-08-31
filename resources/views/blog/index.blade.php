@@ -8,7 +8,7 @@
     <div class="BlogsLayout-pageIntro">
         <section class="PageIntro col-12">
             <h1 class="PageIntro-title">Évènements et sorties</h1>
-            <p class="PageIntro-paraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta non voluptas velit dolores, ea facere dolor tempore iste delectus, unde voluptatem debitis. Quos non, incidunt consectetur asperiores consequatur veniam totam!</p>
+            <p class="PageIntro-paraph"></p>
             @if(Auth::check() && Auth::user()->level>1) 
                 <div class="PageIntro-actions">
                     @if(Auth::user()->level>2) 

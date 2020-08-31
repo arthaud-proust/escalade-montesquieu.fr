@@ -2,10 +2,11 @@
     <div class="container">
         <div class="text-center text-md-left">
             <div class="row">
-                <div class="col-md-4 mx-auto">
-                    <h5 class="font-weight-bold mt-3 mb-4">La section d'escalade à montesquieu</h5>
-                    <p>Les grimpeurs de la section font de l'escalade régulièrement, entre midi et deux et lors des nombreuses sorties.<br>
-                    À la fin de l'année, un stage d'escalade est organisé pour réunir les plus motivés et aller grimper en falaise durant quelques jours.</p>
+                <div class="col-md-4 mx-auto d-flex flex-column">
+                    <h5 class="font-weight-bold mt-3 mb-4">Nous contacter</h5>
+                    <span>Envoyer un mail à <br><b>contact@escalade-montesquieu.fr</b></span>
+                    <!-- <span>Appeler le <b>06 00 00 00 00</b></span> -->
+                    <a href="informations">Plus d'informations</a>
                 </div>
                 <hr class="clearfix w-100 d-md-none">
                 <div class="col-md-2 mx-auto">
@@ -34,35 +35,25 @@
                     <h5 class="font-weight-bold text-uppercase mt-3 mb-4">à propos</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!">Nous contacter</a>
+                            <a href="{{ route('informations') }}">Informations</a>
                         </li>
                         <li>
-                            <a href="#!">Mentions légales</a>
+                            <a href="{{ route('mentionsLegales') }}">Mentions légales</a>
                         </li>
                         <li>
-                            <a href="#!">Règlement RGPD</a>
+                            <a href="{{ route('conditionsUtilisation') }}">Conditions d'utilisation</a>
                         </li>
                         <li>
-                            <a href="#!"></a>
+                            <a href="{{route('politiqueRgpd') }}">Politique RGPD</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
         <hr>
-        <ul class="list-unstyled list-inline text-center py-2">
-                <li class="list-inline-item">
-                    <h5 class="mb-1">Rejoignez la section escalade</h5>
-                </li>
-                <li class="list-inline-item">
-                    <a href="#!" class="btn btn-success btn-rounded">S'inscrire</a>
-                    <a href="#!" class="btn btn-link">J'ai un compte</a>
-                </li>
-        </ul>
-        <hr>
-        <div class="footer-copyright d-flex justify-content-between py-3">
+        <div class="footer-copyright d-flex justify-content-between pb-3">
             <a href="https://arthaud.dev/" target="blank">Développé par Arthaud Proust</a>
-            <span>© 2020 Tous droits réservés <a href="https://escalade-montesquieu.fr/">escalade-montesquieu.fr</a></span>
+            <span>© 2020 escalade-montesquieu.fr</span>
         </div>
     </div>
 </footer>

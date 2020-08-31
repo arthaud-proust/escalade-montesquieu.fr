@@ -1,14 +1,21 @@
 const { default: Axios } = require("axios");
-const Pusher = require('pusher-js');
 const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-import Echo from "laravel-echo"
+try {
+    window._last_message_id = window._messages[window._messages.length-1].id;
+} catch(e) {
+    window._last_message_id = 0;
+}
+// const Pusher = require('pusher-js');
+// import Echo from "laravel-echo"
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: 'ed1f3b3d1b44b6ee47b7',
-    cluster: 'eu',
-    encrypted: true
-});
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: 'ed1f3b3d1b44b6ee47b7',
+//     cluster: 'eu',
+//     encrypted: true
+// });
+const formUrlEncoded = x => Object.keys(x).reduce((p, c) => p + `&${c}=${encodeURIComponent(x[c])}`, '');
+
 
 function getDate(datetime, withMinutes=true, withYear=false) {
     let date = datetime===undefined?'': new Date(datetime);
@@ -43,20 +50,54 @@ function updateMessages(newMessages) {
 
 function addMessage(msg) {
     $('#MessagesList').append(getMessage(msg));
+    $(".ForumLayout-messagesList").animate({ scrollTop: $('.ForumLayout-messagesList').prop("scrollHeight") }, 500);
 }
 
 function rendMessages(messages) {
     $('#MessagesList').html(
         messages.map(msg=>getMessage(msg))
     )
+    $(".ForumLayout-messagesList").animate({ scrollTop: $('.ForumLayout-messagesList').prop("scrollHeight") }, 500);
+
 }
 
 function sendMessage() {
+    if (!$('#MessageForm-input').val().match(/\S/gm)) return
     Axios({method: 'post', url: `/message/send`, data: {
         forum: window._forum,
         content: $('#MessageForm-input').val()
     }}).then(r=>{
+        console.log(r.data);
+        window._last_message_id = r.data.message.id;
         $('#MessageForm-input').val('');
+    });
+}
+
+function fetchMessages() {
+    return new Promise(resolve => {
+        console.log(`Fetching messages... (last: ${window._last_message_id})`)
+        axios({
+            method: 'post',
+            url: 'https://escalade-montequieu-pusher.herokuapp.com/fetch',
+            timeout: 10 * (60 * 1000), // 10 minutes
+            data: formUrlEncoded({last_message_id: window._last_message_id, forum: window._forum}),
+            // headers: {
+            //     'Content-Type': 'text/plain',
+            // }
+        }).then(r=>{  
+            r.data.forEach(message=>{
+                if(message.id > window._last_message_id) {
+                    window._last_message_id = message.id
+                }
+                addMessage(message);        
+                window._messages.push(message);
+            })
+
+            fetchMessages().then(()=>resolve(r));
+        }).catch(e=>{
+            fetchMessages();
+            // location.reload();
+        });
     });
 }
 
@@ -66,13 +107,18 @@ $(()=>{
     });
 
     $('#MessageForm-send').click(sendMessage);
-
-    rendMessages(window._messages);
-
-
-    window.Echo.private('forum.'+window._forum)
-    .listen('MessageSent', (e) => {
-        addMessage(e.message);        
-        window._messages.push(e.message);
+    $('#MessageForm-input').keyup(function(e) {
+        if(e.which == 13) {
+            sendMessage()
+        }
     });
+    rendMessages(window._messages);
+    fetchMessages();
+
+
+    // window.Echo.private('forum.'+window._forum)
+    // .listen('MessageSent', (e) => {
+    //     addMessage(e.message);        
+    //     window._messages.push(e.message);
+    // });
 });

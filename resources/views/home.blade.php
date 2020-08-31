@@ -8,9 +8,8 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
 </script>
 <div class="container">
     <div class="justify-content-center">
-        <!-- <div class="hero-img"></div> -->
         <div class="hero">
-            <img class="hero-img" src="{{ asset('assets/img/hero.webp') }}"> 
+            <img class="hero-img" src="{{ asset('assets/img/hero.jpg') }}"> 
             <div class="title-container">
                 <h1 class="title">Lycée Montesquieu</h1>
             </div>
@@ -19,7 +18,7 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
         <div class="d-flex">
             <div class="events col-7">
                 <h2 class="title">Évènements et sorties à venir</h2>
-                <p class="paraph">Les événements sont classés par deux catégories réguliers ou occasionnels. Vous pouvez retrouver tous les événements prévus rangés par catégorie de post dans le <a href="/blog">blog</a>.</p>
+                <p class="paraph">Les événements sont classés par deux catégories: réguliers ou occasionnels. Vous pouvez retrouver toutes les sorties et les événements prévus dans le <a href="/blog">blog</a>.</p>
 
                 <div class="PostsList">
                     @foreach($comingPosts as $post)
@@ -35,7 +34,7 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
             <div class="forum-list col-5">
                 <div class="forums-desc">
                     <h2 class="title">Forum</h2>
-                    <p class="paraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, maxime soluta magnam nobis molestiae hic asperiores nesciunt ipsa error at debitis suscipit quaerat nulla eos voluptates</p>
+                    <p class="paraph">Plus besoin de créer des groupes whatsapp à tout bout de champ, vous pouvez discuter entre grimpeurs directement ici.</p>
                 </div>
                 <div class="forums d-flex justify-content-center align-items-start flex-wrap">
                     @foreach($forums as $forum) 

@@ -7,18 +7,8 @@
     <h1 class="mb-4">Rédiger un post</h1>
 
     <div class="form-row">
-        <section class="form-group col-4">
-            <label for="title">Titre du post</label>
-            <input id="title" name="title" class="blog-title form-control @error('title') is-invalid @enderror" value="{{ old('title') ? old('title') : '' }}" required></input>
-            @error('title')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </section>
-        
-        <section class="form-group col-4">
-            <label for="blog">Blog du post</label>
+        <section class="form-group col-md-4">
+            <label for="blog">Poster dans le blog</label>
             <select id="blog" name="blog" class="form-control @error('blog') is-invalid @enderror">
                 @foreach($blogs as $blog)
                 <option value="{{$blog->slug}}" @if($blog->slug == $blog_slug) selected @endif>{{$blog->name}}</option>
@@ -30,10 +20,20 @@
                 </span>
             @enderror
         </section>
+
+        <section class="form-group col-md-4">
+            <label for="title">Titre du post</label>
+            <input id="title" name="title" data-changed="false" class="blog-title form-control @error('title') is-invalid @enderror" value="{{ old('title') ? old('title') : '' }}" required></input>
+            @error('title')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </section>
     </div>
 
     <div class="form-row">
-        <section class="form-group col-4">
+        <section class="form-group col-md-4">
             <label for="location">Lieu</label>
             <input id="location" name="location" placeholder="Lycée Montesquieu" class="blog-location form-control @error('location') is-invalid @enderror" value="{{ old('location') ? old('location') : '' }}"></input>
             @error('location')
@@ -43,7 +43,7 @@
             @enderror
         </section>
 
-        <section class="form-group col-4">
+        <section class="form-group col-md-4">
             <label for="datetimepicker">Date et heure</label>
             <input type='text' autocomplete="off" class="form-control @error('datetime') is-invalid @enderror" id='datetimepicker' name="datetime" value="{{ old('datetime') ? old('datetime') : '' }}"/>
             @error('datetime')
@@ -64,10 +64,11 @@
         @enderror
     </section>
 
-    <button class="mt-4 btn btn-dark " type="submit">Créer le post</button>
+    <button class="mt-4 btn btn-dark " type="submit">Poster</button>
 </form>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript" defer></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <script src="https://unpkg.com/gijgo@1.9.13/js/messages/messages.fr-fr.js" type="text/javascript" defer></script>
 <script src="/js/blog.js" defer></script>
+<script src="/js/utilPost.js" defer></script>
 @endsection

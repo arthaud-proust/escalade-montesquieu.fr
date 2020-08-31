@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Éditer le forum '.forum->name)
+@section('title', 'Éditer le forum '.$forum->name)
 @section('content')
 <form class="jumbotron container forum-form" action="{{ route('updateForum', ['forum'=>$forum->slug]) }}" method="POST">
     @csrf

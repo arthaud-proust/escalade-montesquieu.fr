@@ -19,4 +19,7 @@ Route::group(['middleware' => ['level-admin']], function()
 });
 
 Route::get('/', 'ForumController@index')->name('forums');
-Route::get('{forum}', 'ForumController@show')->name('showForum');
+Route::group(['middleware' => ['level-user']], function()
+{
+    Route::get('{forum}', 'ForumController@show')->name('showForum');
+});

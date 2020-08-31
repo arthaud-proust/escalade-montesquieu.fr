@@ -6,7 +6,7 @@
     <div class="ForumsLayout-pageIntro d-flex flex-column align-items-center">
         <section class="PageIntro col-10">
             <h1 class="PageIntro-title">Sujets de discussion</h1>
-            <p class="PageIntro-paraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quasi, debitis atque fugit doloremque enim tenetur! Aspernatur veritatis voluptate ea quibusdam! Necessitatibus ipsa vel voluptate ex nostrum dolorem eum autem?</p>
+            <p class="PageIntro-paraph">Plus besoin de créer des groupes whatsapp à tout bout de champ, vous pouvez discuter entre grimpeurs directement ici.</p>
             @if(Auth::check() && Auth::user()->level>2) 
                 <div class="PageIntro-actions">
                     <a href="{{ route('createForum') }}" class="btn btn-success">Nouveau sujet</a>

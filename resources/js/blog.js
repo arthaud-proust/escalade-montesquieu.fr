@@ -31,27 +31,37 @@ function getPost(post) {
                 `:`<button class="btn join-post ${places<=0?'disabled':''}" data-post-id="${post.id}">Participer</button>`):`<button class="btn login-user" data-post-id="${post.id}">Participer</button>`}
             </div>
         </div>
-        ${user && user.level>1?`<div class="PostCard-adminInfo">
-            <span class="availables">Participants: ${Object.keys(availables).join(', ') || 'aucun'}</span>
-            <span class="unavailables">Indisponibles: ${unavailables.join(', ') || 'aucun'}</span>
-            <span>Baudrier${harness>1 ? 's' : ''} à prendre: ${harness}</span>
-            <span>Chaussures à prendre: ${countShoes(availables) || 'aucune'}</span>
-        </div>
-        <div class="PostCard-adminActions">
-            <a href="/post/${post.id}/edit" class="btn edit-post" title="Éditer"><img src="/assets/svg/edit-2.svg"></a>
-        </div>
-        `:''}
-        <div class="PostCard-info">
-            ${$('#post-'+post.id).attr('data-show-datetime')=="true"?`<h5>${getDate(post.datetime)}</h5>`:''}
-            <a class="location" target="blank" href="https://www.google.fr/maps/search/${post.location}+france">${post.location===null?'':post.location}</a>
-            <span class="maxplaces">${post.maxplaces==-1?'Places illimitées':places+` ${places>1?'places restantes':'place restante'}`}</span>
-            <p class="desc">${post.content===null?'':post.content}</p>
+            <div class="PostCard-more">
+            ${user && user.level>1?`<div class="PostCard-adminInfo">
+                <span class="availables">Participants: ${Object.keys(availables).join(', ') || 'aucun'}</span>
+                <span class="unavailables">Indisponibles: ${unavailables.join(', ') || 'aucun'}</span>
+                <span>Baudrier${harness>1 ? 's' : ''} à prendre: ${harness}</span>
+                <span>Chaussures à prendre: ${countShoes(availables) || 'aucune'}</span>
+            </div>
+            <div class="PostCard-adminActions">
+                <a href="/post/${post.id}/edit" class="btn edit-post" title="Éditer"><img src="/assets/svg/edit-2.svg"></a>
+            </div>
+            `:''}
+            <div class="PostCard-info">
+                ${$('#post-'+post.id).attr('data-show-datetime')=="true"?`<h5>${getDate(post.datetime)}</h5>`:''}
+                <a class="location" target="blank" href="https://www.google.fr/maps/search/${post.location}+france">${post.location===null?'':post.location}</a>
+                <span class="maxplaces">${post.maxplaces==-1?'Places illimitées':places+` ${places>1?'places restantes':'place restante'}`}</span>
+                <p class="desc">${post.content===null?'':post.content}</p>
+            </div>
         </div>
     `;
 }
 
 function rendPost(post) {
     $('#post-'+post.id).html(getPost(post));
+    $('#post-'+post.id+' .PostCard-content').click(function(e) {
+        if(e.target.nodeName == 'BUTTON') return;
+        let close = $(this).parent().attr('class')=='PostCard';
+        $('.PostCard-content').parent().attr('class','PostCard');
+        if(close) {
+            $(this).parent().attr('class','PostCard open');
+        }
+    })
 }
 
 function rendPosts(posts, firstRending=false) {

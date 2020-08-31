@@ -4,5 +4,6 @@
     "/css/master.css": "/css/master.css",
     "/js/blog.js": "/js/blog.js",
     "/js/forum.js": "/js/forum.js",
-    "/js/user.js": "/js/user.js"
+    "/js/user.js": "/js/user.js",
+    "/js/utilPost.js": "/js/utilPost.js"
 }
