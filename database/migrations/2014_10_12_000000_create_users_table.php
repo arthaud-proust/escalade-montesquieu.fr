@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->mediumText('bio')->default('Biographie vide');
-            $table->string('max_voie')->default('Non renseigné');
+            $table->string('max_voie')->default('Non renseigné'); 
             $table->string('max_bloc')->default('Non renseigné');
             $table->string('display_max')->default(true);
             $table->string('shoes')->default("no-need");

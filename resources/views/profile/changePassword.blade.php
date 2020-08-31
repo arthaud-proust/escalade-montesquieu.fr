@@ -21,7 +21,7 @@
                     <label class="Field-label" for="new_password">Nouveau mot de passe</label>
                     <input class="Field-input" id="new_password" name="new_password" type="password" value="{{ old('new_password') ? old('new_password') : '' }}">
                     <img src="/assets/svg/eye-off.svg" class="Field-toggleVisibility">
-                    <small class="Field-info">Minimum 8 caractères. Conseil: contenant au moins une minuscule, une majuscule, un chiffre et un caractère spécial.</small>
+                    <small class="Field-info">Conseil: Minimum 8 caractères, contenant au moins: une minuscule, une majuscule, un chiffre et un caractère spécial.</small>
                     @error('new_password')
                         <span class="Field-invalidFeedback" role="alert">{{ $message }}</span>
                     @enderror

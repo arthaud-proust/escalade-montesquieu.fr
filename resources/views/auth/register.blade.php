@@ -34,7 +34,7 @@
                     <label class="Field-label" for="password">Choisissez un mot de passe</label>
                     <input class="Field-input" id="password" name="password" type="password" value="{{ old('password') ? old('password') : '' }}">
                     <img src="/assets/svg/eye-off.svg" class="Field-toggleVisibility">
-                    <small class="Field-info onFocus">Minimum 8 caractères. Conseil: contenant au moins une minuscule, une majuscule, un chiffre et un caractère spécial.</small>
+                    <small class="Field-info onFocus">Conseil: Minimum 8 caractères, contenant au moins: une minuscule, une majuscule, un chiffre et un caractère spécial.</small>
                     @error('password')
                         <span class="Field-invalidFeedback" role="alert">{{ $message }}</span>
                     @enderror
