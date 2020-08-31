@@ -31,7 +31,7 @@
             </div>
             <div class="FieldSection">
                 <section class="Field password @error('password') is-invalid @enderror">
-                    <label class="Field-label" for="password">Mot de passe</label>
+                    <label class="Field-label" for="password">Choisissez un mot de passe</label>
                     <input class="Field-input" id="password" name="password" type="password" value="{{ old('password') ? old('password') : '' }}">
                     <img src="/assets/svg/eye-off.svg" class="Field-toggleVisibility">
                     <small class="Field-info onFocus">Minimum 8 caractères. Conseil: contenant au moins une minuscule, une majuscule, un chiffre et un caractère spécial.</small>
@@ -41,9 +41,9 @@
                 </section>
                 <section class="Field password @error('password-confirmation') is-invalid @enderror">
                     <label class="Field-label" for="password-confirmation">Confirmer le mot de passe</label>
-                    <input class="Field-input" id="password-confirmation" name="password-confirmation" type="password-confirmation" value="{{ old('password-confirmation') ? old('password-confirmation') : '' }}">
+                    <input class="Field-input" id="password-confirmation" name="password-confirmation" type="password" value="{{ old('password-confirmation') ? old('password-confirmation') : '' }}">
                     <img src="/assets/svg/eye-off.svg" class="Field-toggleVisibility">
-                    <small class="Field-info onFocus">Réécrivez le mot de passe afin d'éviter une faute de frappe.</small>
+                    <small class="Field-info onFocus">Réécrivez le mot de passe de ce compte afin d'éviter une faute de frappe.</small>
                     @error('password-confirmation')
                         <span class="Field-invalidFeedback" role="alert">{{ $message }}</span>
                     @enderror
