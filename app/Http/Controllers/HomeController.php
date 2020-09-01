@@ -18,7 +18,7 @@ class HomeController extends Controller
         $comingPosts = Post::orderBy('datetime')->get()->filter(function ($post) use ($current_datetime) {
             $diff = (strtotime(explode(" ", $post->datetime)[0])-$current_datetime)/86400;
             return (0 <= $diff);
-        })->values()->take(4);
+        })->values()->take(5);
         $forums = Forum::all();
         // return response()->json([$comingPosts]);
         return view('home', compact('comingPosts', 'forums'));

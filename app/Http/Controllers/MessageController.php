@@ -34,9 +34,12 @@ class MessageController extends Controller
         ]);
 
         $client = new GuzzleHttp\Client();
-        // $res = $client->request('POST', 'localhost:8001', $message->toJson());
         $res = $client->request('POST', config('services.pusher.domain'), [
             'multipart' => [
+                [
+                    'name'     => 'key',
+                    'contents' => config('services.pusher.key')
+                ],
                 [
                     'name'     => 'forum',
                     'contents' => $message->forum
@@ -74,16 +77,20 @@ class MessageController extends Controller
         date_default_timezone_set('Europe/Paris');
 
         $message = Message::create([
-            'forum' => 'sessions-autonomes',
+            'forum' => 'testtest',
             'author' => Auth::user()->name,
             'author_uuid' => Auth::user()->uuid,
             'content' => 'test'
         ]);
 
         $client = new GuzzleHttp\Client();
-        // $res = $client->request('POST', 'localhost:8001', $message->toJson());
+        // $res = $client->request('POST', 'localhost:8001/post', [
         $res = $client->request('POST', config('services.pusher.domain'), [
             'multipart' => [
+                [
+                    'name'     => 'key',
+                    'contents' => config('services.pusher.key')
+                ],
                 [
                     'name'     => 'forum',
                     'contents' => $message->forum

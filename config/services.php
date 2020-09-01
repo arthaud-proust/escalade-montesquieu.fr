@@ -15,7 +15,8 @@ return [
     */
 
     'pusher' => [
-        'domain' => env('PUSH_DOMAIN', 'https://escalade-montequieu-pusher.herokuapp.com')
+        'domain' => env('PUSH_DOMAIN', 'https://escalade-montequieu-pusher.herokuapp.com'),
+        'key' => env('PUSH_KEY', null)
     ],
 
     'mailgun' => [
