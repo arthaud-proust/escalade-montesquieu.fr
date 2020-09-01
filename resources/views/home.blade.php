@@ -9,10 +9,10 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
 <div class="container">
     <div class="justify-content-center">
         <div class="hero">
-            <img class="hero-img" src="{{ asset('assets/img/hero.jpg') }}"> 
-            <div class="title-container">
+            <img class="hero-img" src="{{ asset('assets/img/hero.jpg') }}" alt=""> 
+            <!-- <div class="title-container">
                 <h1 class="title">Lycée Montesquieu</h1>
-            </div>
+            </div> -->
         </div>
         
         <div class="d-flex">
@@ -44,7 +44,7 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
             </div>
 
         </div>
-        
+    </div>
 </div>
 <script src="/js/blog.js" defer></script>
 @endsection

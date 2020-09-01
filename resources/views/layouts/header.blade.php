@@ -13,7 +13,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link showDropdown" href="{{ route('blogs') }}">
-                            Évènements et sorties <img src="/assets/svg/chevron-down.svg">
+                            Évènements et sorties <img src="/assets/svg/chevron-down.svg" alt="&#8964;">
                         </a>
                         <div class="dropdownContent">
                         @foreach(Session::get('blog_list'); as $blog)
@@ -23,7 +23,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link showDropdown" href="{{ route('forums') }}">
-                            Forum <img src="/assets/svg/chevron-down.svg">
+                            Forum <img src="/assets/svg/chevron-down.svg" alt="&#8964;">
                         </a>
                         <div class="dropdownContent">
                         @foreach(Session::get('forum_list'); as $forum)
