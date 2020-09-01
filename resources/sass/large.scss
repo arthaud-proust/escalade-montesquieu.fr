@@ -551,10 +551,17 @@ main {
     flex-direction: row;
     flex-wrap: nowrap;
     padding: 20px 0;
-
+    transition: opacity .4s;
+    -webkit-transition: opacity .4s;
+    -moz-transition: opacity .4s;
+    -ms-transition: opacity .4s;
+    -o-transition: opacity .4s;
     input:focus, button:focus {
         outline: none;
         border-width: 2px;
+    }
+    &.inProgress {
+        opacity: 0.5;
     }
 }
 .MessageForm-input {
@@ -564,6 +571,7 @@ main {
     font-size: 1rem;
     padding: 10px;
 }
+
 .MessageForm-send {
     flex: 1;
     background: var(--lw6);

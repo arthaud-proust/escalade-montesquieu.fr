@@ -63,13 +63,19 @@ function rendMessages(messages) {
 
 function sendMessage() {
     if (!$('#MessageForm-input').val().match(/\S/gm)) return
+    let content = $('#MessageForm-input').val();
+    $('#MessageForm-input').val('');
+
+    $('.MessageForm').addClass('inProgress');
+    // $('#MessageForm-input').addClass('inProgress');
+
     Axios({method: 'post', url: `/message/send`, data: {
         forum: window._forum,
-        content: $('#MessageForm-input').val()
+        content
     }}).then(r=>{
-        console.log(r.data);
+        $('.MessageForm').removeClass('inProgress');
+        // $('#MessageForm-input').removeClass('inProgress');
         window._last_message_id = r.data.message.id;
-        $('#MessageForm-input').val('');
     });
 }
 
