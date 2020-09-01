@@ -58,7 +58,7 @@
 
 </form>
 <div class="container">
-    <buton class="btn btn-success float-right" type="submit" onclick="event.preventDefault(); document.getElementById('blog-form').submit();">Enregistrer les modifications</button>
+    <button class="btn btn-success float-right" type="submit" onclick="event.preventDefault(); document.getElementById('blog-form').submit();">Enregistrer les modifications</button>
     <a class="btn btn-link float-right" href="{{ route('showBlog', ['blog'=>$blog->slug]) }}">Annuler</a>
     
     <a class="btn btn-danger " href="{{ route('destroyBlog', $blog->slug) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
