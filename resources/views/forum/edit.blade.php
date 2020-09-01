@@ -2,7 +2,7 @@
 
 @section('title', 'Éditer le forum '.$forum->name)
 @section('content')
-<form class="jumbotron container forum-form" action="{{ route('updateForum', ['forum'=>$forum->slug]) }}" method="POST">
+<form class="jumbotron container forum-form" id="forum-form" action="{{ route('updateForum', ['forum'=>$forum->slug]) }}" method="POST">
     @csrf
     @method('PATCH')
     <h1 class="mb-4">Éditer {{$forum->name}}</h1>
@@ -44,9 +44,20 @@
             </span>
         @enderror
     </section>
-
-    <button class="mt-4 btn btn-success" type="submit">Enregistrer les modifications</button>
-    <a class="mt-4 btn btn-dark" href="{{ route('forums') }}">Annuler</a>
 </form>
+
+<div class="container">
+    <button class="btn btn-success float-right" type="submit" onclick="event.preventDefault(); document.getElementById('forum-form').submit();">Enregistrer les modifications</button>
+    <a class="btn btn-link float-right" href="{{ route('showForum', ['forum'=>$forum->slug]) }}">Annuler</a>
+    
+    <a class="btn btn-danger " href="{{ route('destroyForum', $forum->slug) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
+        Supprimer
+    </a>
+
+    <form id="delete-form" action="{{ route('destroyForum', $forum->slug) }}" method="POST" style="display: none;">
+        @csrf
+        @method('delete')
+    </form>
+</div>
 
 @endsection

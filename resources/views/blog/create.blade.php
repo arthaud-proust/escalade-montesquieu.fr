@@ -2,7 +2,7 @@
 
 @section('title', 'Créer un nouveau blog')
 @section('content')
-<form class="jumbotron container blog-form" action="{{ route('storeBlog') }}" method="POST">
+<form class="jumbotron container blog-form" id="blog-form" action="{{ route('storeBlog') }}" method="POST">
     @csrf
     <h1 class="mb-4">Créer un blog</h1>
 
@@ -55,8 +55,10 @@
         @enderror
     </section>
 
-    <button class="mt-4 btn btn-dark " type="submit">Créer le blog</button>
-    <a class="btn btn-dark" href="{{ route('blogs') }}">Annuler</a>
+    
 </form>
-
+<div class="container">
+    <button class="mt-2 btn btn-dark float-right" type="submit" onclick="event.preventDefault(); document.getElementById('blog-form').submit();">Créer le blog</button>
+    <a class="mt-2 btn btn-link float-right" href="{{ route('blogs') }}">Annuler</a>
+</div>
 @endsection

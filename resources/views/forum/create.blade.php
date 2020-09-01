@@ -2,7 +2,7 @@
 
 @section('title', 'Créer un nouveau forum')
 @section('content')
-<form class="jumbotron container forum-form" action="{{ route('storeForum') }}" method="POST">
+<form class="jumbotron container forum-form" id="forum-form" action="{{ route('storeForum') }}" method="POST">
     @csrf
     <h1 class="mb-4">Créer un sujet de discussion</h1>
 
@@ -44,8 +44,11 @@
         @enderror
     </section>
 
-    <button class="mt-4 btn btn-success" type="submit">Créer le sujet</button>
-    <a class="mt-4 btn btn-dark" href="{{ route('forums') }}">Annuler</a>
 </form>
+
+<div class="container">
+    <button class="mt-2 btn btn-dark float-right" type="submit" onclick="event.preventDefault(); document.getElementById('forum-form').submit();">Créer le blog</button>
+    <a class="mt-2 btn btn-link float-right" href="{{ route('forums') }}">Annuler</a>
+</div>
 
 @endsection

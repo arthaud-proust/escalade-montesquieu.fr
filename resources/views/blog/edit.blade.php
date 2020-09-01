@@ -2,7 +2,7 @@
 
 @section('title', 'Éditer le blog '.$blog->name)
 @section('content')
-<form class="jumbotron container blog-form" action="{{ route('updateBlog', ['blog'=>$blog->slug]) }}" method="POST">
+<form class="jumbotron container blog-form" id="blog-form" action="{{ route('updateBlog', ['blog'=>$blog->slug]) }}" method="POST">
     @csrf
     @method('PATCH')
     <h1 class="mb-4">Éditer {{$blog->name}}</h1>
@@ -47,7 +47,7 @@
     <section class="form-check">
         <input type="hidden" class="form-check-input" name="is_regular" value="0">
         <input type="checkbox" class="form-check-input" id="is_regular" name="is_regular" value="1" @if($blog->is_regular) checked @endif>
-        <label class="form-check-label" for="is_regular">Posts habituels</label>
+        <label class="form-check-label" for="is_regular">Posts réguliers</label>
         @error('is_regular')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -55,8 +55,19 @@
         @enderror
     </section>
 
-    <button class="mt-4 btn btn-dark " type="submit">Enregistrer les modifications</button>
-    <a class="btn btn-dark" href="{{ route('showBlog', ['blog'=>$blog->slug]) }}">Annuler</a>
-</form>
 
+</form>
+<div class="container">
+    <buton class="btn btn-success float-right" type="submit" onclick="event.preventDefault(); document.getElementById('blog-form').submit();">Enregistrer les modifications</button>
+    <a class="btn btn-link float-right" href="{{ route('showBlog', ['blog'=>$blog->slug]) }}">Annuler</a>
+    
+    <a class="btn btn-danger " href="{{ route('destroyBlog', $blog->slug) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
+        Supprimer
+    </a>
+
+    <form id="delete-form" action="{{ route('destroyBlog', $blog->slug) }}" method="POST" style="display: none;">
+        @csrf
+        @method('delete')
+    </form>
+</div>
 @endsection
