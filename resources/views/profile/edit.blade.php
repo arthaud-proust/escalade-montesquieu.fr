@@ -71,7 +71,7 @@
                 <section class="Field checkbox @error('display_max') is-invalid @enderror">
                     <span class="Field-title">Confidentialité</span>
                     <label class="Field-label" for="display_max">
-                        <input class="Field-checkbox" id="display_max" name="display_max" type="checkbox" @if($user->display_max) checked @endif>
+                        <input class="Field-checkbox" id="display_max" name="display_max" type="checkbox" @if(!$user->display_max) checked @endif>
                         Cette information est privée
                     </label>
                     @error('display_max')

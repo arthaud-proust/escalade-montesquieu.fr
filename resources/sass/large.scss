@@ -311,6 +311,7 @@ main {
             font-weight: 400;
             margin-bottom: 0;
             margin-left: 5px;
+            max-width: 50%;
         }
         h3::after {
             content: url('/assets/svg/chevron-down.svg');
@@ -318,7 +319,7 @@ main {
             display: inline-block;
             height: 10px;
             padding-left: 7px;
-            top: 3px;
+            bottom:13px;
             color: var(--lw3);
         }
 
@@ -359,7 +360,7 @@ main {
         }
 
         .desc {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 300;
             letter-spacing: -1px;
             word-spacing: .1rem;

@@ -57,7 +57,9 @@ class ProfileController extends Controller
 
         if(request('img')) {
             try {
-                File::delete(public_path().$user->img);
+                if($user->img !="/assets/profiles/user.png") {
+                    File::delete(public_path().$user->img);
+                }
             } catch(Exception $e) {
                 // nothing
             };

@@ -1,6 +1,6 @@
 const { default: Axios } = require("axios");
 const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-
+const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
 function countShoes(availables) {
     let shoes = {};
@@ -13,7 +13,7 @@ function countShoes(availables) {
 function getDate(datetime, withMinutes=true) {
     let date = datetime===undefined?'': new Date(datetime);
     const twoDigits = (n)=>n==0?'':(n.toString().length==1?"0"+n:n);
-    return `${date.getDate()} ${months[date.getMonth()]} <small>${date.getFullYear()}<small> ${withMinutes?`à ${twoDigits(date.getHours())}H${twoDigits(date.getMinutes())}`:''}`
+    return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]} <small>${date.getFullYear()}<small> ${withMinutes?`à ${twoDigits(date.getHours())}H${twoDigits(date.getMinutes())}`:''}`
 }
 
 function getPost(post) {
@@ -21,7 +21,7 @@ function getPost(post) {
     let unavailables = JSON.parse(post.unavailables);
     let harness = Object.values(availables).filter(user => user[0] === 1).length;
     let participants = Object.keys(availables).length;
-    let places = post.maxplaces-participants;
+    let places = post.maxplaces==-1?99999:post.maxplaces-participants;
     return `
         <div class="PostCard-content">
             <h3>${post.title}</h3>
