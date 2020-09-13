@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['requirementsJs' => ['app','forum']])
 
 @section('title', $forum->name)
 @section('content')
@@ -8,7 +8,7 @@ window._messages = <?php echo $messages ?>;
 window._user = @if(Auth::check()) "{{Auth::user()->name}}" @else undefined @endif;
 </script>
 <div class="ForumLayout container">
-    <div class="ForumLayout-pageIntro col-10 mx-auto">
+    <div class="ForumLayout-pageIntro col-md-10 mx-auto">
         <section class="PageIntro">
             <a href="{{ route('forums') }}" class="PageIntro-backlink">Forum</a>
             <h1 class="PageIntro-title">
@@ -21,17 +21,19 @@ window._user = @if(Auth::check()) "{{Auth::user()->name}}" @else undefined @endi
         </section>
     </div>
 
-    <div class="ForumLayout-messagesList col-10 mx-auto">
+    <div class="ForumLayout-messagesList col-md-10 mx-auto">
         <section class="MessagesList d-flex flex-column align-items-start" id="MessagesList">
         </section>
     </div>
 
-    <div class="ForumLayout-messageForm col-10 mx-auto" id="ForumLayout-messageForm">
+    <div class="ForumLayout-messageForm col-md-10 mx-auto" id="ForumLayout-messageForm">
         <section class="MessageForm">
             <input class="MessageForm-input" type="text" id="MessageForm-input" placeholder="Votre message...">
-            <button class="MessageForm-send" id="MessageForm-send">Envoyer</button>
+            <button class="MessageForm-send" id="MessageForm-send">
+                <span class="d-none d-md-inline">Envoyer</span>
+                <img class="d-md-none d-inline pr-1" src="{{ asset('assets/svg/send.svg') }}" alt=">">
+            </button>
         </section>
     </div>
 </div>
-<script src="/js/forum.js" defer></script>
 @endsection

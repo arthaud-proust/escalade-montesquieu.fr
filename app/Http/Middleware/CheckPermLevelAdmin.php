@@ -23,7 +23,7 @@ class CheckPermLevelAdmin
             if(Auth::user()->level >= 3) {
                 return $next($request);
             } else {
-                return response()->json('Not authorized', 403);
+                return abort(403);
             }
         } else {
             return redirect('/login');

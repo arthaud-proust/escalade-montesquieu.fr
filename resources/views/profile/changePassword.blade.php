@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.app', ['requirementsJs' => ['app']])
 
 @section('title', 'Éditer mon profil')
 @section('content')
 <div class="ProfilEditionLayout container d-flex flex-column align-items-center justify-content-center">
-    <form class="col-8 d-flex flex-column align-items-strech justify-content-center" action="{{ route('updatePassword') }}" method="POST">
+    <form class="col-md-8 d-flex flex-column align-items-strech justify-content-center" action="{{ route('updatePassword') }}" method="POST">
         @csrf
         <div class="ProfilEditionCard large">
             <h1 class="ProfilEditionCard-title">Changer de mot de passe</h1>
@@ -38,12 +38,10 @@
             </div>
         </div>
 
-        <div class="ProfilEditionLayout-actions d-flex flex-row align-items-center justify-content-center">
+        <div class="ProfilEditionLayout-actions d-flex flex-column-reverse flex-md-row align-items-strectch justify-content-center">
             <a href="{{ route('showProfile') }}" class="btn btn-white backlink">Annuler</a>
             <button class="btn btn-success" type="submit">Modifier le mot de passe</button>
         </div>
     </form>
 </div>
-<script src="{{ asset('js/user.js') }}" defer></script>
-
 @endsection

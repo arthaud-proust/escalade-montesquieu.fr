@@ -10,6 +10,6 @@ class Post extends Model
     protected $table = 'blog_posts';
 
     protected $fillable = [
-        'title', 'blog', 'datetime', 'location', 'content', 'availables', 'unavailables', 'descenders', 'harness_need', 'shoes_need'
+        'title', 'blog', 'datetime', 'location', 'content', 'availables', 'unavailables', 'maxplaces', 'harness_need', 'shoes_need'
     ];
 }

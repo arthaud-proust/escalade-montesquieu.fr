@@ -30,6 +30,7 @@ Route::group(['middleware' => ['level-user']], function()
     Route::get('profil/edit', 'ProfileController@edit')->name('editProfile');
     Route::patch('profil', 'ProfileController@update')->name('updateProfile');
     Route::get('profil/change-password', 'ProfileController@changePassword')->name('changePassword');
+    Route::post('profil/img', 'ProfileController@changeImg')->name('changeImgProfile');
     Route::post('profil/change-password', 'ProfileController@updatePassword')->name('updatePassword');
     Route::get('profil/{user_uuid}', 'ProfileController@show')->name('userProfile');
     Route::get('profil/{user_uuid}/img', 'ProfileController@img')->name('imgProfile');

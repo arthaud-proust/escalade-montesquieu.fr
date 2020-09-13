@@ -1,4 +1,3 @@
-const { default: Axios } = require("axios");
 const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
@@ -78,7 +77,7 @@ function rendPosts(posts, firstRending=false) {
 function participate(e) {
     e.preventDefault();
     let id = $(this).attr('data-post-id');
-    Axios({method: 'post', url: `/post/${id}/participate`}).then(r=>{
+    axios({method: 'post', url: `/post/${id}/participate`}).then(r=>{
         rendPost(r.data, id);
         $('.join-post').click(participate);
         $('.unavailable-post').click(unavailable);
@@ -88,7 +87,7 @@ function participate(e) {
 function unavailable(e) {
     e.preventDefault();
     let id = $(this).attr('data-post-id');
-    Axios({method: 'delete', url: `/post/${id}/participate`}).then(r=>{
+    axios({method: 'delete', url: `/post/${id}/participate`}).then(r=>{
         rendPost(r.data, id);
         $('.join-post').click(participate);
         $('.unavailable-post').click(unavailable);
@@ -96,29 +95,12 @@ function unavailable(e) {
 }
 
 $(()=>{
+
     try {
-        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-        $('#datetimepicker').datetimepicker({
-            format: 'yyyy-mm-dd HH:MM',
-            footer: true,
-            modal: true,
-            minDate: today,
-            locale: 'fr-fr',
-            uiLibrary: 'bootstrap4'
-        });
-    } catch(e) {console.warn('Cant\'t load datetime picker: files were not called')};
-    
-
-    $('.blog-form').submit(e=>{
-        if($('#datetimepicker').val().length <19) $('#datetimepicker').val($('#datetimepicker').val()+":00");
-        console.log($('#datetimepicker').val());
-    })
-    $(".blog-form #name").keyup(function() {
-        $(".blog-form #slug").val(removeDiacritics($(this).val()));
-    });
-
-
-    rendPosts(posts, true);
+        rendPosts(posts, true);
+    } catch(e) {
+        console.warn('posts is not defined');
+    }
 
     $('.join-post:not(.disabled)').click(participate);
     $('.unavailable-post').click(unavailable);

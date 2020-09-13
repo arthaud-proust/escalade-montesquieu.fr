@@ -39,10 +39,39 @@ class ProfileController extends Controller
         return view('profile.edit', compact('user'));
     }
 
+    public function changeImg(Request $request) 
+    {
+        $validator = Validator::make($request->all(), [
+            'img' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json('fail', 400);
+        }
+
+        $user = Auth::user();
+
+        try {
+            if($user->img !="/assets/profiles/user.png") {
+                File::delete(public_path().$user->img);
+            }
+        } catch(Exception $e) {
+            // nothing
+        };
+
+        $imageName = $user->uuid.'.'.request('img')->getClientOriginalExtension();
+        request('img')->move(public_path('assets/profiles/'), $imageName);
+
+        $user->img = '/assets/profiles/'.$imageName;
+        $user->save();
+
+        return response()->json('done');
+    }
+
+
     public function update(Request $request) 
     {
         $validator = Validator::make($request->all(), [
-            'img' => 'nullable|mimes:jpeg,png,jpg,gif,svg,webp,jfif',
+            'email' => 'nullable|string',
             'name' => 'required|string|max:255|unique:users,name,'.Auth::user()->id,
             'bio' => 'nullable|string',
             'max_voie' => 'nullable|string',
@@ -55,22 +84,9 @@ class ProfileController extends Controller
         
         $user = Auth::user();
 
-        if(request('img')) {
-            try {
-                if($user->img !="/assets/profiles/user.png") {
-                    File::delete(public_path().$user->img);
-                }
-            } catch(Exception $e) {
-                // nothing
-            };
-
-            $imageName = $user->uuid.'.'.request('img')->getClientOriginalExtension();
-            request('img')->move(public_path('assets/profiles/'), $imageName);
-
-            $user->img = '/assets/profiles/'.$imageName;
-        }
 
         $user->name = request('name');
+        $user->email = request('email');
         $user->bio = request('bio');
         $user->max_voie = request('max_voie', $default='Non renseigné');
         $user->max_bloc = request('max_bloc', $default='Non renseigné');

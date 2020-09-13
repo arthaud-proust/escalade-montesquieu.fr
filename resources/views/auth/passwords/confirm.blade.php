@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['requirementsJs' => ['app']])
 
 @section('title', 'Confirmez votre mot de passe')
 @section('content')

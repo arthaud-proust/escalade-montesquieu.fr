@@ -1,13 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.app', ['requirementsJs' => ['app','blog']])
 
 @section('title', $blog->name)
+
 @section('content')
 <script>
 const posts = <?php echo $posts ?>;
 const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth::user()->level}}} @else undefined @endif;
 </script>
+
 <div class="BlogLayout container">
-    <div class="BlogLayout-pageIntro col-10 mx-auto">
+    <div class="BlogLayout-pageIntro col-md-10 mx-auto">
         <section class="PageIntro">
             <a class="PageIntro-backlink" href="{{ route('blogs') }}">Évènements et sorties</a>
             <h1 class="PageIntro-title">
@@ -20,7 +22,7 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
         </section>
     </div>
 
-    <div class="BlogLayout-posts col-10 mx-auto">
+    <div class="BlogLayout-posts col-md-10 mx-auto">
         <div class="PostsList">
             @foreach($posts->reverse() as $post) 
                 <section class="PostCard" id="post-{{$post->id}}" data-show-datetime="false">
@@ -38,8 +40,11 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
                     @endif
                 </section>
             @endforeach 
+            @if(count($posts) ==0) 
+                <img class="illustration" src="{{ asset('assets/svg/empty.svg') }}" alt="">
+                <span class="illustration-title">Aucun évènement prévu</span>
+            @endif
         </div>
     </div>
 </div>
-<script src="/js/blog.js" defer></script>
 @endsection

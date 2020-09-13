@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.app', ['requirementsJs' => ['app','user']])
 
 @section('title', 'Mon profil')
 @section('content')
 <div class="ProfilLayout container d-flex flex-column align-items-center justify-content-center">
-    <div class="col-10 d-flex flex-column align-items-strech justify-content-center">
+    <div class="col-md-10 d-flex flex-column align-items-strech justify-content-center">
         <div class="ProfilCard">
             <section class="ProfilCard-identity d-flex flex-column align-items-center">
                 <div class="IdentityBloc">
@@ -24,7 +24,6 @@
                 <div class="right">
                     <a href="{{ route('changePassword') }}" id="changePassword" class="btn btn-dark">Changer de mot de passe</a>
                     <a href="{{ route('editProfile') }}" id="modifyProfil" class="btn btn-dark">Modifier le profil</a>
-                    <!-- <a href="{{ route('userProfile', ['user_uuid'=>$user->uuid]) }}" class="btn btn-link">Lien du profil</a> -->
                 </div>
             </section>
 
@@ -32,7 +31,7 @@
                 <blockquote class="col-10">{{$user->bio}}</blockquote>
             </section>
 
-            <section class="ProfilCard-info d-flex flex-row justify-content-between col-10 mx-auto">
+            <section class="ProfilCard-info col-12 col-md-10 d-flex flex-column flex-column flex-md-row justify-content-between mx-auto">
                 <div class="InfoBloc">
                     <h3 class="InfoBloc-title">Cotation max</h3>
                     <span class="InfoBloc-content">
@@ -45,7 +44,7 @@
                         @endif
                     </span>
                 </div>
-                <div class="InfoBloc">
+                <div class="InfoBloc mt-4 mt-md-0">
                     <h3 class="InfoBloc-title">Équipement</h3>
                     <span class="InfoBloc-content">
                         @if($user->harness)
@@ -65,6 +64,5 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('js/user.js') }}" defer></script>
 
 @endsection

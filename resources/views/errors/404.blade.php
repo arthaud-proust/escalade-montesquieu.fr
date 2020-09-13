@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app', ['requirementsJs' => ['app']])
 
 @section('title', 'Page introuvable')
 @section('content')
 <div class="ErrorLayout container">
-    <div class="col-6 mx-auto">
+    <div class="col-md-6 mx-auto">
+        <img class="illustration" src="{{ asset('assets/svg/warning.svg') }}" alt="">
         <h1 class="ErrorLayout-title">Page introuvable</h1>
         <h2 class="ErrorLayout-code">Erreur 404</h2>
         <?php 

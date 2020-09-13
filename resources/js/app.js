@@ -12,7 +12,7 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-function removeDiacritics (str) {
+window.removeDiacritics = function (str) {
     var defaultDiacriticsRemovalMap = [
         {'base':'A', 'letters':/[\u0041\u24B6\uFF21\u00C0\u00C1\u00C2\u1EA6\u1EA4\u1EAA\u1EA8\u00C3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\u00C4\u01DE\u1EA2\u00C5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F]/g},
         {'base':'AA','letters':/[\uA732]/g},
@@ -104,33 +104,29 @@ function removeDiacritics (str) {
     return str;
 }
 
+$('.Field-toggleVisibility').click(function() {
+    let input = $(this).prev();
+    if(input.attr('type')=='password') {
+        $(this).attr('src', '/assets/svg/eye.svg');
+        input.attr('type', 'text');
+    } else {
+        $(this).attr('src', '/assets/svg/eye-off.svg');
+        input.attr('type', 'password');
+    }
+});
 
+$('.Field.disabled input').attr('tabindex', -1);
+$('.Field.disabled input').prop( "disabled", true ); //Disable
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-    'use strict';
-    window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-                  if (form.checkValidity() === false) {
-                      event.preventDefault();
-                      event.stopPropagation();
-                  }
-                  form.classList.add('was-validated');
-              }, false);
-        });
-    }, false);
-
-    const name = document.getElementById('name');
-    const slug = document.getElementById('slug');
-
-    name.addEventListener('keyup', (e)=>{
-        slug.value = removeDiacritics(name.value).replace(/\W|\s+|-+/g, "-").toLowerCase();
-    });
-})();
-
+$('.collapse').on('show.bs.collapse hide.bs.collapse', function(e) {
+    e.preventDefault();
+}),
+$('[data-toggle="collapse"]').click(function(e) {
+    e.preventDefault();
+    let el = $($(this).data('target'));
+    el.prev().attr('aria-expanded', el.prev().attr('aria-expanded')=='true'?'false':'true');
+    el.toggleClass('show');
+    $(this).children().attr('src', `/assets/svg/${el.hasClass('show')?'close':'menu'}.svg`);
+})
 
 })();

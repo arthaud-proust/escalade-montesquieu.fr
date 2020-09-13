@@ -1,14 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.app', ['requirementsJs' => ['app']])
 
 @section('title', 'Inscription')
 @section('content')
 <div class="AuthLayout">
     <div class="container">
-    <div class="AuthLayout-leftImg">
-        <img src="/assets/img/auth-left-img.jpg">
+    <div class="AuthLayout-leftImg d-none d-md-block" id="leftImg">
     </div>
-    <div class="AuthLayout-form col-7">
-        <form class="AuthForm col-9" method="POST" action="{{ route('register') }}">
+    <div class="AuthLayout-form col-md-7">
+        <form class="AuthForm col-md-9" method="POST" action="{{ route('register') }}">
             @csrf
             <h1 class="AuthForm-title">Créer un compte</h1>
             <div class="FieldSection">
@@ -50,18 +49,30 @@
                 </section>
             </div>
             <div class="AuthForm-actions">
-                <a href="{{ route('login') }}" class="col-6 btn btn-white backlink">J'ai déjà un compte</a>
-                <button class="col-6 btn btn-dark" type="submit">Créer mon compte</button>
+                <a href="{{ route('login') }}" class="col-md-6 btn btn-white backlink">J'ai déjà un compte</a>
+                <button class="col-md-6 btn btn-dark" type="submit">Créer mon compte</button>
             </div>
             <div class="AuthForm-info">
                 <small>En vous inscrivant vous acceptez les <a href="conditions-utilisation">conditions d'utilisation</a></small>
             </div>
         </form>
     </div>
-    <div class="AuthLayout-rightImg">
-        <img src="/assets/img/auth-right-img.jpg">
+    <div class="AuthLayout-rightImg d-none d-md-block" id="rightImg">
     </div>
     </div>
 </div>
-<script src="{{ asset('js/user.js') }}" defer></script>
+<script>
+if(window.screen.width >= 768) {
+    var imgLeft=document.createElement('img');
+    imgLeft.setAttribute('alt',"");
+    imgLeft.src='{{ asset('assets/img/auth-left-img.jpg') }}';
+    document.getElementById('leftImg').appendChild(imgLeft);
+    
+    var imgRight=document.createElement('img');
+    imgRight.setAttribute('alt',"");
+    imgRight.src='{{ asset('assets/img/auth-right-img.jpg') }}';
+    document.getElementById('rightImg').appendChild(imgRight);
+
+}
+</script>
 @endsection

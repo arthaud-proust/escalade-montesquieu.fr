@@ -1,9 +1,10 @@
 {
+    "/js/admin.js": "/js/admin.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/master.css": "/css/master.css",
+    "/css/mobile.css": "/css/mobile.css",
+    "/css/large.css": "/css/large.css",
     "/js/blog.js": "/js/blog.js",
     "/js/forum.js": "/js/forum.js",
-    "/js/user.js": "/js/user.js",
-    "/js/utilPost.js": "/js/utilPost.js"
+    "/js/user.js": "/js/user.js"
 }

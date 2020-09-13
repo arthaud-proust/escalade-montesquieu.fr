@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.app', ['requirementsJs' => ['app', 'admin']])
+
 
 @section('title', 'Créer un nouveau forum')
 @section('content')
@@ -7,7 +8,7 @@
     <h1 class="mb-4">Créer un sujet de discussion</h1>
 
     <div class="form-row">
-        <section class="form-group col-4">
+        <section class="form-group col-md-4">
             <label for="name">Nom du forum</label>
             <input id="name" name="name" class="forum-name form-control @error('name') is-invalid @enderror" value="{{ old('name') ? old('name') : '' }}" required></input>
             @error('name')
@@ -17,11 +18,11 @@
             @enderror
         </section>
         
-        <section class="form-group col-8">
+        <section class="form-group col-md-8">
             <label for="slug">Slug du forum</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="url-addon">https://escalade-montesquieu.fr/forum/</span>
+                    <span class="input-group-text" id="url-addon"><span class="d-none d-md-inline">https://escalade-montesquieu.fr</span>/forum/</span>
                 </div>
                 <input id="slug" name="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') ? old('slug') : '' }}" aria-describedby="url-addon"></input>
                 @error('slug')

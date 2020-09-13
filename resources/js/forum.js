@@ -1,4 +1,3 @@
-const { default: Axios } = require("axios");
 const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 try {
     window._last_message_id = window._messages[window._messages.length-1].id;
@@ -40,14 +39,6 @@ function getMessage(message) {
     `
 }
 
-function updateMessages(newMessages) {
-    const ids = window._messages.map(msg=>msg.id);
-    const rendMessages = newMessages.filter(msg => !ids.includes(msg.id));
-    rendMessages.forEach(msg => {
-        $('#MessagesList').append(getMessage(msg));
-    });
-}
-
 function addMessage(msg) {
     $('#MessagesList').append(getMessage(msg));
     $(".ForumLayout-messagesList").animate({ scrollTop: $('.ForumLayout-messagesList').prop("scrollHeight") }, 500);
@@ -67,14 +58,12 @@ function sendMessage() {
     $('#MessageForm-input').val('');
 
     $('.MessageForm').addClass('inProgress');
-    // $('#MessageForm-input').addClass('inProgress');
 
-    Axios({method: 'post', url: `/message/send`, data: {
+    axios({method: 'post', url: `/message/send`, data: {
         forum: window._forum,
         content
     }}).then(r=>{
         $('.MessageForm').removeClass('inProgress');
-        // $('#MessageForm-input').removeClass('inProgress');
         window._last_message_id = r.data.message.id;
     });
 }
@@ -84,12 +73,9 @@ function fetchMessages() {
         console.log(`Fetching messages... (last: ${window._last_message_id})`)
         axios({
             method: 'post',
-            url: 'https://escalade-montequieu-pusher.herokuapp.com/fetch',
+            url: 'https://escalade-montesquieu-pusher.herokuapp.com/fetch',
             timeout: 10 * (60 * 1000), // 10 minutes
-            data: formUrlEncoded({last_message_id: window._last_message_id, forum: window._forum}),
-            // headers: {
-            //     'Content-Type': 'text/plain',
-            // }
+            data: formUrlEncoded({last_message_id: window._last_message_id, forum: window._forum})
         }).then(r=>{  
             r.data.forEach(message=>{
                 if(message.id > window._last_message_id) {
@@ -102,16 +88,11 @@ function fetchMessages() {
             fetchMessages().then(()=>resolve(r));
         }).catch(e=>{
             fetchMessages();
-            // location.reload();
         });
     });
 }
 
 $(()=>{
-    $(".forum-form #name").keyup(function() {
-        $(".forum-form #slug").val(removeDiacritics($(this).val()));
-    });
-
     $('#MessageForm-send').click(sendMessage);
     $('#MessageForm-input').keyup(function(e) {
         if(e.which == 13) {

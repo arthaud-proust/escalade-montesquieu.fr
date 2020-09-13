@@ -13,8 +13,10 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/user.js', 'public/js')
+    .js('resources/js/admin.js', 'public/js')
     .js('resources/js/blog.js', 'public/js')
     .js('resources/js/forum.js', 'public/js')
-    .js('resources/js/utilPost.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/master.scss', 'public/css');
+    // .sass('resources/sass/master.scss', 'public/css')
+    .sass('resources/sass/mobile.scss', 'public/css')
+    .sass('resources/sass/large.scss', 'public/css')

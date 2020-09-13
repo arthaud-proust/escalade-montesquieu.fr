@@ -30,6 +30,7 @@ class PostController extends Controller
             'blog' => 'required|string|max:255',
             'datetime' => 'nullable|date_format:Y-m-d H:i:s',
             'location' => 'nullable|string|max:255',
+            'maxplaces' => 'nullable|numeric',
             'content' => 'nullable|string'
         ]);
         if ($validator->fails()) {
@@ -41,6 +42,7 @@ class PostController extends Controller
             'blog' => request('blog'),
             'datetime' => request('datetime'),
             'location' => request('location'),
+            'maxplaces' => request('maxplaces'),
             'content' => request('content')
         ]);
 
@@ -73,6 +75,7 @@ class PostController extends Controller
             'blog' => 'required|string|max:255',
             'datetime' => 'nullable|date_format:Y-m-d H:i:s',
             'location' => 'nullable|string|max:255',
+            'maxplaces' => 'nullable|numeric',
             'content' => 'nullable|string'
         ]);
         
@@ -84,6 +87,7 @@ class PostController extends Controller
         $post->blog = request('blog');
         $post->datetime = request('datetime');
         $post->location = request('location');
+        $post->maxplaces = request('maxplaces');
         $post->content = request('content');
         $post->save();
 

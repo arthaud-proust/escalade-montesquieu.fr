@@ -1,14 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.app', ['requirementsJs' => ['app', 'user']])
 
 @section('title', 'Éditer mon profil')
 @section('content')
 <div class="ProfilEditionLayout container d-flex flex-column align-items-center justify-content-center">
-    <form class="col-10 d-flex flex-column align-items-strech justify-content-center" action="{{ route('updateProfile') }}" method="POST" enctype="multipart/form-data">
+    <canvas id="canvas" style="display:none;"></canvas>
+    <form class="p-0 col-md-10 d-flex flex-column align-items-strech justify-content-center" action="{{ route('updateProfile') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')    
         <div class="ProfilEditionCard large">
             <h1 class="ProfilEditionCard-title">Édition du profil</h1>
-            <div class="d-flex flex-row align-items-center justify-content-between">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
                 <section class="Field img @error('img') is-invalid @enderror">
                     <label for="img" class="Field-label"><img id="preview" src="{{$user->img}}"></label>
                     <input id="img" name="img" class="Field-input" type="file">
@@ -24,7 +25,7 @@
                         <span class="Field-invalidFeedback" role="alert">{{ $message }}</span>
                     @enderror
                 </section>
-                <section class="Field text disabled @error('email') is-invalid @enderror">
+                <section class="Field text @error('email') is-invalid @enderror">
                     <label class="Field-label" for="email">Email</label>
                     <input class="Field-input" id="email" name="email" type="text" value="{{ old('email') ? old('email') : $user->email }}">
                     <small class="Field-info">Information privée</small>
@@ -34,7 +35,7 @@
                 </section>
             </div>
 
-            <section class="Field textarea @error('bio') is-invalid @enderror">
+            <section class="Field textarea pt-4 pt-md-0 @error('bio') is-invalid @enderror">
                 <label class="Field-label large" for="bio">Bio</label>
                 <textarea class="Field-input" id="bio" name="bio">{{ old('bio') ? old('bio') : $user->bio }}</textarea>
                 <small class="Field-info">Information publique</small>
@@ -44,11 +45,11 @@
             </section>
         </div>
 
-        <div class="d-flex flex-row align-items-strech justify-content-between">
+        <div class="d-flex flex-column flex-md-row align-items-strech justify-content-between">
 
             <div class="ProfilEditionCard">
                 <h1 class="ProfilEditionCard-title little">Cotation max</h1>
-                <div class="d-flex flex-row align-items-center justify-content-between">
+                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
                     <section class="Field select @error('max_voie') is-invalid @enderror">
                         <label class="Field-label" for="max_voie">En voie</label>
                         <select class="Field-input" id="max_voie" name="max_voie" data-value="{{ old('max_voie') ? old('max_voie') : $user->max_voie }}">
@@ -83,7 +84,7 @@
             <div class="ProfilEditionCard">
                 <h1 class="ProfilEditionCard-title little">Équipement</h1>
                 <p class="ProfilEditionCard-desc">Quel matériel faut-il vous réserver à chaque inscription à un évènement? Cette information est publique.</p>
-                <div class="d-flex flex-row align-items-center justify-content-between">
+                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
                     <section class="Field select @error('shoes') is-invalid @enderror">
                         <label class="Field-label" for="shoes">Chaussures à emprunter</label>
                         <select class="Field-input" id="shoes" name="shoes" data-value="{{ old('shoes') ? old('shoes') : $user->shoes }}">
@@ -107,7 +108,7 @@
             </div>
         
         </div>
-        <div class="ProfilEditionLayout-actions d-flex flex-row align-items-center justify-content-center">
+        <div class="ProfilEditionLayout-actions d-flex flex-column-reverse flex-md-row align-items-stretch justify-content-center">
             <a href="{{ route('showProfile') }}" class="btn btn-white backlink">Annuler</a>
             <button class="btn btn-success" type="submit">Enregistrer les modifications</button>
         </div>

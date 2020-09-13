@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.app', ['requirementsJs' => ['app']])
 
 @section('title', 'Conditions d\'utilisation')
 @section('content')
 <div class="AboutLayout container">
-    <div class="col-10">
+    <div class="col-md-10">
         <h1 class="AboutLayout-title">Conditions d'utilisation</h1>
         <hr>
 

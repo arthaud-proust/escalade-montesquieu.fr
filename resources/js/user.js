@@ -1,3 +1,4 @@
+import Compressor from 'compressorjs';
 const cotes = ['Non renseigné', '4a','4b','4c','5a','5b','5c','6a','6b','6c','7a','7b','7c','8a','8b','8c'];
 const roles = [ ['Grimpeur', 'climber'], ['Modérateur', 'modo'], ['Admin', 'admin'] ];
 
@@ -14,21 +15,70 @@ $(()=>{
         document.getElementById('img').onchange = function (evt) {
             var tgt = evt.target || window.event.srcElement,
                 files = tgt.files;
-        
+            if (!FileReader || !files || !files.length) {
+                return;
+            }
+            var fr = new FileReader();
+            fr.onload = function () {
+                const c =  document.getElementById('canvas');
+                const ctx = c.getContext('2d');
+                const img = new Image();
+                img.onload = function() {
+                    if(img.width < img.height) {
+                        c.height = img.width;
+                        c.width = img.width;
+                        ctx.drawImage(img, 0, (img.height/2)-(img.width/2), img.width, img.width, 0, 0, c.width, c.height);
+                        
+                    } else if(img.width > img.height) {
+                        c.width = img.height;
+                        c.height = img.height;
+                        ctx.drawImage(img, (img.width/2)-(img.height/2), 0, img.height, img.height, 0, 0, c.height, c.height);
+                    }
+
+                    c.toBlob(function(blob) {
+                        new Compressor(blob, {
+                            quality: 0,
+                            success(result) {
+                                result.name="image.jpg";
+                                document.getElementById("preview").src = URL.createObjectURL(result);
+                                const formData = new FormData();
+            
+                                // The third parameter is required for server
+                                formData.append('img', result, result.name);
+            
+                                // Send the compressed image file to server with XMLHttpRequest.
+                                axios.post('/profil/img', formData).then(r => {
+                                    console.log(r.data);
+                                });
+                            },
+                            error(err) {
+                              console.log(err.message);
+                            },
+                        });
+                    })
+                    
+
+
+
+
+
+
+
+
+                };
+                img.src = fr.result;
+            }
+            fr.readAsDataURL(files[0]);
+            
+            
             // FileReader support
-            if (FileReader && files && files.length) {
-                var fr = new FileReader();
-                fr.onload = function () {
-                    document.getElementById("preview").src = fr.result;
-                }
-                fr.readAsDataURL(files[0]);
-            }
-        
-            // Not supported
-            else {
-                // fallback -- perhaps submit the input to an iframe and temporarily store
-                // them on the server until the user's session ends.
-            }
+            // if (FileReader && files && files.length) {
+            //     var fr = new FileReader();
+            //     fr.onload = function () {
+            //         document.getElementById("preview").src = fr.result;
+            //     }
+            //     fr.readAsDataURL(files[0]);
+            // }
         }
     } catch(e) {}
     
@@ -38,20 +88,6 @@ $(()=>{
         $('#max_bloc').append(`<option ${$('#max_bloc').attr('data-value')==cote?'selected':''}>${cote}</option>`);
     });
 
-    $('.Field-toggleVisibility').click(function() {
-        let input = $(this).prev();
-        if(input.attr('type')=='password') {
-            $(this).attr('src', '/assets/svg/eye.svg');
-            input.attr('type', 'text');
-        } else {
-            $(this).attr('src', '/assets/svg/eye-off.svg');
-            input.attr('type', 'password');
-        }
-    });
-
-
-    $('.Field.disabled input').attr('tabindex', -1);
-    $('.Field.disabled input').prop( "disabled", true ); //Disable
     $('#shoes').html(getShoesOption($('#shoes').attr('data-value')));
     $('#role').html(roles[$('#role').attr('data-level')-1][0]);
     $('#role').attr('class', 'IdentityBloc-role '+roles[$('#role').attr('data-level')-1][1]);
