@@ -23,8 +23,8 @@ class CreateBlogPostsTable extends Migration
 
             // matos et grimpeurs
             $table->integer('maxplaces')->default('-1');
-            $table->json('availables')->default('[]'); // nom des grimpeurs venant et le matériel demandé
-            $table->json('unavailables')->default('[]'); // ceux étant indisponibles
+            $table->mediumText('availables')->nullable(); // nom des grimpeurs venant et le matériel demandé
+            $table->mediumText('unavailables')->nullable(); // ceux étant indisponibles
 
             $table->timestamp('created_at')->useCurrent();
         });
