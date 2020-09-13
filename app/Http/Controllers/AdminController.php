@@ -43,7 +43,7 @@ class AdminController extends Controller
         if(!$user = User::where('uuid', $uuid)->first()) {
             return response('not found')->status(404);
         }
-        $user->destroy();
+        $user->delete();
         return response('ok')->status(200);
 
     }

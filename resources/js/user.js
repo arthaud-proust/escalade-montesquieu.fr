@@ -18,67 +18,69 @@ $(()=>{
             if (!FileReader || !files || !files.length) {
                 return;
             }
-            var fr = new FileReader();
-            fr.onload = function () {
-                const c =  document.getElementById('canvas');
-                const ctx = c.getContext('2d');
-                const img = new Image();
-                img.onload = function() {
-                    if(img.width < img.height) {
-                        c.height = img.width;
-                        c.width = img.width;
-                        ctx.drawImage(img, 0, (img.height/2)-(img.width/2), img.width, img.width, 0, 0, c.width, c.height);
+            // var fr = new FileReader();
+            // fr.onload = function () {
+            //     const c =  document.getElementById('canvas');
+            //     const ctx = c.getContext('2d');
+            //     const img = new Image();
+            //     img.onload = function() {
+            //         if(img.width < img.height) {
+            //             c.height = img.width;
+            //             c.width = img.width;
+            //             ctx.drawImage(img, 0, (img.height/2)-(img.width/2), img.width, img.width, 0, 0, c.width, c.height);
                         
-                    } else if(img.width > img.height) {
-                        c.width = img.height;
-                        c.height = img.height;
-                        ctx.drawImage(img, (img.width/2)-(img.height/2), 0, img.height, img.height, 0, 0, c.height, c.height);
-                    }
+            //         } else if(img.width > img.height) {
+            //             c.width = img.height;
+            //             c.height = img.height;
+            //             ctx.drawImage(img, (img.width/2)-(img.height/2), 0, img.height, img.height, 0, 0, c.height, c.height);
+            //         }
 
-                    c.toBlob(function(blob) {
-                        new Compressor(blob, {
-                            quality: 0,
-                            success(result) {
-                                result.name="image.jpg";
-                                document.getElementById("preview").src = URL.createObjectURL(result);
-                                const formData = new FormData();
+            //         c.toBlob(function(blob) {
+            //             new Compressor(blob, {
+            //                 quality: 0,
+            //                 success(result) {
+            //                     result.name="image.jpg";
+            //                     document.getElementById("preview").src = URL.createObjectURL(result);
+            //                     const formData = new FormData();
             
-                                // The third parameter is required for server
-                                formData.append('img', result, result.name);
+            //                     // The third parameter is required for server
+            //                     formData.append('img', result, result.name);
             
-                                // Send the compressed image file to server with XMLHttpRequest.
-                                axios.post('/profil/img', formData).then(r => {
-                                    console.log(r.data);
-                                });
-                            },
-                            error(err) {
-                              console.log(err.message);
-                            },
-                        });
-                    })
-                    
+            //                     // Send the compressed image file to server with XMLHttpRequest.
+            //                     axios.post('/profil/img', formData).then(r => {
+            //                         console.log(r.data);
+            //                     });
+            //                 },
+            //                 error(err) {
+            //                   console.log(err.message);
+            //                 },
+            //             });
+            //         })
 
-
-
-
-
-
-
-
-                };
-                img.src = fr.result;
-            }
-            fr.readAsDataURL(files[0]);
-            
-            
-            // FileReader support
-            // if (FileReader && files && files.length) {
-            //     var fr = new FileReader();
-            //     fr.onload = function () {
-            //         document.getElementById("preview").src = fr.result;
-            //     }
-            //     fr.readAsDataURL(files[0]);
+            //     };
+            //     img.src = fr.result;
             // }
+            // fr.readAsDataURL(files[0]);
+
+            new Compressor(files[0], {
+                quality: 0.4,
+                success(result) {
+                    result.name="image.jpg";
+                    document.getElementById("preview").src = URL.createObjectURL(result);
+                    const formData = new FormData();
+
+                    // The third parameter is required for server
+                    formData.append('img', result, result.name);
+
+                    // Send the compressed image file to server with XMLHttpRequest.
+                    axios.post('/profil/img', formData).then(r => {
+                        console.log(r.data);
+                    });
+                },
+                error(err) {
+                    console.log(err.message);
+                },
+            });
         }
     } catch(e) {}
     
