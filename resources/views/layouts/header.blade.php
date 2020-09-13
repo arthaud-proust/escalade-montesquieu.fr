@@ -34,7 +34,7 @@
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto d-none d-md-block">
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
@@ -44,7 +44,7 @@
                             <a class="nav-link" href="{{ route('register') }}">Créer un compte</a>
                         </li>
                     @else
-                        <li class="nav-item d-none d-md-block">
+                        <li class="nav-item">
                         <a class="nav-link showDropdown" href="{{ route('showProfile') }}">
                             {{Auth::user()->name}} <img src="{{Auth::user()->img}}" style="border-radius:100%" height=25px width=25px> <img src="/assets/svg/chevron-down.svg" alt="&#8964;">
                         </a>

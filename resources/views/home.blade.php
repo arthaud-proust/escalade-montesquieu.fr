@@ -9,8 +9,6 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
 <div class="container">
     <div class="justify-content-center">
         <div class="hero" id="hero">
-            <!-- <h1 class="hero-title">Lycée Montesquieu</h1> -->
-            <!-- <span class="hero-subtitle">Section escalade</span> -->
             <div class="title-container">
                 <h1 class="title d-md-none">Lycée Montesquieu</title>
             </div>
@@ -20,7 +18,7 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
         <div class="d-flex flex-column flex-md-row">
             <div class="events col-md-7">
                 <h2 class="title">Évènements et sorties à venir</h2>
-                <p class="paraph">Les événements sont classés par deux catégories: réguliers ou occasionnels. Vous pouvez retrouver toutes les sorties et les événements prévus dans le <a href="/blog">blog</a>.</p>
+                <p class="paraph">Les évènements sont classés par deux catégories: réguliers ou occasionnels. Vous pouvez retrouver toutes les sorties et les événements prévus dans le <a href="/blog">blog</a>.</p>
 
                 <div class="PostsList">
                     @foreach($comingPosts as $post)

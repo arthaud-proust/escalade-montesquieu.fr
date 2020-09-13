@@ -39,22 +39,27 @@ header {
         background: var(--mw3);
         .nav-item {
             user-select: none;
-            padding-top: 15px;
+            padding-top: 20px;
+            .nav-link {
+                padding-bottom: 1px; 
+            }
             img {
-                @include transform(rotateZ(-90deg));
+                display: none;
+                // @include transform(rotateZ(-90deg));
             }
             .dropdownContent {
                 display: flex;
                 flex-direction: column;
-                background-color: var(--lw2);
+                // background-color: var(--mw2);
+                margin-left: 5px;
                 padding: 5px 15px;
-                margin-bottom: 1rem;
                 border-radius: 10px;
                 font-size: 1rem;
                 @include transform(translateX(-10px));
         
                 .link {
                     margin: 5px 2px;
+                    color: var(--mw4) !important;
                 }
             }
         }
@@ -65,7 +70,7 @@ header {
     
     a {
         font-size: 1.1rem;
-        color: var(--lw7) !important;
+        color: var(--mw7) !important;
         font-weight: 300 !important;
 
         img {
@@ -86,7 +91,7 @@ header {
         position: absolute;
         z-index: 1000;
         text-align: left;
-        background-color: var(--lw2);
+        background-color: var(--mw2);
         padding: 10px 20px;
         border-radius: 10px;
         font-size: 1rem;
@@ -170,7 +175,7 @@ main {
         font-weight: 400;
     }
     p.paraph {
-        color: var(--lw4);
+        color: var(--mw4);
         font-size: 1rem;
         font-weight: 300;
     }
@@ -182,7 +187,7 @@ main {
     .forum-list {
         margin-top: 50px;
         padding: 30px 15px 20px 15px;
-        background: var(--lw3);
+        background: var(--mw3);
         border-radius: 20px;
         -webkit-border-radius: 20px;
         -moz-border-radius: 20px;
@@ -231,14 +236,14 @@ footer {
         text-decoration: none;
     }
     .title {
-        color: var(--lw6);
+        color: #3490dc;
         margin-bottom: 2px;
-        font-weight: 500;
+        font-weight: 400;
         font-size: 1.2rem;
     }
 
     .desc {
-        color: var(--lw5);
+        color: var(--mw5);
         font-size: 1rem;
         font-size: 200;
         margin-bottom: 0;
@@ -246,7 +251,7 @@ footer {
 
     &:hover {
         @include box-shadow(hsla(0, 0%, 0%, 0.05) 0px 0px 20px);
-        background: var(--lw2); 
+        background: var(--mw2); 
     }
 
 }
@@ -261,7 +266,7 @@ footer {
     padding-bottom: 20px;
 }
 .PageIntro-title {
-    color: var(--lw7);
+    color: var(--mw7);
     font-weight: 400;
     font-size: 1.8rem !important;
 
@@ -273,7 +278,7 @@ footer {
     }
 }
 .PageIntro-paraph {
-    color: var(--lw4);
+    color: var(--mw4);
     font-size: 0.9rem;
     line-height: 1.3;
     font-weight: 300;
@@ -281,7 +286,7 @@ footer {
 }
 .PageIntro-backlink {
     position: relative;
-    color: var(--lw6);
+    color: var(--mw6);
     padding-left: 18px;
     margin-bottom: 15px;
     display: inline-block;
@@ -315,7 +320,7 @@ footer {
 .BlogsList-title {
     font-size: 1.2rem;
     font-weight: 300;
-    color: var(--lw6);
+    color: var(--mw6);
     padding-left: 3px;
 }
 
@@ -323,7 +328,7 @@ footer {
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: var(--lw3);
+    background-color: var(--mw3);
     border-radius: 15px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -354,12 +359,12 @@ footer {
 .Blog-name {
     font-size: 1.4rem;
     font-weight: 400;
-    color: var(--lw7);
+    color: var(--mw7);
 }
 .Blog-desc {
     font-size: 1rem;
     font-weight: 300;
-    color: var(--lw6);
+    color: var(--mw6);
     margin: 0;
 }
 .Blog-adminActions {
@@ -389,14 +394,14 @@ footer {
     position: relative;
     display: flex;
     flex-direction: column;
-    background: var(--lw3);
+    background: var(--mw3);
     border-radius: 10px;
     padding: 9px 13px;
     margin: 5px 0;
     transition: height .5s;
 
     .btn {
-        color: var(--lw1);
+        color: var(--mw1);
         font-size: 0.9rem;
         border-radius: 7px;
         -webkit-border-radius: 7px;
@@ -430,7 +435,7 @@ footer {
             height: 10px;
             padding-left: 7px;
             bottom:11px;
-            color: var(--lw3);
+            color: var(--mw3);
         }
 
         .particip {
@@ -484,7 +489,7 @@ footer {
         flex-direction: column;
         align-items: flex-start;
         padding-left: 10px;
-        background: var(--lw6);
+        background: var(--mw6);
         border-radius: 7px;
         padding: 10px 15px;
         margin: 15px 0;
@@ -543,7 +548,7 @@ footer {
             left: 0;
             display: flex;
             flex-direction: column;
-            background: var(--lw3);
+            background: var(--mw3);
             border-radius: 0 0 10px 10px;
             padding: 10px 15px;
             width: 100%;
@@ -591,7 +596,7 @@ footer {
             border-radius: 50px;
         }
         .MessageCard-author-name {
-            color: var(--lw4);
+            color: var(--mw4);
             font-weight: 300;
             font-size: 1rem;
             padding-left: 30px;
@@ -605,15 +610,15 @@ footer {
         padding: 10px 20px 10px 30px;
         border-radius: 20px;
         margin:0;
-        background: var(--lw3);
-        color: var(--lw7);
+        background: var(--mw3);
+        color: var(--mw7);
         font-weight: 300;
         font-size: 1.1rem;
     }
     .MessageCard-datetime {
         padding: 3px 0 0 5px;
         font-size: 0.7rem;
-        color: var(--lw4);
+        color: var(--mw4);
     }
 }
 .MessageCard.myMessage {
@@ -636,7 +641,7 @@ footer {
         }
         .MessageCard-author-name {
             display: none;
-            color: var(--lw4);
+            color: var(--mw4);
             font-weight: 300;
             font-size: 1rem;
             padding-right: 30px;
@@ -650,8 +655,8 @@ footer {
         padding: 10px 30px 10px 20px;
         border-radius: 20px;
         margin:0;
-        background: var(--lw3);
-        color: var(--lw7);
+        background: var(--mw3);
+        color: var(--mw7);
         font-weight: 300;
         font-size: 1.1rem;
     }
@@ -659,7 +664,7 @@ footer {
         align-self: flex-end;
         padding: 3px 0 0 5px;
         font-size: 0.7rem;
-        color: var(--lw4);
+        color: var(--mw4);
     }
 }
 
@@ -685,7 +690,7 @@ footer {
 .MessageForm-input {
     flex: 4 ;
     min-width: 20px;
-    border: 1px solid var(--lw4);
+    border: 1px solid var(--mw4);
     border-radius: 10px;
     font-size: 1rem;
     padding: 10px;
@@ -697,11 +702,11 @@ footer {
 
 .MessageForm-send {
     flex: 1;
-    background: var(--lw6);
-    border: 1px solid var(--lw6);
+    background: var(--mw6);
+    border: 1px solid var(--mw6);
     border-radius: 10px;
     margin-left: 10px;
-    color: var(--lw3);
+    color: var(--mw3);
     font-size: 1rem;
 }
 
@@ -714,7 +719,7 @@ footer {
     position: relative;
     display: flex;
     flex-direction: column;
-    background: var(--lw1);
+    background: var(--mw1);
     border-radius: 20px;
     padding: 20px 15px 30px 15px;
 }
@@ -743,11 +748,11 @@ footer {
         }
 
         #changePassword, #modifyProfil {
-            background: var(--lw5);
-            border-color: var(--lw5);
+            background: var(--mw5);
+            border-color: var(--mw5);
             margin-bottom: 5px;
             &:hover {
-                background: var(--lw6);
+                background: var(--mw6);
             }
         }
     }
@@ -862,14 +867,14 @@ footer {
     .backlink {
         margin-top: 10px;
         &:hover {
-            border: 1px solid var(--lw4);
+            border: 1px solid var(--mw4);
         }
     }
     .btn-success {
         background: var(--success1);
         border: 1px solid var(--success1);
         &:hover {
-            border-color: var(--lw6);
+            border-color: var(--mw6);
         }
     }
 }
@@ -877,7 +882,7 @@ footer {
     position: relative;
     display: flex;
     flex-direction: column;
-    background: var(--lw1);
+    background: var(--mw1);
     border-radius: 20px;
     margin: 8px;
     margin-top: 15px;
@@ -886,7 +891,7 @@ footer {
 .ProfilEditionCard-title {
     font-size: 1.8rem;
     font-weight: 400;
-    color: var(--lw7);
+    color: var(--mw7);
     &.little {
         font-size: 1.6rem;
         margin: 0 20px 10px 10px;
@@ -896,7 +901,7 @@ footer {
     margin: 0 10px 0 10px;
     font-weight: 300;
     font-size: 0.9rem;
-    color:var(--lw6);
+    color:var(--mw6);
 }
 .Field {
     margin: 15px 10px 0 10px;
@@ -905,8 +910,8 @@ footer {
     &.disabled {
         .Field-input {
             pointer-events: none;
-            color: var(--lw4) !important;
-            border-bottom-color: var(--lw4) !important;
+            color: var(--mw4) !important;
+            border-bottom-color: var(--mw4) !important;
         }
     }
     &.img {
@@ -956,7 +961,7 @@ footer {
         flex-direction: column;
         .Field-label {
             user-select: none;
-            color: var(--lw6);
+            color: var(--mw6);
             font-weight: 400;
             font-size: 0.9rem;
             &.large {
@@ -964,15 +969,15 @@ footer {
             }
         }
         .Field-input {
-            color: var(--lw6);
+            color: var(--mw6);
             font-weight: 300;
             font-size: 1rem;
             border:none;
             background:none;
-            border-bottom: 1px solid var(--lw4);
+            border-bottom: 1px solid var(--mw4);
         }
         .Field-info {
-            color: var(--lw4);
+            color: var(--mw4);
             font-weight: 300;
             font-size: 0.9rem;
             &.onFocus {
@@ -988,7 +993,7 @@ footer {
     &.checkbox {
         .Field-title {
             user-select: none;
-            color: var(--lw6);
+            color: var(--mw6);
             font-weight: 400;
             font-size: 0.9rem;
         }
@@ -1062,10 +1067,10 @@ footer {
         }
     }
     .btn-dark {
-        background: var(--lw6);
+        background: var(--mw6);
         margin-bottom: 10px;
         &:hover {
-            background: var(--lw7);
+            background: var(--mw7);
         }
     }
 }
@@ -1098,7 +1103,7 @@ footer {
     margin-bottom: 0px;
 }
 .ErrorLayout-code {
-    color: var(--lw4);
+    color: var(--mw4);
     font-weight: 200;
     font-size: 1rem;
 }
@@ -1121,25 +1126,25 @@ footer {
 }
 .AboutLayout-title {
     font-size: 1.8rem;
-    color: var(--lw6);
+    color: var(--mw6);
     font-weight: 500;
     text-align: left;
 }
 .AboutLayout h2, .AboutLayout-subtitle {
     margin-top: 20px;
     font-size: 1.5rem;
-    color: var(--lw6);
+    color: var(--mw6);
     font-weight: 400;
     text-align: left;
 }
 .AboutLayout-info {
     font-size: 1rem;
-    color: var(--lw4);
+    color: var(--mw4);
     font-weight: 300;
 }
 .AboutLayout-section {
     font-size: 1rem;
-    color: var(--lw5);
+    color: var(--mw5);
     max-width: 60ch;
     text-align: justify;
     margin-top: 20px;
@@ -1147,7 +1152,7 @@ footer {
 }
 .AboutLayout p, .AboutLayout-paraph {
     font-size: 1rem;
-    color: var(--lw5);
+    color: var(--mw5);
     max-width: 60ch;
     // text-align: justify;
     text-align: left;
@@ -1156,7 +1161,7 @@ footer {
 .AboutLayout-small {
     display: block;
     max-width: 100% !important;
-    color: var(--lw4) !important;
+    color: var(--mw4) !important;
     font-weight: 300;
     font-size: 0.9rem !important;
     line-height: 1.2;
@@ -1181,7 +1186,7 @@ footer {
     display: flex;
     flex-direction: column;
     position: relative;
-    background: var(--lw3);
+    background: var(--mw3);
     padding: 10px 15px;
     border-radius: 15px;
     -webkit-border-radius: 15px;
@@ -1227,7 +1232,7 @@ footer {
 .UserCard-name {
     padding: 0 10px;
     margin: 0;
-    color: var(--lw7);
+    color: var(--mw7);
 }
 .UserCard-info {
     padding-top: 15px;
@@ -1252,7 +1257,7 @@ footer {
     top: 100%;
     left: -2px;
     width: calc(100% + 4px);
-    background: var(--lw3);
+    background: var(--mw3);
     box-sizing: border-box;
     padding: 10px;
     z-index: 100;

@@ -15,6 +15,9 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'description' => env('APP_DESCRIPTION', 'Section escalade du lycée Montesquieu'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
