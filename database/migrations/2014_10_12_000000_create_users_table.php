@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('img'); // lien de la photo de profil
             $table->string('email')->unique();
             $table->string('password');
-            $table->mediumText('bio')->default('Biographie vide');
+            $table->mediumText('bio')->nullable(true);
             $table->string('max_voie')->default('Non renseigné'); 
             $table->string('max_bloc')->default('Non renseigné');
             $table->string('display_max')->default(true);
