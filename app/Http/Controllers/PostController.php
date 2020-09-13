@@ -43,7 +43,9 @@ class PostController extends Controller
             'datetime' => request('datetime'),
             'location' => request('location'),
             'maxplaces' => request('maxplaces'),
-            'content' => request('content')
+            'content' => request('content'),
+            'availables' => '{}',
+            'unavailables' => '[]',
         ]);
 
         return redirect('/blog/'.request('blog'))->with('status', 'success')->with('content', 'Post créé');

@@ -16,8 +16,8 @@ function getDate(datetime, withMinutes=true) {
 }
 
 function getPost(post) {
-    let availables = JSON.parse(post.availables);
-    let unavailables = JSON.parse(post.unavailables);
+    let availables = JSON.parse(post.availables) || {};
+    let unavailables = JSON.parse(post.unavailables) || [];
     let harness = Object.values(availables).filter(user => user[0] === 1).length;
     let participants = Object.keys(availables).length;
     let places = post.maxplaces==-1?99999:post.maxplaces-participants;

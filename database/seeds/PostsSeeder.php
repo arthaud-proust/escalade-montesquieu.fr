@@ -17,7 +17,9 @@ class PostsSeeder extends Seeder
             'location' => 'Lycée Montesquieu',
             'content' => 'Lorem ipsum',
             'datetime' => '2020-10-10',
-            'maxplaces' => 17
+            'maxplaces' => 17,
+            'availables' => '{}',
+            'unavailables' => '[]',
         ]);
 
         DB::table('blog_posts')->insert([
@@ -26,7 +28,9 @@ class PostsSeeder extends Seeder
             'location' => 'Ginko SAE',
             'content' => 'Lorem ipsum',
             'datetime' => '2020-10-10',
-            'maxplaces' => 11
+            'maxplaces' => 11,
+            'availables' => '{}',
+            'unavailables' => '[]',
         ]);
 
         DB::table('blog_posts')->insert([
@@ -35,7 +39,9 @@ class PostsSeeder extends Seeder
             'location' => 'Ginko SAE',
             'content' => 'Lorem ipsum',
             'datetime' => '2020-10-17',
-            'maxplaces' => 13
+            'maxplaces' => 13,
+            'availables' => '{}',
+            'unavailables' => '[]',
         ]);
 
         DB::table('blog_posts')->insert([
@@ -44,7 +50,9 @@ class PostsSeeder extends Seeder
             'location' => 'Fontainebleau',
             'content' => 'Lorem ipsum',
             'datetime' => '2020-10-13',
-            'maxplaces' => 19
+            'maxplaces' => 19,
+            'availables' => '{}',
+            'unavailables' => '[]',
         ]);
     }
 }
