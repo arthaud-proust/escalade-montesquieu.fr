@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Language Lines
@@ -12,8 +11,6 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
     'failed' => 'L\'email ou le mot de passe est incorrect.',
-    'throttle' => 'Trop d\essais de connecion. Réessayez dans :seconds secondes.',
-
+    'throttle' => 'Tentatives de connexion trop nombreuses. Veuillez essayer de nouveau dans :seconds secondes.',
 ];

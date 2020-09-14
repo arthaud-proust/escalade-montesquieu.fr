@@ -33,6 +33,7 @@
                     <a href="{{ route('register') }}" class="col-md-6 btn btn-white backlink">Je n'ai pas de compte</a>
                     <button class="col-md-6 btn btn-dark" type="submit">Se connecter</button>
                 </div>
+                    <a href="{{ route('password.request') }}" class="mt-3 btn btn-white backlink"><small>Mot de passe perdu</small></a>
             </form>
         </div>
         <div class="AuthLayout-rightImg d-none d-md-block" id="rightImg">
