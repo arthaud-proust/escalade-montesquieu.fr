@@ -5,7 +5,7 @@
                 <div class="col-md-4 mx-auto d-flex flex-column mb-3">
                     <h5 class="font-weight-bold mt-3 mb-md-4">Nous contacter</h5>
                     <span>Envoyer un mail à <br><b>contact@escalade-montesquieu.fr</b></span>
-                    <span>Ou voir <b>Mr.Granier</b> au lycée</span>
+                    <span>Ou voir <b>M.Granier</b> au lycée</span>
                     <!-- <a href="informations">Plus d'informations</a> -->
                 </div>
                 <!-- <hr class="clearfix w-100 d-md-none"> -->
