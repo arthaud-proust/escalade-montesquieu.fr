@@ -51,10 +51,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'exists:members,name'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string'],
             'password-confirmation' => ['required', 'string', 'same:password'],
+        ], [
+            'name.exists' => 'Vous n\'êtes pas sur la liste des licenciés. Merci de contacter M.Granier au lycée ou d\'envoyer un message à contact@escalade-montesquieu.fr s\'il s\'agit d\'une erreur'
         ]);
     }
 
@@ -70,7 +72,7 @@ class RegisterController extends Controller
             'uuid' => Str::orderedUuid(),
             'img' => '/assets/profiles/user.png',
             'level' => 1,
-            'name' => $data['name'],
+            'name' => ucwords(strtolower($data['name'])),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Member;
 use Illuminate\Http\Request;
 use Validator;
 use Response;
@@ -26,6 +27,39 @@ class AdminController extends Controller
         $modos = User::where('level', '2')->get();
         $admins = User::where('level', '3')->get();
         return view('admin.users', compact('users', 'modos', 'admins'));
+    }
+
+    public function getMembers(Request $request)
+    {
+        $members = Member::all();
+        $names = Member::select('name')->pluck('name');
+        return view('admin.members', compact('members', 'names'));
+    }
+
+    public function addMember(Request $request, $name)
+    {
+        if(Member::where('name', $name)->count() > 0) {
+            return response('already exist')->status(400);
+        } else {
+            Member::create([
+                'name' => $name,
+            ]);
+            return response('ok')->status(200);
+        }
+    }
+
+    public function destroyMember(Request $request, $name)
+    {
+        if(!$member = Member::where('name', $name)->first()) {
+            return response('not found')->status(404);
+        }
+        if($member->name !== Auth::User()->name) {
+            $member->delete();
+            return response('ok')->status(200);
+        } else {
+            return response('it is you')->status(400);
+        }
+
     }
 
     public function modifyUser(Request $request, $uuid)

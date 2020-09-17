@@ -85,7 +85,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
 
-        $user->name = request('name');
+        $user->name = ucwords(strtolower(request('name')));
         $user->email = request('email');
         $user->bio = request('bio');
         $user->max_voie = request('max_voie', $default='Non renseigné');

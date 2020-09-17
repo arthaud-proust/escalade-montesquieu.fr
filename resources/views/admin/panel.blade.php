@@ -8,8 +8,9 @@
             <h1 class="PageIntro-title">Panel admin</h1>
             <p class="PageIntro-paraph">Depuis ce panel vous pouvez modifier des informations du site et gérer les utilisateurs</p>
         </section>
-        <section class="AdminLayout-links">
-            <a href="{{ route('adminUsers') }}">Gestion des utilisateurs</a>
+        <section class="AdminLayout-links d-flex flex-column">
+            <a class="py-2" href="{{ route('adminMembers') }}">Modifier la liste des licenciés</a>
+            <a class="py-2" href="{{ route('adminUsers') }}">Gérer des utilisateurs</a>
         </section>
     </div>
 </div>

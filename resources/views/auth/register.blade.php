@@ -14,7 +14,7 @@
                 <section class="Field text @error('name') is-invalid @enderror">
                     <label class="Field-label" for="name">Prénom et nom de famille</label>
                     <input class="Field-input" id="name" name="name" type="name" value="{{ old('name') ? old('name') : '' }}" placeholder="Alex Honnold">
-                    <small class="Field-info onFocus">Modifiable un nombre limité de fois par la suite.</small>
+                    <small class="Field-info onFocus">Non modifiable par la suite.</small>
                     @error('name')
                         <span class="Field-invalidFeedback" role="alert">{{ $message }}</span>
                     @enderror

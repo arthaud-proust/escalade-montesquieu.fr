@@ -58,6 +58,55 @@ $(()=>{
         }
     });
 
+    function deleteMember(e) {
+        let name = $(this).parents('.MemberCard').attr('data-name');
+        if(!members.includes(name)) return;
+        members.splice(members.indexOf(name), 1);
+        let confirmation = confirm(`Voulez vous supprimez de la liste ${name}?`);
+        if(confirmation) {
+            axios({
+                method: 'DELETE',
+                url: `/admin/member/${name}`
+            })
+            .then(r=>{
+                if(r.status==200) {
+                    $(`.MemberCard[data-name="${name}"`).remove();
+                }
+            });
+        }
+    }
+
+    $('.MemberCard-delete').click(deleteMember);
+    $('.MemberCard-add').click(function(e) {
+        let name = $(this).parents('.MemberCard').find('.MemberCard-name').val();
+        name = name.toLowerCase().split(' ');
+        for (var i = 0; i < name.length; i++) {
+            name[i] = name[i].charAt(0).toUpperCase() + name[i].slice(1); 
+        }
+        name = name.join(' ');
+        if(members.includes(name)) return;
+        members.push(name);
+        axios({
+            method: 'POST',
+            url: `/admin/member/${name}`
+        })
+        .then(r=>{
+            $(this).parents('.MemberCard').find('.MemberCard-name').val('');
+            if(r.status==200) {
+                $('#AdminLayout-membersList').append(`
+                <div class="MemberCard col-12 col-md-6" data-name="${name}">
+                <div class="MemberCard-header">
+                    <h3 class="MemberCard-name">${name}</h3>
+                </div>
+                <div class="MemberCard-actions">
+                    <button class="MemberCard-delete">Supprimer</button>
+                </div>
+            </div>`);
+            $('.MemberCard-delete').click(deleteMember);
+            }
+        });
+    });
+
     $('#blog').on('change', function() {
         // console.log(this.value);
         if($('#title').attr('data-changed') == "false" || $('#title').val()=="") {
