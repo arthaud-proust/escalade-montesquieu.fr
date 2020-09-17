@@ -10,7 +10,8 @@ function countShoes(availables) {
 }
 
 function getDate(datetime, withMinutes=true) {
-    let date = datetime===undefined?'': new Date(datetime);
+    console.log(datetime);
+    let date = datetime===undefined?'': new Date(datetime.replace(/-/g, "/")); // replace for safari
     const twoDigits = (n)=>n==0?'':(n.toString().length==1?"0"+n:n);
     return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]} <small>${date.getFullYear()}<small> ${withMinutes?`à ${twoDigits(date.getHours())}H${twoDigits(date.getMinutes())}`:''}`
 }
