@@ -34,7 +34,7 @@
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto d-none d-flex">
+                <ul class="navbar-nav ml-auto d-none d-md-flex">
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">

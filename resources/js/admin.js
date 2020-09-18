@@ -9,20 +9,20 @@ $(()=>{
             modal: true,
             minDate: today,
             locale: 'fr-fr',
-            uiLibrary: 'bootstrap4'
+            uiLibrary: 'bootstrap4',
+            change: function (e) {
+                if($('#datetimepicker').val().length <19) $('#datetimepicker').val($('#datetimepicker').val()+":00");
+            }
         });
-    } catch(e) {};
+    } catch(e) {
+        console.error(e);
+    };
     
-
-    $('.blog-form').submit(e=>{
-        if($('#datetimepicker').val().length <19) $('#datetimepicker').val($('#datetimepicker').val()+":00");
-        console.log($('#datetimepicker').val());
-    })
-    $(".blog-form #name").keyup(function() {
+    $(".blog-form #name").on('keyup', function() {
         $(".blog-form #slug").val(window.removeDiacritics($(this).val()));
     });
 
-    $(".forum-form #name").keyup(function() {
+    $(".forum-form #name").on('keyup', function() {
         $(".forum-form #slug").val(window.removeDiacritics($(this).val()));
     });
 

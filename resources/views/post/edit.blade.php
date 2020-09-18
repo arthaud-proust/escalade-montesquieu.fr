@@ -35,7 +35,15 @@
         
     </div>
     <div class="form-row">
-
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <section class="form-group col-md-4">
             <label for="location">Lieu</label>
             <input id="location" name="location" placeholder="Lycée Montesquieu" class="blog-location form-control @error('location') is-invalid @enderror" value="{{ old('location') ? old('location') : $post->location }}" required></input>
