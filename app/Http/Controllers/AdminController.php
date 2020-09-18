@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Member;
+use App\Info;
 use Illuminate\Http\Request;
 use Validator;
 use Response;
@@ -28,6 +29,29 @@ class AdminController extends Controller
         $admins = User::where('level', '3')->get();
         return view('admin.users', compact('users', 'modos', 'admins'));
     }
+
+    public function modifyUser(Request $request, $uuid)
+    {
+        if(!$user = User::where('uuid', $uuid)->first()) {
+            return response('not found')->status(404);
+        }
+        $user->level = request('level', $user->level);
+        $user->save();
+        return response()->json($user);
+    }
+
+    public function destroyUser(Request $request, $uuid)
+    {
+        if(!$user = User::where('uuid', $uuid)->first()) {
+            return response('not found')->status(404);
+        }
+        $user->delete();
+        return response('ok')->status(200);
+
+    }
+
+
+
 
     public function getMembers(Request $request)
     {
@@ -62,27 +86,51 @@ class AdminController extends Controller
 
     }
 
-    public function modifyUser(Request $request, $uuid)
-    {
-        if(!$user = User::where('uuid', $uuid)->first()) {
-            return response('not found')->status(404);
-        }
-        $user->level = request('level', $user->level);
-        $user->save();
-        return response()->json($user);
-    }
 
-    public function destroyUser(Request $request, $uuid)
-    {
-        if(!$user = User::where('uuid', $uuid)->first()) {
-            return response('not found')->status(404);
-        }
-        $user->delete();
-        return response('ok')->status(200);
-
-    }
     
     
+    public function getInfos(Request $request)
+    {
+        $infos = Info::all();
+        return view('admin.infos', compact('infos'));
+    }
+
+    public function addInfo(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255|unique:info,title',
+            'content' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->messages());
+        }
+        $info = Info::create([
+            'title' => request('title'),
+            'content' => request('content'),
+        ]);
+        return response()->json('ok', 200);
+
+    }
+
+    public function modifyInfo(Request $request, $id)
+    {
+        if(!$info = Info::where('id', $id)->first()) {
+            return response()->json('not found', 404);
+        }
+        $info->title = request('title');
+        $info->content = request('content');
+        $info->save();
+        return response()->json('ok',200);
+    }
+
+    public function destroyInfo(Request $request, $id)
+    {
+        if(!$info = Info::where('id', $id)->first()) {
+            return response()->json('not found', 404);
+        }
+        $info->delete();
+        return response()->json('ok',200);
+    }
 
 }
 

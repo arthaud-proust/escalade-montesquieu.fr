@@ -162,6 +162,12 @@ main {
         max-width: 60%;
         margin: 80px auto 20px auto;
     }
+    .illustration-small {
+        position: relative;
+        display: block;
+        max-width: 40%;
+        margin: 80px auto 20px auto;
+    }
     .illustration-title {
         position: relative;
         display: block;
@@ -178,6 +184,11 @@ main {
         color: var(--mw4);
         font-size: 1rem;
         font-weight: 300;
+    }
+
+    .info {
+        padding: 10px 0px 40px 0;
+
     }
 
     .events {
@@ -1181,7 +1192,7 @@ footer {
     flex-wrap: wrap;
     justify-content: left;
 }
-.AdminLayout-membersList {
+.AdminLayout-membersList, .AdminLayout-infosList {
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-start;
@@ -1345,9 +1356,10 @@ input.MemberCard-name {
     -o-border-radius: 7px;
     margin-bottom: 5px;
 }
-.MemberCard-actions button {
+.MemberCard-actions button, .InfoCard-actions button {
     border:none;
     padding: 5px 10px;
+    margin-left:5px;
     border-radius: 7px;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
@@ -1356,9 +1368,27 @@ input.MemberCard-name {
     color: white;
 
 }
-.MemberCard-delete {
+.MemberCard-delete, .InfoCard-delete {
     background: var(--danger2);
 }
-.MemberCard-add {
+.MemberCard-add,.InfoCard-add,  .InfoCard-edit {
     background: var(--success2);
+}
+
+.InfoCard {
+    padding: 20px 0;
+}
+.InfoCard-content {
+    display: flex;
+    flex-direction: column;
+}
+input.InfoCard-title, textarea.InfoCard-content {
+    border: 1px solid rgba(0,0,0,0.3);
+    padding: 2px 8px 2px 8px;
+    font-size: 1rem;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
 }

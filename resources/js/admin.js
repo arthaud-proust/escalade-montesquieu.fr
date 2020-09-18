@@ -28,6 +28,59 @@ $(()=>{
 
 
 
+    $('.InfoCard-delete').click(function(e) {
+        let id = $(this).parents('.InfoCard').attr('data-id');
+        let confirmation = confirm(`Voulez vous supprimez cette information?`);
+        if(confirmation) {
+            axios({
+                method: 'DELETE',
+                url: `/admin/info/${id}`
+            })
+            .then(r=>location.reload());
+        }
+    });
+    $('.InfoCard-add').click(function(e) {
+        $('#modalEdit').attr('data-id', '0');
+        $('#modalEdit').attr('data-method', 'POST');
+        $('#modalEdit .modal-title').text('Ajouter une information');
+        $('#modalEdit').find('.InfoCard-title').val('');
+        $('#modalEdit').find('textarea.InfoCard-content').val('');
+        $('#modalEdit').modal('show'); 
+        // let title = $(this).parents('.InfoCard').find('.InfoCard-title').val();
+        // let content = '<p class="paraph">'+$(this).parents('.InfoCard').find('textarea.InfoCard-content').val().replace(/(?:\r\n|\r|\n)/g, '<br>')+'</p>';
+        // axios({
+        //     method: 'POST',
+        //     url: `/admin/info`,
+        //     data: {
+        //         title, content
+        //     }
+        // })
+        // .then(r=>location.reload());
+    });
+    $('.InfoCard-edit').click(function(e) {
+        $('#modalEdit').attr('data-id', $(this).parents('.InfoCard').attr('data-id'));
+        $('#modalEdit').attr('data-method', 'PUT');
+        $('#modalEdit .modal-title').text('Editer l\'information');
+        $('#modalEdit').find('.InfoCard-title').val($(this).parents('.InfoCard').find('.InfoCard-title').text());
+        $('#modalEdit').find('textarea.InfoCard-content').val($(this).parents('.InfoCard').find('.InfoCard-content').html().replace(/<p class="paraph">|<\/p>/g,'').replace(/<br>/g, '\n'));
+        $('#modalEdit').modal('show');        
+    });
+
+    $('#editInfo').on('click',function(e) {
+        let method = $('#modalEdit').attr('data-method');
+        let title = $('#modalEdit').find('.InfoCard-title').val();
+        let content = '<p class="paraph">'+$('#modalEdit').find('textarea.InfoCard-content').val().replace(/(?:\r\n|\r|\n)/g, '<br>')+'</p>';
+        axios({
+            method,
+            url: `/admin/info${method=='PUT'?`/${$('#modalEdit').attr('data-id')}`:``}`,
+            data: {
+                title, content
+            }
+        })
+        .then(r=>location.reload());
+    });
+
+
     $('.UserCard-delete').click(function(e) {
         let name = $(this).parents('.UserCard').attr('data-name');
         let uuid = $(this).parents('.UserCard').attr('data-uuid');
@@ -75,7 +128,6 @@ $(()=>{
             });
         }
     }
-
     $('.MemberCard-delete').click(deleteMember);
     $('.MemberCard-add').click(function(e) {
         let name = $(this).parents('.MemberCard').find('.MemberCard-name').val();

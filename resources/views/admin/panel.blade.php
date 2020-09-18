@@ -11,6 +11,7 @@
         <section class="AdminLayout-links d-flex flex-column">
             <a class="py-2" href="{{ route('adminMembers') }}">Modifier la liste des licenciés</a>
             <a class="py-2" href="{{ route('adminUsers') }}">Gérer des utilisateurs</a>
+            <a class="py-2" href="{{ route('adminInfos') }}">Modifier les infos à la une</a>
         </section>
     </div>
 </div>

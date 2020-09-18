@@ -101,6 +101,13 @@ main {
         max-height: 300px;
         margin: 30px auto;
     }
+    .illustration-small {
+        position: relative;
+        display: block;
+        max-width: 50%;
+        max-height: 150px;
+        margin: 50px auto 30px;
+    }
     .illustration-title {
         position: relative;
         display: block;
@@ -120,11 +127,20 @@ main {
         line-height: 1.4;
     }
 
+    .leftpan {
+        padding-top: 60px;
+    }
+    .info {
+        padding: 0px 60px 0px 0;
+    }
+
     .events {
-        padding: 60px 60px 0 0;
+        padding: 30px 60px 30px 0;
     }
 
     .forum-list {
+        top: 50px;
+        position: sticky;
         margin-top: 30px;
         padding: 30px 20px;
         // padding: 30px 30px 30px 30px;
@@ -1062,7 +1078,7 @@ main {
     flex-wrap: wrap;
     justify-content: left;
 }
-.AdminLayout-membersList {
+.AdminLayout-membersList, .AdminLayout-infosList {
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-start;
@@ -1210,8 +1226,6 @@ main {
     font-size: 1.2rem;
     cursor: normal;
     user-select: all;
-
-    
 }
 input.MemberCard-name {
     border: 1px solid rgba(0,0,0,0.3);
@@ -1223,9 +1237,10 @@ input.MemberCard-name {
     -ms-border-radius: 7px;
     -o-border-radius: 7px;
 }
-.MemberCard-actions button {
+.MemberCard-actions button, .InfoCard-actions button {
     border:none;
     padding: 5px 10px;
+    margin-left:5px;
     border-radius: 7px;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
@@ -1234,9 +1249,28 @@ input.MemberCard-name {
     color: white;
 
 }
-.MemberCard-delete {
+.MemberCard-delete, .InfoCard-delete {
     background: var(--danger2);
 }
-.MemberCard-add {
+.MemberCard-add, .InfoCard-add,  .InfoCard-edit {
     background: var(--success2);
+}
+
+
+.InfoCard {
+    padding: 20px 0;
+}
+.InfoCard-content {
+    display: flex;
+    flex-direction: column;
+}
+input.InfoCard-title, textarea.InfoCard-content {
+    border: 1px solid rgba(0,0,0,0.3);
+    padding: 2px 8px 2px 8px;
+    font-size: 1rem;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
 }
