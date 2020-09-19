@@ -1334,6 +1334,7 @@ footer {
 .MemberCard-header {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
 }
@@ -1342,10 +1343,8 @@ footer {
     font-size: 1.2rem;
     cursor: normal;
     user-select: all;
-
-    
 }
-input.MemberCard-name {
+input.MemberCard-name, input.MemberCard-class {
     border: 1px solid rgba(0,0,0,0.3);
     padding-left: 5px;
     font-size: 1rem;
@@ -1356,6 +1355,10 @@ input.MemberCard-name {
     -o-border-radius: 7px;
     margin-bottom: 5px;
 }
+.MemberCard-actions {
+    padding-top: 10px;
+}
+
 .MemberCard-actions button, .InfoCard-actions button {
     border:none;
     padding: 5px 10px;

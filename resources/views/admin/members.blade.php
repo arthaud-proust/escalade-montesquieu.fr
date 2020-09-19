@@ -3,7 +3,7 @@
 @section('title', 'Liste des licenciés')
 @section('content')
 <script>
-const members = <?php echo $names ?>;
+const members = <?php echo $members ?>;
 </script>
 <div class="AdminLayout container d-flex flex-column align-items-center justify-content-center">
     <div class="col-md-10">
@@ -14,9 +14,10 @@ const members = <?php echo $names ?>;
         </section>
         <h3 class="AdminLayout-sectionTitle">Ajouter un licencié</h3>
         <section class="AdminLayout-membersList">
-            <div class="MemberCard col-12 col-md-6">
+            <div class="MemberCard">
                 <div class="MemberCard-header">
-                    <input class="MemberCard-name" placeholder="ex: Alex Honnold">
+                    <input class="MemberCard-name" placeholder="Nom, ex: Adam Ondra">
+                    <input class="MemberCard-class mr-3" placeholder="Classe, ex: T°4">
                 </div>
                 <div class="MemberCard-actions">
                     <button class="MemberCard-add">Ajouter</button>
@@ -28,7 +29,7 @@ const members = <?php echo $names ?>;
             @foreach($members as $member)
             <div class="MemberCard col-12 col-md-6" data-name="{{$member->name}}">
                 <div class="MemberCard-header">
-                    <h3 class="MemberCard-name">{{$member->name}}</h3>
+                    <h3 class="MemberCard-name">{{$member->name}} <small>{{$member->class}}</small></h3>
                 </div>
                 <div class="MemberCard-actions">
                     @if($member->name !== Auth::User()->name)

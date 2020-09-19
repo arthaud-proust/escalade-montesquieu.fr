@@ -24,7 +24,7 @@ Route::group(['middleware' => ['level-admin']], function()
     Route::put('/info/{id}', 'AdminController@modifyInfo')->name('adminModifyInfo');
     
     Route::get('/members', 'AdminController@getMembers')->name('adminMembers');
-    Route::post('/member/{name}', 'AdminController@addMember')->name('adminAddMember');
+    Route::post('/member', 'AdminController@addMember')->name('adminAddMember');
     Route::delete('/member/{name}', 'AdminController@destroyMember')->name('adminDeleteMember');
     
     Route::get('/users', 'AdminController@getUsers')->name('adminUsers');

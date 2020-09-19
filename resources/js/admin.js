@@ -46,16 +46,6 @@ $(()=>{
         $('#modalEdit').find('.InfoCard-title').val('');
         $('#modalEdit').find('textarea.InfoCard-content').val('');
         $('#modalEdit').modal('show'); 
-        // let title = $(this).parents('.InfoCard').find('.InfoCard-title').val();
-        // let content = '<p class="paraph">'+$(this).parents('.InfoCard').find('textarea.InfoCard-content').val().replace(/(?:\r\n|\r|\n)/g, '<br>')+'</p>';
-        // axios({
-        //     method: 'POST',
-        //     url: `/admin/info`,
-        //     data: {
-        //         title, content
-        //     }
-        // })
-        // .then(r=>location.reload());
     });
     $('.InfoCard-edit').click(function(e) {
         $('#modalEdit').attr('data-id', $(this).parents('.InfoCard').attr('data-id'));
@@ -113,7 +103,7 @@ $(()=>{
 
     function deleteMember(e) {
         let name = $(this).parents('.MemberCard').attr('data-name');
-        if(!members.includes(name)) return;
+        if(members.filter(member=>member.name==name).length == 0) return;
         members.splice(members.indexOf(name), 1);
         let confirmation = confirm(`Voulez vous supprimez de la liste ${name}?`);
         if(confirmation) {
@@ -128,35 +118,49 @@ $(()=>{
             });
         }
     }
-    $('.MemberCard-delete').click(deleteMember);
-    $('.MemberCard-add').click(function(e) {
-        let name = $(this).parents('.MemberCard').find('.MemberCard-name').val();
+    function addMember(e) {
+        let name = $(e.target).parents('.MemberCard').find('.MemberCard-name').val();
+        let classroom = $(e.target).parents('.MemberCard').find('.MemberCard-class').val();
         name = name.toLowerCase().split(' ');
         for (var i = 0; i < name.length; i++) {
             name[i] = name[i].charAt(0).toUpperCase() + name[i].slice(1); 
         }
         name = name.join(' ');
-        if(members.includes(name)) return;
-        members.push(name);
+        if(members.filter(member=>member.name==name).length >0) return;
+        if(name=='' || classroom=='') return;
+        members.push({name, classroom});
         axios({
             method: 'POST',
-            url: `/admin/member/${name}`
+            url: `/admin/member`,
+            data: {
+                name,
+                classroom
+            }
         })
         .then(r=>{
-            $(this).parents('.MemberCard').find('.MemberCard-name').val('');
+            $(e.target).parents('.MemberCard').find('.MemberCard-name').val('');
+            $(e.target).parents('.MemberCard').find('.MemberCard-class').val('');
             if(r.status==200) {
                 $('#AdminLayout-membersList').append(`
-                <div class="MemberCard col-12 col-md-6" data-name="${name}">
-                <div class="MemberCard-header">
-                    <h3 class="MemberCard-name">${name}</h3>
-                </div>
-                <div class="MemberCard-actions">
-                    <button class="MemberCard-delete">Supprimer</button>
-                </div>
-            </div>`);
-            $('.MemberCard-delete').click(deleteMember);
+                    <div class="MemberCard col-12 col-md-6" data-name="${name}">
+                        <div class="MemberCard-header">
+                            <h3 class="MemberCard-name">${name} <small>${classroom}</small></h3>
+                        </div>
+                        <div class="MemberCard-actions">
+                            <button class="MemberCard-delete">Supprimer</button>
+                        </div>
+                    </div>
+                `);
+                $('.MemberCard-delete').on('click', deleteMember);
             }
         });
+    }
+    $('.MemberCard-delete').click(deleteMember);
+    $('.MemberCard-add').click(addMember);
+    $('input.MemberCard-class').on('keyup', function(e) {
+        if(e.which == 13) {
+            addMember(e)
+        }
     });
 
     $('#blog').on('change', function() {

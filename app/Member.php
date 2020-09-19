@@ -9,13 +9,13 @@ class Member extends Model
     protected $table = 'members';
 
 
-    public $timestamps = true;
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'id', 'name'
+        'id', 'name', 'class'
     ];
 }

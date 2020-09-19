@@ -55,18 +55,25 @@ class AdminController extends Controller
 
     public function getMembers(Request $request)
     {
-        $members = Member::all();
-        $names = Member::select('name')->pluck('name');
-        return view('admin.members', compact('members', 'names'));
+        $members = Member::select('name', 'class')->get();
+        return view('admin.members', compact('members'));
     }
 
-    public function addMember(Request $request, $name)
+    public function addMember(Request $request)
     {
-        if(Member::where('name', $name)->count() > 0) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:members,name',
+            'classroom' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->messages());
+        }
+        if(Member::where('name', request('name'))->count() > 0) {
             return response('already exist')->status(400);
         } else {
             Member::create([
-                'name' => $name,
+                'name' => request('name'),
+                'class' => request('classroom'),
             ]);
             return response('ok')->status(200);
         }
