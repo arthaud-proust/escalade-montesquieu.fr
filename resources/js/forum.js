@@ -17,7 +17,7 @@ const formUrlEncoded = x => Object.keys(x).reduce((p, c) => p + `&${c}=${encodeU
 
 
 function getDate(datetime, withMinutes=true, withYear=false) {
-    let date = datetime===undefined?'': new Date(datetime);
+    let date = datetime===undefined?'': new Date(datetime.replace(/-/g, "/"));
     const twoDigits = (n)=>n==0?'':(n.toString().length==1?"0"+n:n);
     return `${date.getDate()} ${months[date.getMonth()]} ${withYear?`<small>${date.getFullYear()}</small>`:''} ${withMinutes?`à ${twoDigits(date.getHours())}h${twoDigits(date.getMinutes())}`:''}`
 }

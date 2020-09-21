@@ -72,7 +72,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapBlogRoutes()
     {
-        Route::prefix('blog')
+        Route::prefix('evenements-et-sorties')
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/blog.php'));
