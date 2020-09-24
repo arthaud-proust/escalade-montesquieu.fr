@@ -35,7 +35,7 @@
         </div>
     @endforeach
     @if(count($galleries) ==0) 
-    <div class="flex column">
+    <div class="flex column mx-auto">
         <img class="illustration" src="{{ asset('assets/svg/empty.svg') }}" alt="">
         <span class="illustration-title">Aucune galerie pour l'instant</span>
         </div>
