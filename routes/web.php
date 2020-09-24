@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::view('/informations', 'about.informations')->name('informations');
 Route::view('/mentions-legales', 'about.mentions')->name('mentionsLegales');

@@ -34,7 +34,7 @@
             echo('<p class="ErrorLayout-desc">La page que vous cherchez n\'existe pas. <br>Peut-être cherchez-vous à aller sur une de ces pages:</p>');
             echo('<ul class="ErrorLayout-altLinks">');
             foreach($altRoutes as $route) {
-                echo("<li><a href=".$route->uri().">".$route->getName()."</a></li>");
+                echo('<li><a href="/'.$route->uri().'">'.$route->getName().'</a></li>');
             }
             echo('</ul>');
         }

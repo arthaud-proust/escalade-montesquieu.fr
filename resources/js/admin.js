@@ -22,6 +22,14 @@ $(()=>{
         $(".blog-form #slug").val(window.removeDiacritics($(this).val()));
     });
 
+    $(".gallery-form #name").on('keyup', function() {
+        $(".gallery-form #slug").val(window.removeDiacritics($(this).val()));
+    });
+
+    $(".photo-form #name").on('keyup', function() {
+        $(".photo-form #slug").val(window.removeDiacritics($(this).val()));
+    });
+
     $(".forum-form #name").on('keyup', function() {
         $(".forum-form #slug").val(window.removeDiacritics($(this).val()));
     });

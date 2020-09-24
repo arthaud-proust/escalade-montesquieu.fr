@@ -42,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        $this->mapPhotosRoutes();
+        
         $this->mapWebRoutes();
 
         $this->mapBlogRoutes();
@@ -49,6 +51,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapForumRoutes();
 
         $this->mapAdminRoutes();
+
     }
 
     /**
@@ -108,5 +111,12 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/admin.php'));
+    }
+
+    protected function mapPhotosRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/photos.php'));
     }
 }
