@@ -3,14 +3,14 @@
         <div class="text-left text-md-left">
             <div class="row ">
                 <div class="col-md-4 mx-auto d-flex flex-column mb-3">
-                    <h5 class="font-weight-bold mt-3 mb-md-4">Nous contacter</h5>
+                    <h5 class="font-weight-bold mt-3 mb-md-3">Nous contacter</h5>
                     <span>Envoyer un mail à <br><b>contact@escalade-montesquieu.fr</b></span>
                     <span>Ou voir <b>M.Granier</b> au lycée</span>
                     <!-- <a href="informations">Plus d'informations</a> -->
                 </div>
                 <!-- <hr class="clearfix w-100 d-md-none"> -->
                 <div class="col-md-2 mx-auto">
-                    <h5 class="font-weight-bold text-uppercase mt-3 mb-md-4">Évènements et sorties</h5>
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-md-3">Évènements et sorties</h5>
                     <ul class="list-unstyled">
                         @foreach(Session::get('blog_list'); as $blog)
                             <li>
@@ -21,7 +21,7 @@
                 </div>
                 <!-- <hr class="clearfix w-100 d-md-none"> -->
                 <div class="col-md-2 mx-auto">
-                    <h5 class="font-weight-bold text-uppercase mt-3 mb-md-4">Forum</h5>
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-md-3">Forum</h5>
                     <ul class="list-unstyled">
                         @foreach(Session::get('forum_list'); as $forum)
                             <li>
@@ -32,13 +32,13 @@
                 </div>
                 <!-- <hr class="clearfix w-100 d-md-none"> -->
                 <div class="col-md-2 mx-auto">
-                    <h5 class="font-weight-bold text-uppercase mt-3 mb-md-4">photos</h5>
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-md-3">photos</h5>
                     <ul class="list-unstyled mb-md-4">
                         <li>
                             <a href="{{route('galleries') }}">Galerie photo</a>
                         </li>
                     </ul>
-                    <h5 class="font-weight-bold text-uppercase mt-3 mb-md-4">à propos</h5>
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-md-3">à propos</h5>
                     <ul class="list-unstyled">
                         <!-- <li>
                             <a href="{{ route('informations') }}">Informations</a>
