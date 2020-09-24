@@ -38,7 +38,7 @@ Route::group(['prefix' => 'photos', 'middleware' => ['level-admin']], function()
     Route::get('/photo/create/{photo}/edit', 'PhotoController@edit')->name('editPhoto');
 });
 
-Route::group(['prefix' => 'photos', 'middleware' => ['level-user']], function()
+Route::group(['prefix' => 'photos'], function()
 {
     Route::get('/', 'GalleryController@index')->name('galleries');
 
