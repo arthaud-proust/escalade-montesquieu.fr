@@ -34,6 +34,10 @@
             </article>
         </div>
     @endforeach
+    @if(count($galleries) ==0) 
+        <img class="illustration" src="{{ asset('assets/svg/empty.svg') }}" alt="">
+        <span class="illustration-title">Aucune galerie pour l'instant</span>
+    @endif
     </div>
 </div>
 @endsection
