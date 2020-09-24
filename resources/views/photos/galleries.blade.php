@@ -6,7 +6,6 @@
     @include('components.alert')
     <div class="GalleryLayout-pageIntro col-md-12 mx-auto">
         <section class="PageIntro">
-            <a href="{{ route('galleries') }}" class="PageIntro-backlink">Galeries</a>
             <h1 class="PageIntro-title">
                 Galeries
             </h1>

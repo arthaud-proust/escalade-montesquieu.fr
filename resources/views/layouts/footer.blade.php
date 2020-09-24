@@ -32,6 +32,12 @@
                 </div>
                 <!-- <hr class="clearfix w-100 d-md-none"> -->
                 <div class="col-md-2 mx-auto">
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-md-4">photos</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{{route('galleries') }}">Galerie photo</a>
+                        </li>
+                    </ul>
                     <h5 class="font-weight-bold text-uppercase mt-3 mb-md-4">à propos</h5>
                     <ul class="list-unstyled">
                         <!-- <li>
