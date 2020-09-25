@@ -18,7 +18,7 @@ class HomeController extends Controller
 
         $infos = Info::all();
         $comingPosts = Post::orderBy('datetime')->get()->filter(function ($post) use ($current_datetime) {
-            $diff = (strtotime(explode(" ", $post->datetime)[0])-$current_datetime)/86400;
+            $diff = (strtotime(explode(" ", $post->datetime)[0])-$current_datetime)/172800; // 2semaines
             return (0 <= $diff);
         })->values()->take(5);
         $forums = Forum::all();
