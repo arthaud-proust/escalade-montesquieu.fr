@@ -1,8 +1,6 @@
-$(()=>{
-
-    // Blog part
+function loadTimePicker() {
+    var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
     try {
-        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         $('#datetimepicker').datetimepicker({
             format: 'yyyy-mm-dd HH:MM',
             footer: true,
@@ -16,7 +14,13 @@ $(()=>{
         });
     } catch(e) {
         console.error(e);
+        setTimeout(loadTimePicker, 500);
     };
+}
+
+$(()=>{
+    // Blog part
+    loadTimePicker();
     
     $(".blog-form #name").on('keyup', function() {
         $(".blog-form #slug").val(window.removeDiacritics($(this).val()));

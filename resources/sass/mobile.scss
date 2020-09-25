@@ -28,7 +28,7 @@ header {
         }
     }
     .navbar-collapse.collapse.show {
-        position: fixed;
+        position: absolute;
         min-height: 100vh;
         width: 100vw;
         top: 0;
@@ -104,6 +104,24 @@ header {
 
 
     
+}
+
+@media (orientation: landscape) {
+    .title-container::before {
+        display: none !important;
+    }
+}
+@media (max-width: 340px) {
+    .title-container .title {
+        font-size: 2.8rem !important;
+    }
+    .BlogLayout-posts, .leftpan {
+        padding: 0 !important;
+    }
+}
+
+footer {
+    padding-top: 1.5rem !important;
 }
 
 main {

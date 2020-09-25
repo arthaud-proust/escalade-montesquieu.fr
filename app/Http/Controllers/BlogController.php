@@ -38,7 +38,7 @@ class BlogController extends Controller
             'description' => request('description')
         ]);
 
-        return redirect('/blog')->with('status', 'success')->with('content', 'Blog créé');
+        return redirect()->route('blogs')->with('status', 'success')->with('content', 'Blog créé');
     }
 
 
@@ -88,6 +88,6 @@ class BlogController extends Controller
         $blog = Blog::where('slug', $blog_slug)->firstOrFail();
 
         $blog->delete();
-        return redirect('/blog');
+        return redirect()->route('blogs');
     }
 }

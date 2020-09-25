@@ -28,7 +28,7 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'blog' => 'required|string|max:255',
-            'datetime' => 'nullable|date_format:Y-m-d H:i:s',
+            'datetime' => 'required|date_format:Y-m-d H:i:s',
             'location' => 'nullable|string|max:255',
             'maxplaces' => 'nullable|numeric',
             'content' => 'nullable|string'
@@ -48,7 +48,7 @@ class PostController extends Controller
             'unavailables' => '[]',
         ]);
 
-        return redirect('/blog/'.request('blog'))->with('status', 'success')->with('content', 'Post créé');
+        return redirect()->route('showBlog', request('blog'))->with('status', 'success')->with('content', 'Post créé');
     }
 
     public function show($post_id) {
@@ -75,7 +75,7 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'blog' => 'required|string|max:255',
-            'datetime' => 'nullable|date_format:Y-m-d H:i:s',
+            'datetime' => 'required|date_format:Y-m-d H:i:s',
             'location' => 'nullable|string|max:255',
             'maxplaces' => 'nullable|numeric',
             'content' => 'nullable|string'
@@ -93,7 +93,7 @@ class PostController extends Controller
         $post->content = request('content');
         $post->save();
 
-        return redirect('/blog/'.request('blog'))->with('status', 'success')->with('content', 'Post mis à jour');
+        return redirect()->route('showBlog', request('blog'))->with('status', 'success')->with('content', 'Post mis à jour');
     }
 
     public function available(Request $request, $post_id) {
@@ -155,6 +155,6 @@ class PostController extends Controller
         $blog = $post->blog;
         $post->delete();
 
-        return redirect('/blog/'.$blog)->with('status', 'success')->with('content', 'Post supprimé');
+        return redirect()->route('showBlog', $blog)->with('status', 'success')->with('content', 'Post supprimé');
     }
 }

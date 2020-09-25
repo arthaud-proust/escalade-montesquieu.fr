@@ -71,6 +71,8 @@ $('[data-toggle="collapse"]').click(function(e) {
     el.prev().attr('aria-expanded', el.prev().attr('aria-expanded')=='true'?'false':'true');
     el.toggleClass('show');
     $(this).children().attr('src', `/assets/svg/${el.hasClass('show')?'close':'menu'}.svg`);
+    $('main').toggle();
+    $('footer').toggle();
 })
 
 })();
