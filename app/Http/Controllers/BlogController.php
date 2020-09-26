@@ -81,7 +81,8 @@ class BlogController extends Controller
         $blog->save();
 
         $posts = Post::where('blog', request('slug'))->get();
-        return view('blog.show', compact('blog', 'posts'));
+        // return view('blog.show', compact('blog', 'posts'))->with('status', 'success')->with('content', 'Blog mis à jour');
+        return redirect()->route('showBlog', $blog->slug)->with('status', 'success')->with('content', 'Blog mis à jour');
     }
 
     public function destroy($blog_slug) {

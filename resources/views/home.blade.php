@@ -13,6 +13,7 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
                 <h1 class="title d-md-none">Lycée Montesquieu</title>
             </div>
         </div>
+    @include('components.alert')
 
         
 

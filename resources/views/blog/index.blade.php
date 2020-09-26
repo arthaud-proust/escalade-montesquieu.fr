@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="BlogsLayout container d-flex flex-column justify-content-center align-items-center">
-
     <div class="BlogsLayout-pageIntro">
         <section class="PageIntro col-12">
             <h1 class="PageIntro-title">Évènements et sorties</h1>

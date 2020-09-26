@@ -97,6 +97,11 @@
         @endif
 
         <main>
+            @if (!\Request::is('/'))
+                <div class="container">
+                    @include('components.alert')
+                </div>
+            @endif
             @yield('content')
         </main>
 

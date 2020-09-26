@@ -8,7 +8,6 @@
 @section('content')
 
 <div class="container">
-    @include('components.alert')
     <form class="gallery-form needs-validation mt-5" novalidate action="{{ route('storeGallery') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-row">

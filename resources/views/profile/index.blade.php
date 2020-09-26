@@ -28,7 +28,7 @@
             </section>
 
             <section class="ProfilCard-bio d-flex flex-column align-items-center">
-                <blockquote class="col-10">{{$user->bio==''?'Biographie vide':$user->bio}}</blockquote>
+                <blockquote class="px-3">{{$user->bio==''?'Biographie vide':$user->bio}}</blockquote>
             </section>
 
             <section class="ProfilCard-info col-12 col-md-10 d-flex flex-column flex-column flex-md-row justify-content-between mx-auto">

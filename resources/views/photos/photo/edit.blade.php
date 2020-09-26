@@ -6,7 +6,6 @@
 @section('content')
 
 <div class="container">
-    @include('components.alert')
     <form class="photo-form needs-validation mt-5" novalidate action="{{ route('updatePhoto', $photo->slug) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method("PATCH")

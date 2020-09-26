@@ -5,7 +5,6 @@
 @section('content')
 
 <div class="container">
-    @include('components.alert')
     <form class="photo-form needs-validation mt-5" novalidate action="{{ route('storePhoto') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-row">

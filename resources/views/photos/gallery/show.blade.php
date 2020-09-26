@@ -5,7 +5,6 @@
 
 @section('content')
 <div class="PhotoLayout container">
-    @include('components.alert')
     <div class="PhotoLayout-pageIntro col-md-12 mx-auto">
         <section class="PageIntro">
             <a href="{{ route('galleries') }}" class="PageIntro-backlink">Toutes les galeries</a>

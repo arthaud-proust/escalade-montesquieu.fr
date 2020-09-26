@@ -3,7 +3,6 @@
 @section('title', "Galerie photo")
 @section('content')
 <div class="GalleryLayout container">
-    @include('components.alert')
     <div class="GalleryLayout-pageIntro col-md-12 mx-auto">
         <section class="PageIntro">
             <h1 class="PageIntro-title">
