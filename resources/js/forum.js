@@ -1,3 +1,4 @@
+const anchorme = require("anchorme").default;
 const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 try {
     window._last_message_id = window._messages[window._messages.length-1].id;
@@ -23,6 +24,17 @@ function getDate(datetime, withMinutes=true, withYear=false) {
 }
 
 function getMessage(message) {
+    const content = anchorme({
+        input:message.content,
+        extensions: [
+            // an extension for mentions
+            {
+                test: /@(\w|_)+/gi,
+                transform: (string) =>
+                    `<a href="http://escalade-montesquieu.fr/profil/${string.substr(1).replace(/(_)+/gi," ")}">${string}</a>`,
+            }
+        ],
+    })
     return `
     <div class="MessageCard ${message.author == window._user?'myMessage':'theirMessage'}" id="message-${message.id}">
         <a class="MessageCard-author" href="/profil/${message.author_uuid}" target="blank">
@@ -32,7 +44,7 @@ function getMessage(message) {
                 </h5>
             </a>
         <p class="MessageCard-text ">
-            ${message.content}
+            ${content}
         </p>
         <span class="MessageCard-datetime">${getDate(message.created_at)}</span>
     </div>

@@ -1,4 +1,7 @@
+const anchorme = require("anchorme").default;
+
 function loadTimePicker() {
+    if($('#datetimepicker').length == 0) return
     var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
     try {
         $('#datetimepicker').datetimepicker({
@@ -38,7 +41,26 @@ $(()=>{
         $(".forum-form #slug").val(window.removeDiacritics($(this).val()));
     });
 
-
+    // $('.InfoCard-content').html(function(i, text) {
+    //     console.log('e');
+    //     return anchorme({
+    //         input:text,
+    //         extensions: [
+    //             // an extension for mentions
+    //             {
+    //                 test: /@(\w|_)+/gi,
+    //                 transform: (string) =>
+    //                     `<a href="http://escalade-montesquieu.fr/profil/${string.substr(1).replace(/(_)+/gi," ")}">${string}</a>`,
+    //             },
+    //             // an extension for nameds links
+    //             {
+    //                 test: /\w+\[.+\]/gi,
+    //                 transform: (string) =>
+    //                     `<a href="${string.replace(/\w+\[|\]/gi,'')}">${string.replace(/\[.+/gi,'')}</a>`,
+    //             },
+    //         ],
+    //     })
+    // })
 
     $('.InfoCard-delete').click(function(e) {
         let id = $(this).parents('.InfoCard').attr('data-id');
@@ -64,14 +86,14 @@ $(()=>{
         $('#modalEdit').attr('data-method', 'PUT');
         $('#modalEdit .modal-title').text('Editer l\'information');
         $('#modalEdit').find('.InfoCard-title').val($(this).parents('.InfoCard').find('.InfoCard-title').text());
-        $('#modalEdit').find('textarea.InfoCard-content').val($(this).parents('.InfoCard').find('.InfoCard-content').html().replace(/<p class="paraph">|<\/p>/g,'').replace(/<br>/g, '\n'));
+        $('#modalEdit').find('textarea.InfoCard-content').val($(this).parents('.InfoCard').find('.InfoCard-content').text());
         $('#modalEdit').modal('show');        
     });
 
     $('#editInfo').on('click',function(e) {
         let method = $('#modalEdit').attr('data-method');
         let title = $('#modalEdit').find('.InfoCard-title').val();
-        let content = '<p class="paraph">'+$('#modalEdit').find('textarea.InfoCard-content').val().replace(/(?:\r\n|\r|\n)/g, '<br>')+'</p>';
+        let content = $('#modalEdit').find('textarea.InfoCard-content').val();
         axios({
             method,
             url: `/admin/info${method=='PUT'?`/${$('#modalEdit').attr('data-id')}`:``}`,

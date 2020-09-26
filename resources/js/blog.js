@@ -1,5 +1,7 @@
+const anchorme = require("anchorme").default;
 const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+
 
 function countShoes(availables) {
     let shoes = {};
@@ -10,7 +12,6 @@ function countShoes(availables) {
 }
 
 function getDate(datetime, withMinutes=true) {
-    console.log(datetime);
     let date = datetime===undefined?'': new Date(datetime.replace(/-/g, "/")); // replace for safari
     const twoDigits = (n)=>n==0?'':(n.toString().length==1?"0"+n:n);
     return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]} <small>${date.getFullYear()}<small> ${withMinutes?`à ${twoDigits(date.getHours())}H${twoDigits(date.getMinutes())}`:''}`
@@ -22,6 +23,22 @@ function getPost(post) {
     let harness = Object.values(availables).filter(user => user[0] === 1).length;
     let participants = Object.keys(availables).length;
     let places = post.maxplaces==-1?99999:post.maxplaces-participants;
+    let content = post.content===null?'':anchorme({
+        input:post.content,
+        extensions: [
+            // an extension for mentions
+            {
+                test: /@(\w|_)+/gi,
+                transform: (string) =>
+                    `<a href="http://escalade-montesquieu.test:8000/profil/${string.substr(1).replace(/(_)+/gi," ")}">${string}</a>`,
+            },
+            {
+                test: /\[([^\]]*)\]\(([^)]*)\)/gi,
+                transform: (string) =>
+                    `<a href="https://${string.replace(/\[.+\]\(|\)/gi,'').replace('/', 'escalade-montesquieu.fr/')}">${string.replace(/\[|\]\(.+\)/gi,'')}</a>`,
+            },
+        ],
+    })
     return `
         <div class="PostCard-content">
             <h3>${post.title}</h3>
@@ -46,7 +63,7 @@ function getPost(post) {
                 ${$('#post-'+post.id).attr('data-show-datetime')=="true"?`<h5>${getDate(post.datetime)}</h5>`:''}
                 <a class="location" target="blank" href="https://www.google.fr/maps/search/${post.location}+france">${post.location===null?'':post.location}</a>
                 <span class="maxplaces">${post.maxplaces==-1?'Places illimitées':places+` ${places>1?'places restantes':'place restante'}`}</span>
-                <p class="desc">${post.content===null?'':post.content}</p>
+                <p class="desc">${content}</p>
             </div>
         </div>
     `;
@@ -102,6 +119,28 @@ $(()=>{
     } catch(e) {
         console.warn('posts is not defined');
     }
+
+    try {
+        $('.infoCard p.paraph').html(function(i, text) {
+            console.log('e');
+            return anchorme({
+                input:text,
+                extensions: [
+                    // an extension for mentions
+                    {
+                        test: /@(\w|_)+/gi,
+                        transform: (string) =>
+                            `<a href="https://escalade-montesquieu.fr/profil/${string.substr(1).replace(/(_)+/gi," ")}">${string}</a>`,
+                    },
+                    {
+                        test: /\[([^\]]*)\]\(([^)]*)\)/gi,
+                        transform: (string) =>
+                            `<a href="https://${string.replace(/\[.+\]\(|\)/gi,'').replace('/', 'escalade-montesquieu.fr/')}">${string.replace(/\[|\]\(.+\)/gi,'')}</a>`,
+                    },
+                ],
+            })
+        })
+    } catch(e) {console.log(e);};
 
     $('.join-post:not(.disabled)').click(participate);
     $('.unavailable-post').click(unavailable);

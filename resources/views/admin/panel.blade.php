@@ -13,6 +13,10 @@
             <a class="py-2" href="{{ route('adminUsers') }}">Gérer des utilisateurs</a>
             <a class="py-2" href="{{ route('adminInfos') }}">Modifier les infos à la une</a>
         </section>
+        <section class="AdminLayout-tips d-flex flex-column pt-5">
+            <h4>Infos pratiques</h4>
+            <p>Pour ajouter un lien dans un post ou une info à la une il suffit de marquer "titre du lien"[lien]</p>
+        </section>
     </div>
 </div>
 

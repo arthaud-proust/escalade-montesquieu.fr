@@ -22,8 +22,13 @@ class ProfileController extends Controller
 
     public function show(Request $request, $user_uuid)
     {
-        $user = User::where('uuid', $user_uuid)->first();
-        return view('profile.show', compact('user'));
+        if($user = User::where('uuid', $user_uuid)->first()) {
+            return view('profile.show', compact('user'));
+        } else if($user = User::where('name', ucwords(strtolower($user_uuid)))->first()) {
+            return view('profile.show', compact('user'));
+        } else {
+            abort(404);
+        }
     }
 
     public function img(Request $request, $user_uuid)

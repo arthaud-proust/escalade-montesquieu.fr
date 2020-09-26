@@ -21,9 +21,9 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
                 @if(count($infos) > 0)
                 <div class="info d-flex flex-column">
                     @foreach($infos as $info)
-                    <div class="pb-4">
+                    <div class="infoCard pb-4">
                         <h2 class="title">{{$info->title }}</h2>
-                        {!!$info->content !!}
+                        <p class="paraph">{{$info->content }}</p>
                     </div>
                     @endforeach
                     @if(Auth::check() && Auth::user()->level>2)

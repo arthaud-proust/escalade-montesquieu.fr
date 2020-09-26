@@ -25,7 +25,7 @@
                         <button class="InfoCard-delete">Supprimer</button>
                     </div>
                     <div class="InfoCard-content col-md-8">
-                        {!! $info->content !!}
+                        {{ $info->content }}
                     </div>
                 </div>
                 
