@@ -15,7 +15,13 @@
         </section>
         <section class="AdminLayout-tips d-flex flex-column pt-5">
             <h4>Infos pratiques</h4>
-            <p>Pour ajouter un lien dans un post ou une info à la une il suffit de marquer "titre du lien"[lien]</p>
+            <p>Pour ajouter un lien dans un <b>post</b> ou une <b>info à la une</b> il suffit de marquer <code>[titre du lien](lien, <b>sans le https ou le ://</b>)</code>
+                <br><u>Exemples:</u>
+                <ul>
+                    <li>(avec un <b>/</b> si la page est sur le site) <code>[Photos](/photos)</code> => <a href="/photos">Photos</a></li>
+                    <li>(sinon on met l'url en entier) <code>[Site du lycée](www.lycee-montesquieu.fr/)</code> => <a href="https://www.lycee-montesquieu.fr/">Site du lycée</a></li>
+                </ul>
+            </p>
         </section>
     </div>
 </div>
