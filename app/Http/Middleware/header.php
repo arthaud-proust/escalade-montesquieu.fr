@@ -24,7 +24,7 @@ class header
         Session::flash('blog_list', Blog::all());
         if(Auth::check() && Auth::user()->created_at == Auth::user()->updated_at ) {
             Session::flash('alert-status', 'info');
-            Session::flash('alert-content','Votre profil est tout frais, personnalisez-le !');
+            Session::flash('alert-content','Pensez à indiquer dans votre profil le matériel qu\'il vous faut pour les sorties, vous ne l\'avez pas encore personnalié !');
             Session::flash('alert-link-href', '/profil/edit');
             Session::flash('alert-link-title', 'Modifier le profil');
         }
