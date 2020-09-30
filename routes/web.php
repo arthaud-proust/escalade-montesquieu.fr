@@ -40,3 +40,4 @@ Route::group(['middleware' => ['level-user']], function()
     Route::delete('post/{post}/participate', 'PostController@unavailable');
     
 });
+

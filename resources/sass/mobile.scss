@@ -606,7 +606,22 @@ footer {
     flex:1;
 }
 
-
+.MessageCard {
+    max-width: 90%;
+    .MessageCard-text {
+        max-width: 100%;
+        a {
+            max-width: 100%;
+            display: inline-block;
+            word-wrap: break-word !important;
+            -ms-word-break: break-word !important;
+            -webkit-word-break: break-word !important;
+            -o-word-break: break-word !important;
+            -moz-word-break: break-word !important;
+        }
+    }
+    
+}
 .MessageCard.theirMessage {
     position: relative;
     display: flex;
