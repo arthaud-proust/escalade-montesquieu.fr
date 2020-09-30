@@ -20,8 +20,8 @@
     <meta name="author" content="Arthaud Proust">
     <meta name="subject" content="Escalade">
     <meta name="language" content="FR">
-    <meta name="url" content="escalade-montesquieu.fr" />
-    <meta name="identifier-URL" content="escalade-montesquieu.fr">
+    <meta name="url" content="https://escalade-montesquieu.fr" />
+    <meta name="identifier-URL" content="https://escalade-montesquieu.fr">
     <meta name="owner" content="Arthaud Proust">
     <meta name="target" content="all">
     <meta name="robots" content="all" />
@@ -33,17 +33,17 @@
     <meta property="og:type" content="website" />
     <meta property="og:description" content="{{ config('app.description') }}" />
     <meta property="og:site_name" content="{{ config('app.name') }}" />
-    <meta property="og:url" content="escalade-montesquieu.fr" />
+    <meta property="og:url" content="https://escalade-montesquieu.fr" />
     <meta property="og:locale" content="fr_FR" />
-    <meta property="og:image" content="escalade-montesquieu.fr/assets/img/hero@0.5x.jpg"/>
+    <meta property="og:image" content="https://escalade-montesquieu.fr/assets/img/hero@0.5x.jpg"/>
     
 
         <!-- Twitter Meta Card -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="escalade-montesquieu.fr" />
+    <meta name="twitter:site" content="https://escalade-montesquieu.fr" />
     <meta name="twitter:title" content="{{ config('app.name') }}" />
     <meta name="twitter:description" content="{{ config('app.description') }}" />
-    <meta name="twitter:image" content="escalade-montesquieu.fr/assets/img/hero@0.5x.jpg">
+    <meta name="twitter:image" content="https://escalade-montesquieu.fr/assets/img/hero@0.5x.jpg">
 
       <!-- Apple meta -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -63,7 +63,7 @@
 
     <link rel="icon" href="/assets/img/favicon.ico">
     <meta http-equiv="content-language" content="fr" />
-    <link rel="canonical" href="escalade-montesquieu.fr/" />
+    <link rel="canonical" href="https://escalade-montesquieu.fr/" />
 
 
 
