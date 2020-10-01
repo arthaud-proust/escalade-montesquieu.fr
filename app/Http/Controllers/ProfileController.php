@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Validator;
 use Response;
@@ -90,7 +91,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
 
-        $user->name = ucwords(strtolower(request('name')));
+        // $user->name = ucwords(strtolower(request('name')));
         $user->email = request('email');
         $user->bio = request('bio');
         $user->max_voie = request('max_voie', $default='Non renseigné');
@@ -106,6 +107,7 @@ class ProfileController extends Controller
             $user->harness = 0;  
         }
         $user->shoes = request('shoes', $default='no-need');
+        $user->updated_at = Carbon::now()->toDateTimeString();
         $user->save();
 
         return redirect('/profil')->with('status', 'success')->with('content', 'Modifications enregistrées');

@@ -1,8 +1,0 @@
-@import 'func';
-@import 'variables';
-@include max-sm {
-    @import 'mobile';
-}
-@include lg {
-    @import 'large';
-}

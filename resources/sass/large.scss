@@ -778,10 +778,10 @@ main {
     font-weight: 300;
 }
 
-.ProfilEditionLayout {
+.ProfilEditionLayout, .TipsLayout {
     height: calc(100vh - 70px);
 }
-.ProfilEditionLayout-actions {
+.ProfilEditionLayout-actions, .TipsLayout-actions {
     padding: 20px;
 
     .backlink:hover {
@@ -1293,4 +1293,13 @@ input.InfoCard-title, textarea.InfoCard-content {
     -moz-border-radius: 7px;
     -ms-border-radius: 7px;
     -o-border-radius: 7px;
+}
+
+.TipsCard {
+    .TipsCard-title {
+        margin-bottom: 30px;
+    }
+    p {
+        font-size: 1.1rem;
+    }
 }

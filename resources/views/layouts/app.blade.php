@@ -106,7 +106,7 @@
             @yield('content')
         </main>
 
-        @if(!View::hasSection('noHeader'))
+        @if(!View::hasSection('noFooter'))
             @include('layouts.footer')
         @endif
     </div>

@@ -10,10 +10,15 @@ use App\Post;
 use App\Forum;
 use Validator;
 use Response;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
     public function index() {
+
+        
+        
         $current_datetime = strtotime(Carbon::now()->toDateString());
 
         $infos = Info::all();

@@ -901,11 +901,11 @@ footer {
     font-weight: 300;
 }
 
-.ProfilEditionLayout {
+.ProfilEditionLayout, .TipsLayout {
     min-height: calc(100vh - 70px);
     padding-top: 20px;
 }
-.ProfilEditionLayout-actions {
+.ProfilEditionLayout-actions, .TipsLayout-actions {
     padding: 20px;
 
     .backlink {
@@ -1427,4 +1427,16 @@ input.InfoCard-title, textarea.InfoCard-content {
     -moz-border-radius: 7px;
     -ms-border-radius: 7px;
     -o-border-radius: 7px;
+}
+
+
+.TipsCard {
+    margin-top: 40px;
+    .TipsCard-title {
+        font-size: 1.7rem;
+        margin-bottom: 15px;
+    }
+    p {
+        font-size: 1rem;
+    }
 }
