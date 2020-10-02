@@ -5,15 +5,7 @@ try {
 } catch(e) {
     window._last_message_id = 0;
 }
-// const Pusher = require('pusher-js');
-// import Echo from "laravel-echo"
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'ed1f3b3d1b44b6ee47b7',
-//     cluster: 'eu',
-//     encrypted: true
-// });
 const formUrlEncoded = x => Object.keys(x).reduce((p, c) => p + `&${c}=${encodeURIComponent(x[c])}`, '');
 
 
@@ -113,11 +105,4 @@ $(()=>{
     });
     rendMessages(window._messages);
     fetchMessages();
-
-
-    // window.Echo.private('forum.'+window._forum)
-    // .listen('MessageSent', (e) => {
-    //     addMessage(e.message);        
-    //     window._messages.push(e.message);
-    // });
 });

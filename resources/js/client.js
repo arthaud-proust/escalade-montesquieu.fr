@@ -1,5 +1,5 @@
 const publicVapidKey = "BH25QhGzdhhFsj8D0Ws71rdpwvW4q_PuqHZRDmZpRoDlItnhRMQ9zvnTT4rfIklgWKxIkFfqqMu49ibGqfiaGlc";
-window._push_host = "https://test-arthaud.herokuapp.com";
+window._push_host = "https://escalade-montesquieu-pusher.herokuapp.com";
 // Check for service worker
 if ("serviceWorker" in navigator) {
 	send().catch(e => console.error(e));
