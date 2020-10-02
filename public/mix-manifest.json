@@ -5,6 +5,8 @@
     "/css/mobile.css": "/css/mobile.css",
     "/css/large.css": "/css/large.css",
     "/js/blog.js": "/js/blog.js",
+    "/js/client.js": "/js/client.js",
     "/js/forum.js": "/js/forum.js",
-    "/js/user.js": "/js/user.js"
+    "/js/user.js": "/js/user.js",
+    "/js/worker.js": "/js/worker.js"
 }

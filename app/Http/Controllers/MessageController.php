@@ -66,9 +66,7 @@ class MessageController extends Controller
                 ],
             ]
         ]);
-        // broadcast(new MessageSent($message))->toOthers();
 
-        // return response()->json(Message::all());
         return response()->json(compact('message'));
     }
 

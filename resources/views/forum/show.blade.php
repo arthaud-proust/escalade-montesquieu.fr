@@ -1,4 +1,4 @@
-@extends('layouts.app', ['requirementsJs' => ['app','forum']])
+@extends('layouts.app', ['requirementsJs' => ['app','forum', 'client']])
 
 @section('title', $forum->name)
 @section('content')
