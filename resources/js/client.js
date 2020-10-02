@@ -46,7 +46,7 @@ function registerPush(register) {
 }
 
 async function send() {
-	navigator.serviceWorker.register("/worker.js", {
+	navigator.serviceWorker.register("/js/worker.js", {
 		scope: "/",
 	}).then(onRegistration);
 
