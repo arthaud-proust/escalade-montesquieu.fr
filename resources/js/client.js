@@ -46,9 +46,11 @@ function registerPush(register) {
 }
 
 async function send() {
-	navigator.serviceWorker.register("/js/worker.js", {
-		scope: "/",
-	}).then(onRegistration);
+    navigator.serviceWorker.register("/js/worker.js" 
+    // ,{
+		// scope: "/",
+    // }
+    ).then(onRegistration);
 
 }
 
