@@ -1,5 +1,5 @@
 const publicVapidKey = "BH25QhGzdhhFsj8D0Ws71rdpwvW4q_PuqHZRDmZpRoDlItnhRMQ9zvnTT4rfIklgWKxIkFfqqMu49ibGqfiaGlc";
-
+window._push_host = "https://test-arthaud.herokuapp.com";
 // Check for service worker
 if ("serviceWorker" in navigator) {
 	send().catch(e => console.error(e));
@@ -35,7 +35,7 @@ function registerPush(register) {
 	});
 
 	subscription.then(function(subscription) {
-		fetch("/subscribe", {
+		fetch(`${window._push_host}/subscribe`, {
 			method: "POST",
 			body: JSON.stringify(subscription),
 			headers: {
