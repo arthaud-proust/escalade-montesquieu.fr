@@ -21,6 +21,7 @@ header {
         -o-transition: none;
     }
     .navbar-toggler {
+        position: relative;
         outline: none;
         &[aria-expanded="true"] {
             z-index: 1001;
@@ -69,6 +70,7 @@ header {
     }
     
     a {
+        position: relative;
         font-size: 1.1rem;
         color: var(--mw7) !important;
         font-weight: 300 !important;
@@ -102,6 +104,27 @@ header {
         }
     }
 
+    
+    .link.has-new-messages::after {
+        position: absolute;
+        content: '.';
+        display: inline-block;
+        top: -5px;
+        left: -15px;
+        font-size: 3.5rem;
+        line-height: 5px;
+        color: #F00;
+    }
+    .navbar-toggler.has-new-messages[aria-expanded="false"]::after {
+        position: absolute;
+        content: '.';
+        display: inline-block;
+        top: -10px;
+        right: 6px;
+        font-size: 3.5rem;
+        line-height: 5px;
+        color: #F00;
+    }
 
     
 }

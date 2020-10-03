@@ -15,6 +15,7 @@ header {
         margin-left: 30px !important;
     }
     a {
+        position: relative;
         font-size: 0.9rem;
         color: var(--lw7) !important;
         font-weight: 300 !important;
@@ -44,8 +45,25 @@ header {
         @include transform(translateX(-10px));
 
         .link {
+            position: relative;
             margin: 5px 2px;
         }
+        
+    }
+
+    .has-new-messages::after {
+        position: absolute;
+        content: '.';
+        display: inline-block;
+        top: -7px;
+        left: -15px;
+        font-size: 3.5rem;
+        line-height: 5px;
+        color: #F00;
+    }
+    .nav-link.has-new-messages::after {
+        top: 0px;
+        left: -6px;
     }
 }
 

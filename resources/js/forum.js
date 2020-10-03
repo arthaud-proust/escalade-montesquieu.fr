@@ -84,6 +84,7 @@ function fetchMessages() {
             r.data.forEach(message=>{
                 if(message.id > window._last_message_id) {
                     window._last_message_id = message.id
+                    localStorage.setItem(`${window._forum}.last_message_id`, message.id);
                 }
                 addMessage(message);        
                 window._messages.push(message);

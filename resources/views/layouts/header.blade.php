@@ -22,12 +22,12 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link showDropdown" href="{{ route('forums') }}">
+                        <a class="nav-link showDropdown nav-link-forums" href="{{ route('forums') }}">
                             Forum <img src="/assets/svg/chevron-down.svg" alt="&#8964;">
                         </a>
                         <div class="dropdownContent">
                         @foreach(Session::get('forum_list'); as $forum)
-                            <a class="link" href="{{ route('showForum', $forum->slug) }}">{{$forum->name}}</a>
+                            <a class="link link-forum" data-forum="{{$forum->slug}}" href="{{ route('showForum', $forum->slug) }}">{{$forum->name}}</a>
                         @endforeach
                         </div>
                     </li>

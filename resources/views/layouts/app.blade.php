@@ -68,12 +68,13 @@
 
 
     <!-- Scripts -->
-    @if(Auth::check())
-        <script src="{{ asset('js/client.js') }}" defer></script>
-    @endif
+    
     @foreach($requirementsJs as $requirement)
         <script src="{{ asset('js/'.$requirement.'.js') }}" defer></script>
     @endforeach
+    @if(Auth::check())
+        <script src="{{ asset('js/client.js') }}" defer></script>
+    @endif
     <!-- <script src="https://cdn.gravitec.net/storage/67858d3953615a4fcac579cb32140f86/client.js" async></script> -->
 
     
