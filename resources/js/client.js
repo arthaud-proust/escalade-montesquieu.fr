@@ -26,6 +26,7 @@ function onRegistration(registration) {
   
 function onStateChange(from, registration) {
 	return function(e) {
+		console.log(`From ${from} to ${e.target.state}`);
 	  	if(e.target.state == 'activated') {
 			registerPush(registration);
 	  	}
@@ -39,7 +40,7 @@ function registerPush(register) {
 		applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
 	})
 	.then(function(subscription) {
-		console.log('subscribe');
+		console.log('Subscribing');
 		fetch(`${window._push_host}/subscribe`, {
 			method: "POST",
 			body: JSON.stringify(subscription),

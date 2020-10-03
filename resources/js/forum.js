@@ -78,7 +78,7 @@ function fetchMessages() {
         axios({
             method: 'post',
             url: 'https://escalade-montesquieu-pusher.herokuapp.com/fetch',
-            timeout: 10 * (60 * 1000), // 10 minutes
+            timeout: 30 * 1000, // 10 minutes
             data: formUrlEncoded({last_message_id: window._last_message_id, forum: window._forum})
         }).then(r=>{  
             r.data.forEach(message=>{

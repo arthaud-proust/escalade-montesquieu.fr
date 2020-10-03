@@ -77,7 +77,14 @@ self.addEventListener("push", (e) => {
 });
 
 self.addEventListener("fetch", (event) => {
-	// console.log(event);
+	console.log(event);
+});
+self.addEventListener('activate', function(event) {
+	console.log('SW Activate ');
+});
+
+self.addEventListener('install', function(event) {
+	console.log('SW Install ');
 });
 
 self.onnotificationclick = function (event) {

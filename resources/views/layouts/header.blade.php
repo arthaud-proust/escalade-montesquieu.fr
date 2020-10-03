@@ -54,11 +54,11 @@
                         <div class="dropdownContent">
                             @if(Auth::user()->level>1)<a class="link" href="{{ route('createPost') }}">Créer un post</a>@endif
                             @if(Auth::user()->level>2)<a class="link" href="{{ route('adminPanel') }}">Panel admin</a>@endif
-                            <a class="link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a class="link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form-1').submit();">
                                 Se déconnecter
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form-1" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>

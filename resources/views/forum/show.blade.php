@@ -1,6 +1,7 @@
 @extends('layouts.app', ['requirementsJs' => ['app','forum']])
 
 @section('title', $forum->name)
+@section('noFooter', '')
 @section('content')
 <script>
 window._forum = "{{$forum->slug}}";
