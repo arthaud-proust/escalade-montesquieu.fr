@@ -33,26 +33,45 @@ self.addEventListener("push", (e) => {
 			if (clientIsFocused) return
 		
 			// Client isn't focused, we need to show a notification.
-			return self.registration.showNotification(
-				`${data.author} - ${
-					data.forum.charAt(0).toUpperCase() +
-					data.forum.slice(1).replace(/-/g, " ")
-				}`,
-				{
-					body: data.content,
-					tag: `${data.forum}.${data.id}`,
-					icon:
-						"https://escalade-montesquieu.fr/assets/img/apple/apple-touch-icon-180x180.png",
-					badge: "https://escalade-montesquieu.fr/assets/img/favicon.ico",
-					vibrate: [200, 100, 200, 100, 200, 100, 200],
-					data: {
-						url: data.url,
-						forum: data.forum,
-						author: data.author,
-					},
-				}
-			);
+			// return self.registration.showNotification(
+			// 	`${data.author} - ${
+			// 		data.forum.charAt(0).toUpperCase() +
+			// 		data.forum.slice(1).replace(/-/g, " ")
+			// 	}`,
+			// 	{
+			// 		body: data.content,
+			// 		tag: `${data.forum}.${data.id}`,
+			// 		icon:
+			// 			"https://escalade-montesquieu.fr/assets/img/apple/apple-touch-icon-180x180.png",
+			// 		badge: "https://escalade-montesquieu.fr/assets/img/favicon.ico",
+			// 		vibrate: [200, 100, 200, 100, 200, 100, 200],
+			// 		data: {
+			// 			url: data.url,
+			// 			forum: data.forum,
+			// 			author: data.author,
+			// 		},
+			// 	}
+			// );
 		});
+		self.registration.showNotification(
+			`${data.author} - ${
+				data.forum.charAt(0).toUpperCase() +
+				data.forum.slice(1).replace(/-/g, " ")
+			}`,
+			{
+				body: data.content,
+				tag: `${data.forum}.${data.id}`,
+				icon:
+					"https://escalade-montesquieu.fr/assets/img/apple/apple-touch-icon-180x180.png",
+				badge: "https://escalade-montesquieu.fr/assets/img/favicon.ico",
+				vibrate: [200, 100, 200, 100, 200, 100, 200],
+				data: {
+					url: data.url,
+					forum: data.forum,
+					author: data.author,
+				},
+			}
+		);
 		
 	});
 });
