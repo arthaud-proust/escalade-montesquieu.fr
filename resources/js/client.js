@@ -5,6 +5,11 @@ if ("serviceWorker" in navigator) {
 	send().catch(e => console.error(e));
 }
 
+async function send() {
+	navigator.serviceWorker.register("/js/worker.js" )
+		.then(onRegistration);
+}
+
 function onRegistration(registration) {
 	if (registration.waiting) {
 	  	registration.waiting.addEventListener('statechange', onStateChange('waiting', registration));
@@ -29,12 +34,12 @@ function onStateChange(from, registration) {
 
 function registerPush(register) {
 	// Register Push
-	const subscription = register.pushManager.subscribe({
+	register.pushManager.subscribe({
 		userVisibleOnly: true,
 		applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
-	});
-
-	subscription.then(function(subscription) {
+	})
+	.then(function(subscription) {
+		console.log('subscribe');
 		fetch(`${window._push_host}/subscribe`, {
 			method: "POST",
 			body: JSON.stringify(subscription),
@@ -45,14 +50,7 @@ function registerPush(register) {
 	})
 }
 
-async function send() {
-    navigator.serviceWorker.register("/js/worker.js" 
-    // ,{
-		// scope: "/",
-    // }
-    ).then(onRegistration);
 
-}
 
 function urlBase64ToUint8Array(base64String) {
 	const padding = "=".repeat((4 - (base64String.length % 4)) % 4);

@@ -68,7 +68,9 @@
 
 
     <!-- Scripts -->
-    <script src="{{ asset('js/client.js') }}" defer></script>
+    @if(Auth::check())
+        <script src="{{ asset('js/client.js') }}" defer></script>
+    @endif
     @foreach($requirementsJs as $requirement)
         <script src="{{ asset('js/'.$requirement.'.js') }}" defer></script>
     @endforeach
