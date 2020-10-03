@@ -17,7 +17,7 @@
                         <span class="Field-invalidFeedback" role="alert">{{ $message }}</span>
                     @enderror
                 </section>
-                <section class="Field text @error('name') is-invalid @enderror">
+                <section class="Field text disabled @error('name') is-invalid @enderror">
                     <label class="Field-label" for="name">Nom</label>
                     <input class="Field-input" id="name" name="name" type="text" value="{{ old('name') ? old('name') : $user->name }}">
                     <small class="Field-info">Information publique</small>
