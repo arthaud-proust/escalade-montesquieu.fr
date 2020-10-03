@@ -78,7 +78,7 @@ class ProfileController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'nullable|string',
-            'name' => 'required|string|max:255|unique:users,name,'.Auth::user()->id,
+            'name' => 'nullable|string|max:255|unique:users,name,'.Auth::user()->id,
             'bio' => 'nullable|string',
             'max_voie' => 'nullable|string',
             'max_bloc' => 'nullable|string',
