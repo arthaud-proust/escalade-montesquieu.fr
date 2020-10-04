@@ -2,6 +2,7 @@ const anchorme = require("anchorme").default;
 const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 try {
     window._last_message_id = window._messages[window._messages.length-1].id;
+    localStorage.setItem(`${window._forum}.last_message_id`, window._last_message_id);
 } catch(e) {
     window._last_message_id = 0;
 }
@@ -52,10 +53,10 @@ function rendMessages(messages) {
     $('#MessagesList').html(
         messages.map(msg=>getMessage(msg))
     )
-    localStorage.setItem(`${window._forum}.last_message_id`, window._last_message_id);
     setTimeout(()=>{
         $(".ForumLayout-messagesList").animate({ scrollTop: $('.ForumLayout-messagesList').prop("scrollHeight") }, 250);
-    }, 500);
+    },500)
+
 }
 
 function sendMessage() {
@@ -86,7 +87,7 @@ function fetchMessages() {
             r.data.forEach(message=>{
                 if(message.id > window._last_message_id) {
                     window._last_message_id = message.id
-                    localStorage.setItem(`${window._forum}.last_message_id`, msg.id);
+                    localStorage.setItem(`${window._forum}.last_message_id`, message.id);
                 }
                 addMessage(message);        
                 window._messages.push(message);
@@ -106,6 +107,6 @@ $(()=>{
             sendMessage()
         }
     });
-    rendMessages(window._messages)
+    rendMessages(window._messages);
     fetchMessages();
 });
