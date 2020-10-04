@@ -7,7 +7,7 @@ if ("serviceWorker" in navigator) {
 	send().catch(e => console.error(e));
 }
 function getForumsMessagesIds() {
-	console.log(Object.keys(localStorage));
+	// console.log(Object.keys(localStorage));
 	let body = {forums:{}};
 	for (const forumName of Object.keys(localStorage).filter(key=>key.includes('.last_message_id'))) {
 		body.forums[forumName.split('.')[0]] = localStorage.getItem(forumName);
@@ -23,10 +23,9 @@ function getForumsMessagesIds() {
 	.then(r=>{
 		const forumsToNotif = r.data;
 		let newMessages = false
-		console.log(forumsToNotif);
 		
 		for(const [forumName, hasNewMessages] of Object.entries(r.data)) {
-			console.log(`${forumName.split('.')[0]}: ${hasNewMessages}`);
+			console.log(`${forumName.split('.')[0]}: ${hasNewMessages?'nouveaux messages':'à jour'}`);
 			if(hasNewMessages ) {
 				$(`.link-forum[data-forum="${forumName.split('.')[0]}"]`).addClass('has-new-messages');
 				newMessages = true;

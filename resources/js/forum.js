@@ -52,8 +52,10 @@ function rendMessages(messages) {
     $('#MessagesList').html(
         messages.map(msg=>getMessage(msg))
     )
-    $(".ForumLayout-messagesList").animate({ scrollTop: $('.ForumLayout-messagesList').prop("scrollHeight") }, 500);
-
+    localStorage.setItem(`${window._forum}.last_message_id`, window._last_message_id);
+    setTimeout(()=>{
+        $(".ForumLayout-messagesList").animate({ scrollTop: $('.ForumLayout-messagesList').prop("scrollHeight") }, 250);
+    }, 500);
 }
 
 function sendMessage() {
@@ -84,7 +86,7 @@ function fetchMessages() {
             r.data.forEach(message=>{
                 if(message.id > window._last_message_id) {
                     window._last_message_id = message.id
-                    localStorage.setItem(`${window._forum}.last_message_id`, message.id);
+                    localStorage.setItem(`${window._forum}.last_message_id`, msg.id);
                 }
                 addMessage(message);        
                 window._messages.push(message);
@@ -104,6 +106,6 @@ $(()=>{
             sendMessage()
         }
     });
-    rendMessages(window._messages);
+    rendMessages(window._messages)
     fetchMessages();
 });
