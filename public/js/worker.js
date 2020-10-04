@@ -1,1 +1,113 @@
-!function(t){var e={};function n(o){if(e[o])return e[o].exports;var r=e[o]={i:o,l:!1,exports:{}};return t[o].call(r.exports,r,r.exports,n),r.l=!0,r.exports}n.m=t,n.c=e,n.d=function(t,e,o){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var r in t)n.d(o,r,function(e){return t[e]}.bind(null,r));return o},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=54)}({54:function(t,e,n){t.exports=n(55)},55:function(t,e){console.log("Service Worker Loaded..."),self.addEventListener("push",(function(t){var e=t.data.json();self.registration.getNotifications().then((function(t){t.filter((function(t){return t.data.forum==e.forum})).forEach((function(t){return t.close()}));clients.matchAll({type:"window",includeUncontrolled:!0}).then((function(t){for(var e=!1,n=0;n<t.length;n++)if(t[n].focused){e=!0;break}return e})).then((function(t){}));self.registration.showNotification("".concat(e.author," - ").concat(e.forum.charAt(0).toUpperCase()+e.forum.slice(1).replace(/-/g," ")),{body:e.content,tag:"".concat(e.forum,".").concat(e.id),icon:"https://escalade-montesquieu.fr/assets/img/apple/apple-touch-icon-180x180.png",badge:"https://escalade-montesquieu.fr/assets/img/favicon.ico",vibrate:[200,100,200,100,200,100,200],data:{url:e.url,forum:e.forum,author:e.author}})}))})),self.addEventListener("fetch",(function(t){console.log(t)})),self.addEventListener("activate",(function(t){console.log("SW Activate ")})),self.addEventListener("install",(function(t){console.log("SW Install ")})),self.onnotificationclick=function(t){t.notification.close(),t.waitUntil(clients.matchAll({type:"window"}).then((function(e){for(var n=0;n<e.length;n++){var o=e[n];if(o.url==t.notification.url&&"focus"in o)return o.focus()}if(clients.openWindow)return clients.openWindow(t.notification.data.url)})))}}});
+console.log("Service Worker Loaded...");
+
+function isClientFocused() {
+	return clients
+		.matchAll({
+			type: "window",
+			includeUncontrolled: true,
+		})
+		.then((windowClients) => {
+			let clientIsFocused = false;
+
+			for (let i = 0; i < windowClients.length; i++) {
+				const windowClient = windowClients[i];
+				if (windowClient.focused) {
+					clientIsFocused = true;
+					break;
+				}
+			}
+
+			return clientIsFocused;
+		});
+}
+
+self.addEventListener("push", (e) => {
+	const data = e.data.json();
+	// console.log("Push Recieved...");
+	self.registration.getNotifications().then(function (notifications) {
+		notifications
+			.filter((notification) => notification.data.forum == data.forum)
+			.forEach((notification) => notification.close());
+		const promiseChain = isClientFocused()
+		.then((clientIsFocused) => {
+			if (clientIsFocused) return
+		
+			// Client isn't focused, we need to show a notification.
+			// return self.registration.showNotification(
+			// 	`${data.author} - ${
+			// 		data.forum.charAt(0).toUpperCase() +
+			// 		data.forum.slice(1).replace(/-/g, " ")
+			// 	}`,
+			// 	{
+			// 		body: data.content,
+			// 		tag: `${data.forum}.${data.id}`,
+			// 		icon:
+			// 			"https://escalade-montesquieu.fr/assets/img/apple/apple-touch-icon-180x180.png",
+			// 		badge: "https://escalade-montesquieu.fr/assets/img/favicon.ico",
+			// 		vibrate: [200, 100, 200, 100, 200, 100, 200],
+			// 		data: {
+			// 			url: data.url,
+			// 			forum: data.forum,
+			// 			author: data.author,
+			// 		},
+			// 	}
+			// );
+		});
+		self.registration.showNotification(
+			`${data.author} - ${
+				data.forum.charAt(0).toUpperCase() +
+				data.forum.slice(1).replace(/-/g, " ")
+			}`,
+			{
+				body: data.content,
+				tag: `${data.forum}.${data.id}`,
+				icon:
+					"https://escalade-montesquieu.fr/assets/img/apple/apple-touch-icon-180x180.png",
+				badge: "https://escalade-montesquieu.fr/assets/img/favicon.ico",
+				vibrate: [200, 100, 200, 100, 200, 100, 200],
+				data: {
+					url: data.url,
+					forum: data.forum,
+					author: data.author,
+				},
+			}
+		);
+		
+	});
+});
+
+self.addEventListener("fetch", (event) => {
+	console.log(event);
+});
+self.addEventListener('activate', function(event) {
+	console.log('SW Activate ');
+});
+
+self.addEventListener('install', function(event) {
+	console.log('SW Install ');
+});
+
+self.onnotificationclick = function (event) {
+	event.notification.close();
+
+	// This looks to see if the current is already open and
+	// focuses if it is
+	event.waitUntil(
+		clients
+			.matchAll({
+				type: "window",
+			})
+			.then(function (clientList) {
+				for (var i = 0; i < clientList.length; i++) {
+					var client = clientList[i];
+					if (
+						client.url == event.notification.url &&
+						"focus" in client
+					)
+						return client.focus();
+				}
+				if (clients.openWindow)
+					return clients.openWindow(event.notification.data.url);
+			})
+	);
+};

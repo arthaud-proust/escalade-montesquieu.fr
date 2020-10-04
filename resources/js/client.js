@@ -1,5 +1,3 @@
-const { forEach } = require("lodash");
-
 const publicVapidKey = "BH25QhGzdhhFsj8D0Ws71rdpwvW4q_PuqHZRDmZpRoDlItnhRMQ9zvnTT4rfIklgWKxIkFfqqMu49ibGqfiaGlc";
 window._push_host = "https://escalade-montesquieu-pusher.herokuapp.com";
 // Check for service worker

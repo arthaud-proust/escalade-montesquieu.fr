@@ -1,4 +1,4 @@
-const anchorme = require("anchorme").default;
+// const anchorme = require("anchorme").default;
 const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 try {
     window._last_message_id = window._messages[window._messages.length-1].id;

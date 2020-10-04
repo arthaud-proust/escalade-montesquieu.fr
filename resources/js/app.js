@@ -9,6 +9,7 @@ try {
 } catch (e) {}
 
 window.axios = require('axios');
+window.anchorme = require("anchorme").default;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

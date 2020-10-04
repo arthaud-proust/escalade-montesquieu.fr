@@ -1,5 +1,4 @@
-const anchorme = require("anchorme").default;
-
+// const anchorme = require("anchorme").default;
 function loadTimePicker() {
     if($('#datetimepicker').length == 0) return
     var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());

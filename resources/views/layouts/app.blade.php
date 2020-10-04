@@ -65,25 +65,35 @@
     <meta http-equiv="content-language" content="fr" />
     <link rel="canonical" href="https://escalade-montesquieu.fr/" />
 
-
-
-    <!-- Scripts -->
-    
-    @foreach($requirementsJs as $requirement)
-        <script src="{{ asset('js/'.$requirement.'.js') }}" defer></script>
-    @endforeach
-    @if(Auth::check())
-        <script src="{{ asset('js/client.js') }}" defer></script>
-    @endif
-    <!-- <script src="https://cdn.gravitec.net/storage/67858d3953615a4fcac579cb32140f86/client.js" async></script> -->
-
-    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/manifest.js') }}" defer></script>
+    <script src="{{ asset('js/vendor.js') }}" defer></script>
+
+    @if (app()->environment('production'))
+        @foreach($requirementsJs as $requirement)
+            <script src="{{ asset('js/'.$requirement.'.min.js') }}" defer></script>
+        @endforeach
+        @if(Auth::check())
+            <script src="{{ asset('js/client.min.js') }}" defer></script>
+        @endif
+
+        <link href="{{ asset('css/app.min.css') }}" rel="stylesheet">
+    @else
+        @foreach($requirementsJs as $requirement)
+            <script src="{{ asset('js/'.$requirement.'.js') }}" defer></script>
+        @endforeach
+        @if(Auth::check())
+            <script src="{{ asset('js/client.js') }}" defer></script>
+        @endif
+    
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endif
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script>
         window.onload = function() {try{var link=document.createElement('link');link.rel='stylesheet';if(window.screen.width < 768) {link.href="{{ asset('css/mobile.css') }}";} else {link.href="{{ asset('css/large.css') }}";}document.getElementsByTagName('head')[0].appendChild(link);link.addEventListener('load', function () {document.getElementById('app').setAttribute('class', '');})}catch(e) {document.getElementById('app').setAttribute('class', '')}};
     </script>
