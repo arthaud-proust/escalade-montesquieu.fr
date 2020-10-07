@@ -1,18 +1,19 @@
 const publicVapidKey = "BH25QhGzdhhFsj8D0Ws71rdpwvW4q_PuqHZRDmZpRoDlItnhRMQ9zvnTT4rfIklgWKxIkFfqqMu49ibGqfiaGlc";
 window._push_host = "https://escalade-montesquieu-pusher.herokuapp.com";
+// window._push_host = "http://localhost:8001";
 // Check for service worker
 if ("serviceWorker" in navigator) {
 	send().catch(e => console.error(e));
 }
-function getForumsMessagesIds() {
+function getForumsLastMessages() {
 	// console.log(Object.keys(localStorage));
 	let body = {forums:{}};
-	for (const forumName of Object.keys(localStorage).filter(key=>key.includes('.last_message_id'))) {
+	for (const forumName of Object.keys(localStorage).filter(key=>key.includes('.last_message'))) {
 		body.forums[forumName.split('.')[0]] = localStorage.getItem(forumName);
 	}
 	axios({
 		method: 'post',
-		url: `${window._push_host}/last-messages-id`,
+		url: `${window._push_host}/last-messages`,
 		data: JSON.stringify(body),
 		headers: {
 			"content-type": "application/json",
@@ -36,7 +37,7 @@ function getForumsMessagesIds() {
 	})
 }
 
-getForumsMessagesIds();
+getForumsLastMessages();
 async function send() {
 	navigator.serviceWorker.register("/js/worker.js" )
 		.then(onRegistration);

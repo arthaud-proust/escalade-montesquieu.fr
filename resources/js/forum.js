@@ -2,7 +2,7 @@
 const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 try {
     window._last_message_id = window._messages[window._messages.length-1].id;
-    localStorage.setItem(`${window._forum}.last_message_id`, window._last_message_id);
+    localStorage.setItem(`${window._forum}.last_message`, (new Date(window._messages[window._messages.length-1].created_at)).getTime());
 } catch(e) {
     window._last_message_id = 0;
 }
@@ -81,13 +81,14 @@ function fetchMessages() {
         axios({
             method: 'post',
             url: 'https://escalade-montesquieu-pusher.herokuapp.com/fetch',
+            // url: 'http://localhost:8001/fetch',
             timeout: 30 * 1000, // 10 minutes
             data: formUrlEncoded({last_message_id: window._last_message_id, forum: window._forum})
         }).then(r=>{  
             r.data.forEach(message=>{
                 if(message.id > window._last_message_id) {
                     window._last_message_id = message.id
-                    localStorage.setItem(`${window._forum}.last_message_id`, message.id);
+                    localStorage.setItem(`${window._forum}.last_message`, (new Date(message.created_at)).getTime());
                 }
                 addMessage(message);        
                 window._messages.push(message);
