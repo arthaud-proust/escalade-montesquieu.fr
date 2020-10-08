@@ -7,29 +7,58 @@ if ("serviceWorker" in navigator) {
 }
 function getForumsLastMessages() {
 	// console.log(Object.keys(localStorage));
-	let body = {forums:{}};
-	for (const forumName of Object.keys(localStorage).filter(key=>key.includes('.last_message'))) {
-		body.forums[forumName.split('.')[0]] = localStorage.getItem(forumName);
-	}
+	// let body = {forums:{}};
+	// for (const forumName of Object.keys(localStorage).filter(key=>key.includes('.last_message'))) {
+	// 	body.forums[forumName.split('.')[0]] = localStorage.getItem(forumName);
+	// }
+	// axios({
+	// 	method: 'post',
+	// 	url: `${window._push_host}/last-messages`,
+	// 	data: JSON.stringify(body),
+	// 	headers: {
+	// 		"content-type": "application/json",
+	// 	}
+	// })
+	// .then(r=>{
+	// 	const forumsToNotif = r.data;
+	// 	let newMessages = false
+		
+	// 	for(const [forumName, hasNewMessages] of Object.entries(r.data)) {
+	// 		console.log(`${forumName.split('.')[0]}: ${hasNewMessages?'nouveaux messages':'à jour'}`);
+	// 		if(hasNewMessages ) {
+	// 			$(`.link-forum[data-forum="${forumName.split('.')[0]}"]`).addClass('has-new-messages');
+	// 			newMessages = true;
+	// 		}
+	// 	}
+	// 	if(newMessages ) {
+	// 		$(`.nav-link-forums`).addClass('has-new-messages')
+	// 		$(`.navbar-toggler`).addClass('has-new-messages')
+	// 	}
+	// })
 	axios({
-		method: 'post',
+		method: 'get',
 		url: `${window._push_host}/last-messages`,
-		data: JSON.stringify(body),
-		headers: {
-			"content-type": "application/json",
-		}
 	})
 	.then(r=>{
-		const forumsToNotif = r.data;
 		let newMessages = false
 		
-		for(const [forumName, hasNewMessages] of Object.entries(r.data)) {
-			console.log(`${forumName.split('.')[0]}: ${hasNewMessages?'nouveaux messages':'à jour'}`);
-			if(hasNewMessages ) {
-				$(`.link-forum[data-forum="${forumName.split('.')[0]}"]`).addClass('has-new-messages');
-				newMessages = true;
+		r.data.forEach(forum=>{
+			if(localStorage.getItem(forum.name)!==undefined) {
+				console.log(JSON.parse(forum.last.timestamp));
+				console.log(JSON.parse(localStorage.getItem(forum.name+'.last_message')));
+				if(JSON.parse(forum.last.timestamp) > JSON.parse(localStorage.getItem(forum.name+'.last_message')) ) {
+					newMessages = true
+					console.log(`${forum.name.split('.')[0]}: nouveaux messages (${forum.last.date})`);
+					$(`.link-forum[data-forum="${forum.name.split('.')[0]}"]`).addClass('has-new-messages');
+					newMessages = true;
+				} else {
+					console.log(`${forum.name.split('.')[0]}: à jour (${forum.last.date})`);
+				}
+			} else {
+				$(`.link-forum[data-forum="${forum.name.split('.')[0]}"]`).addClass('has-new-messages');
 			}
-		}
+		})
+		console.log(newMessages);
 		if(newMessages ) {
 			$(`.nav-link-forums`).addClass('has-new-messages')
 			$(`.navbar-toggler`).addClass('has-new-messages')
