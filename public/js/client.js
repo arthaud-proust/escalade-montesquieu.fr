@@ -41,23 +41,25 @@ function getForumsLastMessages() {
 	})
 	.then(r=>{
 		let newMessages = false
-		
-		r.data.forEach(forum=>{
-			if(localStorage.getItem(forum.name)!==undefined) {
-				console.log(JSON.parse(forum.last.timestamp));
-				console.log(JSON.parse(localStorage.getItem(forum.name+'.last_message')));
-				if(JSON.parse(forum.last.timestamp) > JSON.parse(localStorage.getItem(forum.name+'.last_message')) ) {
+
+		for(const [forumName, lastDate] of Object.entries(r.data)) {
+			if(localStorage.getItem(forumName+'.last_message')!==null) {
+				console.log(' ');
+				console.log("Server "+JSON.parse(new Date(lastDate).getTime()));
+				console.log("Client "+JSON.parse(localStorage.getItem(forumName+'.last_message')));
+				if( (JSON.parse(new Date(lastDate).getTime()) - JSON.parse(localStorage.getItem(forumName+'.last_message')) ) > 2000 ) {
 					newMessages = true
-					console.log(`${forum.name.split('.')[0]}: nouveaux messages (${forum.last.date})`);
-					$(`.link-forum[data-forum="${forum.name.split('.')[0]}"]`).addClass('has-new-messages');
+					console.log(`${forumName.split('.')[0]}: nouveaux messages (${lastDate})`);
+					$(`.link-forum[data-forum="${forumName.split('.')[0]}"]`).addClass('has-new-messages');
 					newMessages = true;
 				} else {
-					console.log(`${forum.name.split('.')[0]}: à jour (${forum.last.date})`);
+					console.log(`${forumName.split('.')[0]}: à jour (${lastDate})`);
 				}
 			} else {
-				$(`.link-forum[data-forum="${forum.name.split('.')[0]}"]`).addClass('has-new-messages');
+				$(`.link-forum[data-forum="${forumName.split('.')[0]}"]`).addClass('has-new-messages');
+				newMessages = true;
 			}
-		})
+		}
 		console.log(newMessages);
 		if(newMessages ) {
 			$(`.nav-link-forums`).addClass('has-new-messages')
