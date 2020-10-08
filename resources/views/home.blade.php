@@ -35,7 +35,7 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
 
                 <div class="events ">
                     <h2 class="title">Évènements et sorties à venir</h2>
-                    <p class="paraph">Les évènements sont classés par deux catégories: réguliers ou occasionnels. Vous pouvez retrouver toutes les sorties et les événements prévus dans le <a href="{{ route('blogs') }}">ici</a>.</p>
+                    <p class="paraph">Les évènements sont classés par deux catégories: réguliers ou occasionnels. Vous pouvez retrouver toutes les sorties et les événements prévus <a href="{{ route('blogs') }}">ici</a>.</p>
                     @include('components.alert-status')
 
                     <div class="PostsList">
