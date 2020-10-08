@@ -5,6 +5,12 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use App\Exceptions\CustomException;
+use Response;
+use App\Blog;
+use App\Forum;
+use App\User;
+use Session;
+
 
 class Handler extends ExceptionHandler
 {
@@ -52,7 +58,43 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        // return parent::render($request, $exception);
+        if ($this->isHttpException($exception)) {
+            Session::flash('forum_list', Forum::all());
+            Session::flash('blog_list', Blog::all());
+            switch ($exception->getStatusCode()) {
+    
+                // not authorized
+                case '401':
+                    return Response::view('errors.403',array(),403);
+                    break;
+    
+                // not authorized
+                case '403':
+                    return Response::view('errors.403',array(),403);
+                    break;
+    
+                // not found
+                case '404':
+                    return Response::view('errors.404',array(),404);
+                    break;
+                // not found
+                case '429':
+                    return Response::view('errors.404',array(),404);
+                    break;
+
+                // internal error
+                case '500':
+                    return Response::view('errors.500',array(),500);
+                    break;
+    
+                default:
+                    return $this->renderHttpException($exception);
+                    break;
+            }
+        } else {
+            return parent::render($request, $exception);
+        }
     }
 
 
