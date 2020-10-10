@@ -1,4 +1,5 @@
-import Compressor from 'compressorjs';
+// import Compressor from 'compressorjs';
+const Compressor = require('compressorjs')
 const cotes = ['Non renseigné', '4a','4b','4c','5a','5b','5c','6a','6b','6c','7a','7b','7c','8a','8b','8c'];
 const roles = [ ['Grimpeur', 'climber'], ['Modérateur', 'modo'], ['Admin', 'admin'] ];
 
@@ -85,12 +86,21 @@ $(()=>{
     } catch(e) {}
     
 
-    cotes.map(cote=>{
-        $('#max_voie').append(`<option ${$('#max_voie').attr('data-value')==cote?'selected':''}>${cote}</option>`);
-        $('#max_bloc').append(`<option ${$('#max_bloc').attr('data-value')==cote?'selected':''}>${cote}</option>`);
-    });
+    
+    try {
+        // if($('#max_voie').html() == '' && $('#max_bloc').html() == '' &&) {}
+        // cotes.map(cote=>{
+        //     $('#max_voie').append(`<option ${$('#max_voie').attr('data-value')==cote?'selected':''}>${cote}</option>`);
+        //     $('#max_bloc').append(`<option ${$('#max_bloc').attr('data-value')==cote?'selected':''}>${cote}</option>`);
+        // });
+        $('#max_voie').html(cotes.map(cote=>`<option ${$('#max_voie').attr('data-value')==cote?'selected':''}>${cote}</option>`));
+        $('#max_bloc').html(cotes.map(cote=>`<option ${$('#max_bloc').attr('data-value')==cote?'selected':''}>${cote}</option>`));
+        $('#shoes').html(getShoesOption($('#shoes').attr('data-value')));
+    } catch(e) {}
+        
+    try{
+        $('#role').html(roles[$('#role').attr('data-level')-1][0]);
+        $('#role').attr('class', 'IdentityBloc-role '+roles[$('#role').attr('data-level')-1][1]);
+    } catch(e) {}
 
-    $('#shoes').html(getShoesOption($('#shoes').attr('data-value')));
-    $('#role').html(roles[$('#role').attr('data-level')-1][0]);
-    $('#role').attr('class', 'IdentityBloc-role '+roles[$('#role').attr('data-level')-1][1]);
 });

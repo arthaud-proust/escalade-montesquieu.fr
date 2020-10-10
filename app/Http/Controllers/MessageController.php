@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Events\MessageSent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Message;
+use App\User;
+use App\Mail\MentionnedInMessage;
 use Validator;
 use Response;
 use GuzzleHttp;
@@ -35,6 +38,7 @@ class MessageController extends Controller
 
         $client = new GuzzleHttp\Client();
         // $res = $client->request('POST', 'localhost:8001/post', [
+
         $res = $client->request('POST', config('services.pusher.domain'), [
             'multipart' => [
                 [
@@ -68,6 +72,22 @@ class MessageController extends Controller
             ]
         ]);
 
+        preg_match_all("/@(\w|_)+/", $message->content, $mentions, PREG_SET_ORDER);
+        $message->content = $mentions;
+        foreach ($mentions as $mention) {
+            $mention = str_replace(['@','_'], ['',' '], $mention[0]);
+            $message->content = $mention;
+            if($mention=="everyone") {
+                $bcclist = User::pluck('email');
+                $bccnamelist = User::pluck('name');
+                Mail::bcc($bcclist, $bccnamelist)
+                        ->send(new MentionnedInMessage($message));
+                break;
+            } else if($user = User::where('name', $mention)->first()) {
+                Mail::to($user->email, $user->name)->send(new MentionnedInMessage($message));
+            }
+            
+        }
         return response()->json(compact('message'));
     }
 }

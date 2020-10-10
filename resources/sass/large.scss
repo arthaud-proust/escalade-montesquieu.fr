@@ -1200,6 +1200,7 @@ main {
     background: var(--lw3);
     box-sizing: border-box;
     padding: 10px;
+    z-index:100;
 }
 .UserCard-delete {
     border:none;
