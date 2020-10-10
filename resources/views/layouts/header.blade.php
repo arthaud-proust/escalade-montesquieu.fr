@@ -49,7 +49,7 @@
                     @else
                         <li class="nav-item">
                         <a class="nav-link showDropdown" href="{{ route('showProfile') }}">
-                            {{Auth::user()->name}} <img src="{{Auth::user()->img}}" style="border-radius:100%" height=25px width=25px> <img src="/assets/svg/chevron-down.svg" alt="&#8964;">
+                            {{Auth::user()->name}} <img src="/profil/{{Auth::user()->uuid}}/img" style="border-radius:100%" height=25px width=25px> <img src="/assets/svg/chevron-down.svg" alt="&#8964;">
                         </a>
                         <div class="dropdownContent">
                             @if(Auth::user()->level>1)<a class="link" href="{{ route('createPost') }}">Créer un post</a>@endif

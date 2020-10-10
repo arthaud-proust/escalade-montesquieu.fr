@@ -24,3 +24,4 @@ mix.copy('resources/js/forum.js', 'public/js/forum.js').minify('public/js/forum.
 //     .sass('resources/sass/large.scss', 'public/css')
 
 // mix.minify('public/js/app.js');
+mix.minify('public/js/user.js');

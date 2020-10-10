@@ -2,5 +2,6 @@
     "/js/client.js": "/js/client.js",
     "/js/client.min.js": "/js/client.min.js",
     "/js/forum.js": "/js/forum.js",
-    "/js/forum.min.js": "/js/forum.min.js"
+    "/js/forum.min.js": "/js/forum.min.js",
+    "/js/user.min.js": "/js/user.min.js"
 }
