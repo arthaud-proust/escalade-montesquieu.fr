@@ -41,7 +41,7 @@ function getForumsLastMessages() {
 	
 	axios({
 		method: 'get',
-		url: `/message/latests`,
+		url: `/api/message/latests`,
 	})
 	.then(r=>{
 		let newMessages = false
