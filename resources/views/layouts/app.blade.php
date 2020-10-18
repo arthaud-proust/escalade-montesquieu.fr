@@ -23,7 +23,8 @@
         "sameAs": [
         "https://www.facebook.com/escalademontesquieu/",
         "https://www.instagram.com/escalade_montesquieu/",
-        "https://twitter.com/MontesEscalade"
+        "https://twitter.com/MontesEscalade",
+        "https://www.linkedin.com/in/arthaud-proust/"
         ]
     }
     </script>
