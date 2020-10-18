@@ -29,6 +29,7 @@ class MessageController extends Controller
 
         date_default_timezone_set('Europe/Paris');
 
+        $time = now();
 
         $message = Message::create([
             'forum' => request('forum'),
@@ -41,7 +42,7 @@ class MessageController extends Controller
             $latest_message = LatestMessage::create([
                 'id' => $message->id,
                 'forum' => request('forum'),
-                'created_at' => $message->created_at
+                'created_at' => $time
             ]);
         } else {
             $latest_message->id = $message->id;
@@ -79,7 +80,7 @@ class MessageController extends Controller
                 ],
                 [
                     'name'     => 'created_at',
-                    'contents' => now()
+                    'contents' => $time
                 ],
             ]
         ];
