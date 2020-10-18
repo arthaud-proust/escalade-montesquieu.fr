@@ -46,7 +46,7 @@ class MessageController extends Controller
             ]);
         } else {
             $latest_message->id = $message->id;
-            $latest_message->created_at = $message->created_at;
+            $latest_message->created_at = $time;
             $latest_message->save();
         }
 
