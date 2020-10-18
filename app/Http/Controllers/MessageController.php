@@ -83,8 +83,8 @@ class MessageController extends Controller
                 ],
             ]
         ];
-        $res = $client->request('POST', 'localhost:8001/post', $body);
-        // $res = $client->request('POST', config('services.pusher.domain'), $body);
+        // $res = $client->request('POST', 'localhost:8001/post', $body);
+        $res = $client->request('POST', config('services.pusher.domain'), $body);
 
         preg_match_all("/@(\w|_)+/", $message->content, $mentions, PREG_SET_ORDER);
         $message->content = $mentions;
