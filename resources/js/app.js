@@ -8,6 +8,7 @@ try {
     require('bootstrap');
 } catch (e) {}
 
+window.lazysizes = require('lazysizes');
 window.axios = require('axios');
 window.anchorme = require("anchorme").default;
 

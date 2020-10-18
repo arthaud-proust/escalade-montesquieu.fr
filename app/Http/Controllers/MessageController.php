@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Message;
+use App\LatestMessage;
 use App\User;
 use App\Mail\MentionnedInMessage;
 use Validator;
@@ -36,10 +37,21 @@ class MessageController extends Controller
             'content' => request('content')
         ]);
 
-        $client = new GuzzleHttp\Client();
-        // $res = $client->request('POST', 'localhost:8001/post', [
+        if(!$latest_message = LatestMessage::where('forum', request('forum'))->first()) {
+            $latest_message = LatestMessage::create([
+                'id' => $message->id,
+                'forum' => request('forum'),
+                'created_at' => $message->created_at
+            ]);
+        } else {
+            $latest_message->id = $message->id;
+            $latest_message->created_at = $message->created_at;
+            $latest_message->save();
+        }
 
-        $res = $client->request('POST', config('services.pusher.domain'), [
+        $client = new GuzzleHttp\Client();
+
+        $body = [
             'multipart' => [
                 [
                     'name'     => 'key',
@@ -70,7 +82,9 @@ class MessageController extends Controller
                     'contents' => now()
                 ],
             ]
-        ]);
+        ];
+        $res = $client->request('POST', 'localhost:8001/post', $body);
+        // $res = $client->request('POST', config('services.pusher.domain'), $body);
 
         preg_match_all("/@(\w|_)+/", $message->content, $mentions, PREG_SET_ORDER);
         $message->content = $mentions;
@@ -89,5 +103,11 @@ class MessageController extends Controller
             
         }
         return response()->json(compact('message'));
+    }
+
+    public function latests(Request $request) {
+        $latests = LatestMessage::all();
+
+        return response()->json(compact('latests'));
     }
 }

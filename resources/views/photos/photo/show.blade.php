@@ -18,7 +18,7 @@
 <div class="background" style="background: {{$photo->background}};">
     
     <div class="item">
-        <img src="{{ $photo->src }}" class="image" alt="{{ $photo->name }}">
+        <img src="{{ $photo->src }}" class="image lazyload" alt="{{ $photo->name }}">
         <div class="content">
             <h1>{{ $photo->name }}</h1>
             @if($photo->name)

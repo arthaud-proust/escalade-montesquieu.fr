@@ -1,4 +1,4 @@
-<section class="card-forum">
+<section class="card-forum" data-forum="{{$forum->slug}}">
     <a href="{{ route('showForum', ['forum'=>$forum->slug]) }}">
         <h3 class="title">{{$forum->name}}</h3>
         <p class="desc">{{$forum->description}}</p>

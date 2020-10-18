@@ -29,6 +29,7 @@
         "anchorme": "^2.1.2",
         "compressorjs": "^1.0.6",
         "laravel-echo": "^1.8.0",
+        "lazysizes": "^5.2.2",
         "moment": "^2.27.0",
         "pusher-js": "^6.0.3"
     }

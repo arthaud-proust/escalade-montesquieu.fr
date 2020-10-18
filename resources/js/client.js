@@ -6,60 +6,67 @@ if ("serviceWorker" in navigator) {
 	send().catch(e => console.error(e));
 }
 function getForumsLastMessages() {
-	// console.log(Object.keys(localStorage));
-	// let body = {forums:{}};
-	// for (const forumName of Object.keys(localStorage).filter(key=>key.includes('.last_message'))) {
-	// 	body.forums[forumName.split('.')[0]] = localStorage.getItem(forumName);
-	// }
+	
 	// axios({
-	// 	method: 'post',
+	// 	method: 'get',
 	// 	url: `${window._push_host}/last-messages`,
-	// 	data: JSON.stringify(body),
-	// 	headers: {
-	// 		"content-type": "application/json",
-	// 	}
 	// })
 	// .then(r=>{
-	// 	const forumsToNotif = r.data;
 	// 	let newMessages = false
-		
-	// 	for(const [forumName, hasNewMessages] of Object.entries(r.data)) {
-	// 		console.log(`${forumName.split('.')[0]}: ${hasNewMessages?'nouveaux messages':'à jour'}`);
-	// 		if(hasNewMessages ) {
+
+	// 	for(const [forumName, lastDate] of Object.entries(r.data)) {
+	// 		if(localStorage.getItem(forumName+'.last_message')!==null) {
+	// 			console.log(' ');
+	// 			console.log("Server "+JSON.parse(new Date(lastDate).getTime()));
+	// 			console.log("Client "+JSON.parse(localStorage.getItem(forumName+'.last_message')));
+	// 			if( (JSON.parse(new Date(lastDate).getTime()) - JSON.parse(localStorage.getItem(forumName+'.last_message')) ) > 2000 ) {
+	// 				newMessages = true
+	// 				console.log(`${forumName.split('.')[0]}: nouveaux messages (${lastDate})`);
+	// 				$(`.link-forum[data-forum="${forumName.split('.')[0]}"]`).addClass('has-new-messages');
+	// 				newMessages = true;
+	// 			} else {
+	// 				console.log(`${forumName.split('.')[0]}: à jour (${lastDate})`);
+	// 			}
+	// 		} else {
 	// 			$(`.link-forum[data-forum="${forumName.split('.')[0]}"]`).addClass('has-new-messages');
 	// 			newMessages = true;
 	// 		}
 	// 	}
+	// 	console.log(newMessages);
 	// 	if(newMessages ) {
 	// 		$(`.nav-link-forums`).addClass('has-new-messages')
 	// 		$(`.navbar-toggler`).addClass('has-new-messages')
 	// 	}
 	// })
+	
 	axios({
 		method: 'get',
-		url: `${window._push_host}/last-messages`,
+		url: `/message/latests`,
 	})
 	.then(r=>{
 		let newMessages = false
 
-		for(const [forumName, lastDate] of Object.entries(r.data)) {
-			if(localStorage.getItem(forumName+'.last_message')!==null) {
+		r.data.latests.forEach(msg=>{
+			if(localStorage.getItem(msg.forum+'.last_message')!==null) {
 				console.log(' ');
-				console.log("Server "+JSON.parse(new Date(lastDate).getTime()));
-				console.log("Client "+JSON.parse(localStorage.getItem(forumName+'.last_message')));
-				if( (JSON.parse(new Date(lastDate).getTime()) - JSON.parse(localStorage.getItem(forumName+'.last_message')) ) > 2000 ) {
+				console.log("Server "+JSON.parse(new Date(msg.created_at).getTime()));
+				console.log("Client "+JSON.parse(localStorage.getItem(msg.forum+'.last_message')));
+				if( (JSON.parse(new Date(msg.created_at).getTime()) - JSON.parse(localStorage.getItem(msg.forum+'.last_message')) ) > 2000 ) {
 					newMessages = true
-					console.log(`${forumName.split('.')[0]}: nouveaux messages (${lastDate})`);
-					$(`.link-forum[data-forum="${forumName.split('.')[0]}"]`).addClass('has-new-messages');
+					console.log(`${msg.forum.split('.')[0]}: nouveaux messages (${msg.created_at})`);
+					$(`.link-forum[data-forum="${msg.forum.split('.')[0]}"]`).addClass('has-new-messages');
+					console.log(`.card-forum[data-forum="${msg.forum.split('.')[0]}"]`);
+					$(`.card-forum[data-forum="${msg.forum.split('.')[0]}"]`).addClass('has-new-messages');
 					newMessages = true;
 				} else {
-					console.log(`${forumName.split('.')[0]}: à jour (${lastDate})`);
+					console.log(`${msg.forum.split('.')[0]}: à jour (${msg.created_at})`);
 				}
 			} else {
-				$(`.link-forum[data-forum="${forumName.split('.')[0]}"]`).addClass('has-new-messages');
+				$(`.link-forum[data-forum="${msg.forum.split('.')[0]}"]`).addClass('has-new-messages');
+				$(`.card-forum[data-forum="${msg.forum.split('.')[0]}"]`).addClass('has-new-messages');
 				newMessages = true;
 			}
-		}
+		});
 		console.log(newMessages);
 		if(newMessages ) {
 			$(`.nav-link-forums`).addClass('has-new-messages')

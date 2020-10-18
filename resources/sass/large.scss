@@ -224,6 +224,17 @@ main {
         background: var(--lw2); 
     }
 
+    &.has-new-messages .title::after {
+        position: absolute;
+        content: '.';
+        display: inline-block;
+        top: 9px;
+        left: 4px;
+        font-size: 3.5rem;
+        line-height: 5px;
+        color: #F00;
+    }
+
 }
 
 

@@ -23,7 +23,7 @@
         <div class="col-sm-4 mt-4">
             <article class="card border-0 xs m-2 gallery">
                 <!-- <img class="card-img-top" src="/res/blank.png" data-src="{{ $gallery->preview }}" alt="Card image cap"> -->
-                <a href="{{ route('showGallery', $gallery->slug) }}" class="card-link"><img class="card-img-top rounded" src="{{ $gallery->preview }}" alt="Card image cap"></a>
+                <a href="{{ route('showGallery', $gallery->slug) }}" class="card-link"><img class="card-img-top rounded lazyload" src="{{ $gallery->preview }}" alt="Card image cap"></a>
                 <div class="card-body">
                     <h5 class="card-title mb-0"><a href="{{ route('showGallery', $gallery->slug) }}" class="text-dark">{{$gallery->name}}</a></h5>
                     @if (Auth::check())
