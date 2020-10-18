@@ -16,7 +16,7 @@ class CreateLatestsMessagesTable extends Migration
         Schema::create('latests_messages', function (Blueprint $table) {
             $table->unsignedBigInteger('id');
             $table->string('forum')->unique();
-            $table->timestamp('created_at');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
