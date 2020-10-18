@@ -13,6 +13,21 @@
         {{config('app.name')}}
     </title>
 
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "Escalade Montesquieu",
+        "url": "https://escalade-montesquieu.fr",
+        "address": "5 Place Longchamps 4 et 33000 Bordeaux",
+        "sameAs": [
+        "https://www.facebook.com/escalademontesquieu/",
+        "https://www.instagram.com/escalade_montesquieu/",
+        "https://twitter.com/MontesEscalade"
+        ]
+    }
+    </script>
+
 
 
     <meta name="keywords" content="montesquieu, lycée, bordeaux, escalade, section, grimpe, développeur, association, sportive, as, arthaud, proust">
