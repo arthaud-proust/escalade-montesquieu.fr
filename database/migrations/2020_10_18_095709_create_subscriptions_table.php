@@ -16,7 +16,7 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->string('auth')->unique();
             $table->text('endpoint');
-            $table->json('keys');
+            $table->json('keys')->nullable();
         });
     }
 
