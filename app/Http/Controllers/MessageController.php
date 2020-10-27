@@ -85,7 +85,7 @@ class MessageController extends Controller
             ]
         ];
         // $res = $client->request('POST', 'localhost:8001/post', $body);
-        $res = $client->request('POST', config('services.pusher.domain'), $body);
+        // $res = $client->request('POST', config('services.pusher.domain'), $body);
 
         preg_match_all("/@(\w|_)+/", $message->content, $mentions, PREG_SET_ORDER);
         $message->content = $mentions;
@@ -96,10 +96,10 @@ class MessageController extends Controller
                 $bcclist = User::pluck('email');
                 $bccnamelist = User::pluck('name');
                 Mail::bcc($bcclist, $bccnamelist)
-                        ->send(new MentionnedInMessage($message));
+                        ->send(new MentionnedInMessage($message, true));
                 break;
             } else if($user = User::where('name', $mention)->first()) {
-                Mail::to($user->email, $user->name)->send(new MentionnedInMessage($message));
+                Mail::to($user->email, $user->name)->send(new MentionnedInMessage($message, false));
             }
             
         }

@@ -18,9 +18,10 @@ class MentionnedInMessage extends Mailable
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct($message, $toAll=false)
     {
         $this->message = $message;
+        $this->toAll = $toAll;
     }
 
     /**
@@ -31,13 +32,13 @@ class MentionnedInMessage extends Mailable
     public function build()
     {
         return $this->markdown('vendor.notifications.mentionned')
-                    ->subject($this->message->author.' vous a mentionné dans un message')
+                    ->subject($this->toAll==true?'Annonce à lire sur le forum':($this->message->author.' vous a mentionné dans un message'))
                     ->with([
                         'level' => 'primary',
                         'actionText' => 'Voir le message',
                         'actionUrl' => 'https://escalade-montesquieu.fr/forum/'.$this->message->forum,
                         'displayableActionUrl' =>'https://escalade-montesquieu.fr/forum/'.$this->message->forum,
-                        'introLines' =>[$this->message->author.' vous a mentionné dans le forum '.$this->message->forum],
+                        'introLines' =>[$this->message->author.($this->toAll==true?' a mentionné tout le monde dans le forum ':' vous a mentionné dans le forum ').$this->message->forum],
                         'outroLines' =>[]
                     ]);
     }

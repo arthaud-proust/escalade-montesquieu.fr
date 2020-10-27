@@ -7,7 +7,86 @@ try {
     window._last_message_id = 0;
 }
 
+const contextMenuItems = [
+    ['Mentionner', 'mention'],
+    ['Voir le profil', 'profile']
+];
+const contextMenuContent = contextMenuItems.map(item=>`<span onclick="${item[1]}()">${item[0]}</span>`).join('');
 const formUrlEncoded = x => Object.keys(x).reduce((p, c) => p + `&${c}=${encodeURIComponent(x[c])}`, '');
+
+function profile() {
+    let profileUrl = $('#'+$('#contextMenu').attr('data-message')).find('.MessageCard-author').attr('href');
+    window.open(profileUrl);
+    contextMenuOff();
+}
+
+function mention() {
+    let inputVal = $('#MessageForm-input').val();
+    let mentionText = '@'+$('#'+$('#contextMenu').attr('data-message')).find('.MessageCard-author-name').text().replace(/\s{2,}/g, '').replace(/\s/g, '_').toLowerCase();
+    console.log(mentionText);
+    if(!inputVal.includes(mentionText)) {
+        $('#MessageForm-input').val(mentionText+' '+inputVal).focus();
+    }
+    contextMenuOff();
+}
+
+function contextMenu(e) {
+    e.preventDefault();
+    if(!$('#contextMenu').length) {
+        $('body').append(`
+        <div id="contextMenu" data-message="${$(e.target).parents('.MessageCard')[0].id}">
+            ${contextMenuContent}
+        </div>
+        `)
+    } else {
+        $('#contextMenu').attr('data-message', $(e.target).parents('.MessageCard')[0].id)
+    }
+    clickCoords = getPosition(e);
+    
+    menuWidth = $('#contextMenu').offsetWidth + 4;
+    menuHeight = $('#contextMenu').offsetHeight + 4;
+    
+    windowWidth = $('#contextMenu').innerWidth();
+    windowHeight = $('#contextMenu').innerHeight();
+    
+    if ( (windowWidth - clickCoords.x) < menuWidth ) {
+        $('#contextMenu').css('left', windowWidth - menuWidth + "px");
+    } else {
+        $('#contextMenu').css('left', clickCoords.x + "px");
+    }
+    
+    if ( (windowHeight - clickCoords.y) < menuHeight ) {
+        $('#contextMenu').css('top', windowHeight - menuHeight + "px");
+    } else {
+        $('#contextMenu').css('top', clickCoords.y + "px");
+    }
+    $('#contextMenu').fadeIn('fast');
+}
+
+function getPosition(e) {
+    var posx = 0, posy = 0;
+  
+    if (!e) var e = window.event;
+  
+    if (e.pageX || e.pageY) {
+      posx = e.pageX;
+      posy = e.pageY;
+    } else if (e.clientX || e.clientY) {
+      posx = e.clientX + document.body.scrollLeft + 
+                         document.documentElement.scrollLeft;
+      posy = e.clientY + document.body.scrollTop + 
+                         document.documentElement.scrollTop;
+    }
+  
+    return {
+      x: posx,
+      y: posy
+    }
+}
+
+function contextMenuOff() {
+    $('#contextMenu').fadeOut('fast');
+}
 
 
 function getDate(datetime, withMinutes=true, withYear=false) {
@@ -47,6 +126,8 @@ function getMessage(message) {
 function addMessage(msg) {
     $('#MessagesList').append(getMessage(msg));
     $(".ForumLayout-messagesList").animate({ scrollTop: $('.ForumLayout-messagesList').prop("scrollHeight") }, 500);
+    $('.MessageCard-author').on('click', contextMenu);
+    $('.MessageCard-author').on('contextmenu', contextMenu);
 }
 
 function rendMessages(messages) {
@@ -56,6 +137,8 @@ function rendMessages(messages) {
     setTimeout(()=>{
         $(".ForumLayout-messagesList").animate({ scrollTop: $('.ForumLayout-messagesList').prop("scrollHeight") }, 250);
     },500)
+    $('.MessageCard-author').on('click', contextMenu);
+    $('.MessageCard-author').on('contextmenu', contextMenu);
 
 }
 
@@ -110,4 +193,18 @@ $(()=>{
     });
     rendMessages(window._messages);
     fetchMessages();
+
+    window.onresize = contextMenuOff;
+    window.onkeyup = function(e) {
+        if ( e.keyCode === 27 ) {
+            contextMenuOff();
+        }
+    }
+    document.addEventListener('click', function(e) {
+        if(!$(e.target).attr('class') || $(e.target).attr('class').includes('MessageCard-author')) return
+        var button = e.which || e.button;
+        if ( button === 1 ) {
+            contextMenuOff();
+        }
+    });
 });
