@@ -2,17 +2,5 @@
     "/js/app.js": "/js/app.js",
     "/css/mobile.css": "/css/mobile.css",
     "/css/large.css": "/css/large.css",
-    "/js/user.js": "/js/user.js",
-    "/js/client.js": "/js/client.js",
-    "/js/client.min.js": "/js/client.min.js",
-    "/js/worker.js": "/js/worker.js",
-    "/js/worker.min.js": "/js/worker.min.js",
-    "/js/admin.js": "/js/admin.js",
-    "/js/admin.min.js": "/js/admin.min.js",
-    "/js/blog.js": "/js/blog.js",
-    "/js/blog.min.js": "/js/blog.min.js",
-    "/js/forum.js": "/js/forum.js",
-    "/js/forum.min.js": "/js/forum.min.js",
-    "/js/app.min.js": "/js/app.min.js",
-    "/js/user.min.js": "/js/user.min.js"
+    "/js/app.min.js": "/js/app.min.js"
 }

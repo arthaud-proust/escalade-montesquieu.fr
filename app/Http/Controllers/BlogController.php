@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use App\Blog;
 use App\Post;
 use Validator;
@@ -11,8 +12,10 @@ use Response;
 class BlogController extends Controller
 {
     public function index() {
+        $blogs = Blog::all();
         $regulars = Blog::where('is_regular', 1)->get();
         $non_regulars = Blog::where('is_regular', 0)->get();
+
         return view('blog.index', compact('regulars', 'non_regulars'));
     }
 

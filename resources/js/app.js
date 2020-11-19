@@ -14,6 +14,9 @@ window.anchorme = require("anchorme").default;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+particlesJS.load('particles-js', '/assets/particles.json', function() {
+    console.log('callback - particles.js config loaded');
+});
 window.removeDiacritics = function (str) {
     str = str.toLowerCase();
     var defaultDiacriticsRemovalMap = [
@@ -43,7 +46,8 @@ window.removeDiacritics = function (str) {
         {'base':'x','letters':/[\u0078\u24E7\uFF58\u1E8B\u1E8D]/g},
         {'base':'y','letters':/[\u0079\u24E8\uFF59\u1EF3\u00FD\u0177\u1EF9\u0233\u1E8F\u00FF\u1EF7\u1E99\u1EF5\u01B4\u024F\u1EFF]/g},
         {'base':'z','letters':/[\u007A\u24E9\uFF5A\u017A\u1E91\u017C\u017E\u1E93\u1E95\u01B6\u0225\u0240\u2C6C\uA763]/g},
-        {'base':'-','letters':/\s/g}
+        // {'base':'-','letters':/\s/g}
+        {'base':'-','letters':/\W+/g}
     ];
   
     for(var i=0; i<defaultDiacriticsRemovalMap.length; i++) { str = str.replace(defaultDiacriticsRemovalMap[i].letters, defaultDiacriticsRemovalMap[i].base) }
