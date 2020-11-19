@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="/js/particles.min.js"></script>
     <title>
         @if(View::hasSection('title'))
             @yield('title') - 
@@ -87,8 +86,10 @@
 
 
     <!-- Scripts -->
+    
     <script src="{{ asset('js/manifest.js') }}" defer></script>
     <script src="{{ asset('js/vendor.js') }}" defer></script>
+    <script src="{{ asset('js/particles.min.js') }}" defer></script>
 
     @if (app()->environment('production'))
         @foreach($requirementsJs as $requirement)
@@ -122,7 +123,8 @@
     </noscript>
 </head>
 <body>
-    <div id="particles-js" style="position:fixed; width: 100vw; height: 100vh"></div>
+    <div id="particles-js" style="position:fixed; width: 100vw; height: 100vh; z-index:-100"></div>
+    
     <div id="app" class="@if(!\Request::is('photos/*')&&!\Request::is('photos'))loading @endif">
         <div class="loading-frame"></div>
         @if(!View::hasSection('noHeader'))
