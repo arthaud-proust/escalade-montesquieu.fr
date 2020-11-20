@@ -39,15 +39,15 @@
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-3">
-                <label for="name">Nom</label>
+                <label for="name">Nom (optionnel)</label>
                 <input type="text" class="form-control {{$errors->first('name') ? 'is-invalid':''}}" id="name" name="name" placeholder="ex: Contest Juin" value="{{ old('name') }}">
                 <div class="invalid-feedback">
                     {{$errors->first('name')}}
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <label for="slug">Slug (lien de la photo)</label>
-                <input type="text" class="form-control {{$errors->first('slug') ? 'is-invalid':''}}" id="slug" name="slug" placeholder="escalade-montesquieu.fr/photos/galerie1/contest_juin" value="{{ old('slug') }}" required>
+                <label for="slug">Lien de la photo (optionnel)</label>
+                <input type="text" class="form-control {{$errors->first('slug') ? 'is-invalid':''}}" id="slug" name="slug" placeholder="contest-juin" value="{{ old('slug') }}" required>
                 <div class="invalid-feedback">
                     {{$errors->first('slug')}}
                 </div>
@@ -60,7 +60,7 @@
         <div class="form-group">
             
             <label for="text">Texte (optionnel)</label>
-            <textarea class="form-control" id="text" name="text" rows="3">{{ old('text') }}</textarea>
+            <textarea class="form-control" id="text" name="text" rows="3" placeholder="Par exemple une courte description présentant la photo, rajoutant du contexte">{{ old('text') }}</textarea>
         </div>
         <button class="btn btn-dark" type="submit">Ajouter la photo</button>
         <a class="btn btn-link-dark" href="{{ route('galleries') }}">Annuler</a>

@@ -19,11 +19,11 @@ Route::group(['prefix' => 'photos', 'middleware' => ['level-admin']], function()
 
     Route::get('/gallery/create', 'GalleryController@create')->name('createGallery');
 
-    Route::patch('/gallery/create/{gallery}', 'GalleryController@update')->name('updateGallery');
+    Route::patch('/gallery/{gallery}', 'GalleryController@update')->name('updateGallery');
 
-    Route::delete('/gallery/create/{gallery}', 'GalleryController@destroy')->name('destroyGallery');
+    Route::delete('/gallery/{gallery}', 'GalleryController@destroy')->name('destroyGallery');
 
-    Route::get('/gallery/create/{gallery}/edit', 'GalleryController@edit')->name('editGallery');
+    Route::get('/gallery/{gallery}/edit', 'GalleryController@edit')->name('editGallery');
 
 
 
@@ -31,11 +31,11 @@ Route::group(['prefix' => 'photos', 'middleware' => ['level-admin']], function()
 
     Route::get('/photo/create', 'PhotoController@create')->name('createPhoto');
 
-    Route::patch('/photo/create/{photo}', 'PhotoController@update')->name('updatePhoto');
+    Route::patch('/photo/{photo}', 'PhotoController@update')->name('updatePhoto');
 
-    Route::delete('/photo/create/{photo}', 'PhotoController@destroy')->name('destroyPhoto');
+    Route::delete('/photo/{photo}', 'PhotoController@destroy')->name('destroyPhoto');
 
-    Route::get('/photo/create/{photo}/edit', 'PhotoController@edit')->name('editPhoto');
+    Route::get('/photo/{photo}/edit', 'PhotoController@edit')->name('editPhoto');
 });
 
 Route::group(['prefix' => 'photos'], function()

@@ -14,7 +14,7 @@
             @if(Auth::check() && Auth::user()->level>2)
                 <div class="flex flex-row">
                     <a href="{{ route('editGallery', $gallery->slug) }}"><button class="btn btn-outline-success mb-2">Editer</button></a>
-                    <a href="{{ route('createPhoto', $gallery->name) }}"><button class="btn btn-success ml-2 mb-2">Ajouter une photo</button></a>
+                    <a href="{{ route('createPhoto', ['gallery'=>$gallery->name]) }}"><button class="btn btn-success ml-2 mb-2">Ajouter une photo</button></a>
                 </div>
             @endif
             <p class="PageIntro-paraph">{{ $gallery->text }}</p>

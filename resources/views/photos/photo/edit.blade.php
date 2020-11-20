@@ -38,20 +38,20 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="name">Nom (optionnel)</label>
-                <input type="text" class="form-control {{$errors->first('name') ? 'is-invalid':''}}" id="name" name="name" placeholder="ex: Portrait d'Ombres" value="{{ $photo->name }}">
+                <input type="text" class="form-control {{$errors->first('name') ? 'is-invalid':''}}" id="name" name="name" placeholder="ex: Contest Juin" value="{{ $photo->name }}">
                 <div class="invalid-feedback">
                     {{$errors->first('name')}}
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="date">Date (optionnel)</label>
-                <input type="text" class="form-control" id="date" name="date" placeholder="ex: 13 août" value="{{ $photo->date }}">
+                <input type="text" class="form-control" id="date" name="date" placeholder="ex: 13 Juin" value="{{ $photo->date }}">
             </div>
         </div>
         <div class="form-group">
             
             <label for="text">Texte (optionnel)</label>
-            <textarea class="form-control" id="text" name="text" rows="3">{{ $photo->text }}</textarea>
+            <textarea class="form-control" id="text" name="text" rows="3" placeholder="Par exemple une courte description présentant la photo, rajoutant du contexte">{{ $photo->text }}</textarea>
         </div>
         <button class="btn btn-success" type="submit">Modifier la photo</button>
         <a class="btn btn-link-dark" href="{{ route('showGallery', $photo->gallery) }}">Annuler</a>

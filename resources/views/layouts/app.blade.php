@@ -112,7 +112,9 @@
     @endif
     <!-- Styles -->
     <script>
-        window.onload = function() {try{var link=document.createElement('link');link.rel='stylesheet';if(window.screen.width < 768) {link.href="{{ asset('css/mobile.css') }}";} else {link.href="{{ asset('css/large.css') }}";}document.getElementsByTagName('head')[0].appendChild(link);link.addEventListener('load', function () {document.getElementById('app').setAttribute('class', '');})}catch(e) {document.getElementById('app').setAttribute('class', '')}};
+        // window.onload = function() {
+            try{var link=document.createElement('link');link.rel='stylesheet';if(window.screen.width < 768) {link.href="{{ asset('css/mobile.css') }}";} else {link.href="{{ asset('css/large.css') }}";}document.getElementsByTagName('head')[0].appendChild(link);link.addEventListener('load', function () {document.getElementById('app').setAttribute('class', '');})}catch(e) {document.getElementById('app').setAttribute('class', '')}
+        // };
     </script>
     <style>
         #app.loading {height: 100vh;overflow: hidden;}#app.loading::before {content: '';position: fixed;top:0;left: 0;background:#f8f8f8;height: 100vh;width:100vw;z-index: 9999;}#app.loading::after {content: 'Chargement...';font-weight: 600;position: fixed;top:50%;left: 50%;background:#f8f8f8;z-index: 9999;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);-o-transform: translate(-50%, -50%);animation: load 2s infinite;}@keyframes load {0% {content: 'Chargement';}25% {content: 'Chargement.';}50% {content: 'Chargement..';}75% {content: 'Chargement...';}100% {content: 'Chargement';}}

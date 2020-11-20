@@ -55,7 +55,7 @@ class PhotoController extends Controller
 
         $validator = Validator::make($request->all(), [
             'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
-            'slug' => 'required|unique:photos|string|max:255',
+            'slug' => 'nullable|unique:photos|string|max:255',
             'gallery' => 'required|string|max:255',
             'background' => 'required|string|max:255',
             'name' => 'nullable|unique:photos|string|max:255',
@@ -71,11 +71,12 @@ class PhotoController extends Controller
             abort(404, 'gallery');
         }
 
-        $imageName = time().'.'.request()->img->getClientOriginalExtension();
+        $time = time();
+        $imageName = $time.'.'.request()->img->getClientOriginalExtension();
         request()->img->move(public_path('img'), $imageName);
 
         $photo = photo::create([
-            'slug'  => $request->get('slug'),
+            'slug'  => $request->get('slug')==''?$time:$request->get('slug'),
             'gallery' => $request->get('gallery'),
             'gallery_name' => $gallery->name,
             'background' => $request->get('background'),
