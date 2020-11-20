@@ -24,9 +24,7 @@
                         <button class="InfoCard-edit">Editer</button>
                         <button class="InfoCard-delete">Supprimer</button>
                     </div>
-                    <div class="InfoCard-content col-md-8">
-                        {{ $info->content }}
-                    </div>
+                    <div class="InfoCard-content col-md-8">{{ $info->content }}</div>
                 </div>
                 
             </div>

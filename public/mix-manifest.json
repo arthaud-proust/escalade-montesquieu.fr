@@ -1,8 +1,4 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/mobile.css": "/css/mobile.css",
-    "/css/large.css": "/css/large.css",
-    "/js/blog.js": "/js/blog.js",
-    "/js/blog.min.js": "/js/blog.min.js",
-    "/js/app.min.js": "/js/app.min.js"
+    "/js/admin.js": "/js/admin.js",
+    "/js/admin.min.js": "/js/admin.min.js"
 }
