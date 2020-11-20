@@ -8,7 +8,7 @@ function countShoes(availables) {
     Object.values(availables).forEach(user => {
         shoes[user[1]] = user[1] in shoes?shoes[user[1]]+1:1;
     });
-    return Object.entries(shoes).filter(s=>s[0]!='no-need').map(s => s.reverse().join(` paire${s[0]>1?'s':''} de `)).join(', ');
+    return Object.entries(shoes).filter(s=>s[0]!='no-need').map(s => s.reverse().join(` paire${s[0]>1?'s':''} de `)).join(',<br>');
 }
 
 function getDate(datetime, withMinutes=true) {
@@ -49,22 +49,27 @@ function getPost(post) {
             </div>
         </div>
             <div class="PostCard-more">
-            ${user && user.level>1?`<div class="PostCard-adminInfo">
+            ${user && user.level>1?`
+            <div class="PostCard-adminInfo">
                 <span class="availables">Participants: ${Object.keys(availables).join(', ') || 'aucun'}</span>
                 <span class="unavailables">Indisponibles: ${unavailables.join(', ') || 'aucun'}</span>
                 <span>Baudrier${harness>1 ? 's' : ''} à prendre: ${harness}</span>
-                <span>Chaussures à prendre: ${countShoes(availables) || 'aucune'}</span>
+                <span>Chaussures à prendre: ${ countShoes(availables) || 'aucune'}</span>
             </div>
             <div class="PostCard-adminActions">
                 <a href="/post/${post.id}/edit" class="btn edit-post" title="Éditer"><img src="/assets/svg/edit-2.svg"></a>
-            </div>
-            `:''}
+            </div>`:''}
             <div class="PostCard-info">
                 ${$('#post-'+post.id).attr('data-show-datetime')=="true"?`<h5>${getDate(post.datetime)}</h5>`:''}
                 <a class="location" target="blank" href="https://www.google.fr/maps/search/${post.location}+france">${post.location===null?'':post.location}</a>
                 <span class="maxplaces">${post.maxplaces==-1?'Places illimitées':places+` ${places>1?'places restantes':'place restante'}`}</span>
                 <p class="desc">${content}</p>
             </div>
+            ${user && user.level==1?`
+            <div class="PostCard-adminInfo">
+                <span class="availables">Participants: ${Object.keys(availables).join(', ') || 'aucun'}</span>
+            </div>
+            `:''}
         </div>
     `;
 }
