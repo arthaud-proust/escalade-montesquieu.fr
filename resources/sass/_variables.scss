@@ -1,0 +1,49 @@
+// Body
+$body-bg: #F8FAFC;
+
+// Typography
+$font-family-sans-serif: 'Inter', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+$theme-colors: (
+    "lw1": #F8FAFC,
+    "lw2": #FCFCFC,
+    "lw3": #F6F6F6,
+    "lw4": #818181,
+    "lw5": #616161,
+    "lw6": #292929,
+    "lw7": #0D0D0D,
+    "mw1": #F8FAFC,
+    "mw2": #FBFBFB,
+    "mw3": #F8F8F8,
+    "mw4": #818181,
+    "mw5": #616161,
+    "mw6": #292929,
+    "mw7": #0D0D0D,
+    "danger0": #fc5959,
+    "danger1": #F57E7E,
+    "danger2": #F5AFAF,
+    "info1": #007BFF,
+    "info2": #AFC0F5,
+    "success1": #73C16E,
+    "success2": #A6D9A4
+);
+
+$screen-xs-min: 0;
+$screen-sm-min: 576px;
+$screen-md-min: 768px;
+$screen-lg-min: 992px;
+$screen-xl-min: 1200px;
