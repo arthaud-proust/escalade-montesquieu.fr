@@ -17,12 +17,12 @@ function getForumsLastMessages() {
 		r.data.latests.forEach(msg=>{
 			if(localStorage.getItem(msg.forum+'.last_message')!==null) {
 				
-				console.log(' ');
-				console.log("Server "+JSON.parse(new Date(msg.created_at).getTime()));
-				console.log("Client "+JSON.parse(localStorage.getItem(msg.forum+'.last_message')));
-				console.log('or :');
-				console.log("Server "+msg.created_at);
-				console.log("Client "+new Date(JSON.parse(localStorage.getItem(msg.forum+'.last_message'))));
+				// console.log(' ');
+				// console.log("Server "+JSON.parse(new Date(msg.created_at).getTime()));
+				// console.log("Client "+JSON.parse(localStorage.getItem(msg.forum+'.last_message')));
+				// console.log('or :');
+				// console.log("Server "+msg.created_at);
+				// console.log("Client "+new Date(JSON.parse(localStorage.getItem(msg.forum+'.last_message'))));
 
 				if( (JSON.parse(new Date(msg.created_at).getTime()) - JSON.parse(localStorage.getItem(msg.forum+'.last_message')) ) > 2000 ) {
 					newMessages = true
@@ -40,7 +40,7 @@ function getForumsLastMessages() {
 				newMessages = true;
 			}
 		});
-		console.log(newMessages);
+		// console.log(newMessages);
 		if(newMessages ) {
 			$(`.nav-link-forums`).addClass('has-new-messages')
 			$(`.navbar-toggler`).addClass('has-new-messages')
