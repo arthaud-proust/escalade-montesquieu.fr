@@ -1,7 +1,8 @@
 const publicVapidKey = "BH25QhGzdhhFsj8D0Ws71rdpwvW4q_PuqHZRDmZpRoDlItnhRMQ9zvnTT4rfIklgWKxIkFfqqMu49ibGqfiaGlc";
 // window._push_host = "https://escalade-montesquieu-pusher.herokuapp.com";
-window._push_host = "https://api.escalade-montesquieu.fr";
-// window._push_host = "http://localhost:8001";
+// window._push_host = "https://api.escalade-montesquieu.fr";
+window._push_host = "http://localhost:8001";
+// window._push_host = "http://192.168.0.21:8001";
 // Check for service worker
 if ("serviceWorker" in navigator) {
 	send().catch(e => console.error(e));

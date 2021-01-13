@@ -45,9 +45,13 @@ class ProfileController extends Controller
 
     public function img(Request $request, $user_uuid)
     {
-        if(!$user = User::firstWhere('uuid', $user_uuid)) {
+        if(!$user = User::firstWhere('uuid', $user_uuid)) {            
             return response()->file(public_path().'/assets/profiles/user.png');
         };
+        if($user->img == "/assets/profiles/user.png") {
+            return redirect('https://eu.ui-avatars.com/api/?size=256&name='.$user->name.'&background=e5e5e5&color=8c8b87&rounded=true&bold=true');
+        }
+
         return response()->file(public_path().$user->img);
     }
 
