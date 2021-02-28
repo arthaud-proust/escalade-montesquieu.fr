@@ -4,6 +4,7 @@
     "/js/app.js": "/js/app.js",
     "/css/mobile.css": "/css/mobile.css",
     "/css/large.css": "/css/large.css",
+    "/css/app.css": "/css/app.css",
     "/js/user.js": "/js/user.js",
     "/js/client.js": "/js/client.js",
     "/js/client.min.js": "/js/client.min.js",
