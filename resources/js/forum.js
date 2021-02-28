@@ -225,6 +225,7 @@ $(()=>{
             window._last_message_author = message.author_uuid;
             localStorage.setItem(`${window._forum}.last_message`, (new Date(message.created_at)).getTime());
             addMessage(message);
+            socket.emit('seen');
         } else {
             addInfo(message);
         }
