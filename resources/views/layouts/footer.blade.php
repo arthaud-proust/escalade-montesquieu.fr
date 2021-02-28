@@ -59,7 +59,7 @@
         <hr>
         <div class="footer-copyright d-flex flex-column flex-md-row justify-content-between pb-3">
             <a href="https://arthaud.dev/" target="blank">Développé par Arthaud Proust</a>
-            <span>© 2020 escalade-montesquieu.fr</span>
+            <span>&copy; 2020-{{ Carbon\Carbon::now()->year }} Tous droits réservés</span>            
         </div>
     </div>
 </footer>

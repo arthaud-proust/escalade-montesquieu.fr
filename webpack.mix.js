@@ -34,6 +34,7 @@ mix
     .js('resources/js/user.js', 'public/js')
     .sass('resources/sass/mobile.scss', 'public/css')
     .sass('resources/sass/large.scss', 'public/css')
+    .sass('resources/sass/app.scss', 'public/css')
 
 mix.minify('public/js/app.js');
 mix.minify('public/js/user.js');

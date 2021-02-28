@@ -8,7 +8,7 @@
             <h1 class="PageIntro-title">
                 Galeries
             </h1>
-            @if(Auth::check() && Auth::user()->level>2)
+            @if(Auth::check() && Auth::user()->level>1)
                 <div class="flex flex-row">
                     <a href="{{ route('createGallery') }}"><button class="btn btn-success mb-2">Créer une galerie</button></a>
                 </div>
@@ -22,8 +22,7 @@
     @foreach($galleries as $gallery)
         <div class="col-sm-4 mt-4">
             <article class="card border-0 xs m-2 gallery">
-                <!-- <img class="card-img-top" src="/res/blank.png" data-src="{{ $gallery->preview }}" alt="Card image cap"> -->
-                <a href="{{ route('showGallery', $gallery->slug) }}" class="card-link"><img class="card-img-top rounded lazyload" src="{{ $gallery->preview }}" alt="Card image cap"></a>
+                <a href="{{ route('showGallery', $gallery->slug) }}" class="card-link"><img class="card-img-top rounded lazyload" data-src="{{ $gallery->preview }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=" "></a>
                 <div class="card-body">
                     <h5 class="card-title mb-0"><a href="{{ route('showGallery', $gallery->slug) }}" class="text-dark">{{$gallery->name}}</a></h5>
                     @if (Auth::check())

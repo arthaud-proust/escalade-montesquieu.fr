@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'photos', 'middleware' => ['level-admin']], function()
+
+
+Route::group(['prefix' => 'photos', 'middleware' => ['level-modo']], function()
 {
     Route::post('/gallery', 'GalleryController@store')->name('storeGallery');
 
@@ -38,7 +40,7 @@ Route::group(['prefix' => 'photos', 'middleware' => ['level-admin']], function()
     Route::get('/photo/{photo}/edit', 'PhotoController@edit')->name('editPhoto');
 });
 
-Route::group(['prefix' => 'photos'], function()
+Route::group(['prefix' => 'photos', 'middleware' => ['level-user']], function()
 {
     Route::get('/', 'GalleryController@index')->name('galleries');
 
