@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "pusher/pusher-php-server": "^4.1",
+        "queueworker/sansdaemon": "^1.2",
         "renatomarinho/laravel-page-speed": "^1.9"
     },
     "require-dev": {

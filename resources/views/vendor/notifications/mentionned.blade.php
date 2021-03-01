@@ -48,8 +48,8 @@ Bonne journée,<br>
 @endif
 
 {{-- Subcopy --}}
-@isset($actionText)
 @slot('subcopy')
+@isset($actionText)
 @lang(
     "Si vous avez des problèmes pour cliquer sur le bouton \":actionText\" , copiez et collez l'URL ci-dessous\n".
     'dans votre navigateur:',
@@ -57,6 +57,7 @@ Bonne journée,<br>
         'actionText' => $actionText,
     ]
 ) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
-@endslot
 @endisset
+<br><span class="break-all">Pour désactiver les notifications par mail [modifiez votre profil](https://escalade-montesquieu.fr/profil/edit)</span>
+@endslot
 @endcomponent

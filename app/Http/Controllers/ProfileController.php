@@ -107,7 +107,6 @@ class ProfileController extends Controller
         
         $user = Auth::user();
 
-
         // $user->name = ucwords(strtolower(request('name')));
         $user->email = request('email');
         $user->bio = request('bio');
@@ -123,6 +122,13 @@ class ProfileController extends Controller
         } else {
             $user->harness = 0;  
         }
+
+        if($request->has('email_preferences')) {
+            $user->email_preferences = implode('', array_keys(request('email_preferences')));  
+        } else {
+            $user->email_preferences = '';
+        }
+
         $user->shoes = request('shoes', $default='no-need');
         $user->updated_at = Carbon::now()->toDateTimeString();
         $user->save();

@@ -6,8 +6,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Blog;
 use App\Post;
+use App\User;
+// use App\Notifications\EventNotification;
 use Validator;
 use Response;
+
+// use Illuminate\Support\Facades\Mail;
+// use App\Mail\EventNotification;
+use App\Jobs\EventEmailJob;
 
 class PostController extends Controller
 {
@@ -48,6 +54,18 @@ class PostController extends Controller
             'unavailables' => '[]',
         ]);
 
+
+        // notify
+        $toNotify = User::mailableFor('event');
+        $emailJob = (new EventEmailJob($post, [
+            'bccEmails'=> $toNotify->pluck('email'), 
+            'bccNames' => $toNotify->pluck('name')
+        ]))->delay(now());
+
+        dispatch($emailJob);
+        // next is handle by worker
+
+        // now we can return the route
         return redirect()->route('showBlog', request('blog'))->with('status', 'success')->with('content', 'Post créé');
     }
 

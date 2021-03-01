@@ -2,7 +2,7 @@
 
 @section('title', 'Éditer mon profil')
 @section('content')
-<div class="ProfilEditionLayout container d-flex flex-column align-items-center justify-content-center">
+<div class="my-5 ProfilEditionLayout container d-flex flex-column align-items-center justify-content-center">
     <canvas id="canvas" style="display:none;"></canvas>
     <form class="p-0 col-md-10 d-flex flex-column align-items-strech justify-content-center" action="{{ route('updateProfile') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -11,7 +11,7 @@
             <h1 class="ProfilEditionCard-title">Édition du profil</h1>
             <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
                 <section class="Field img @error('img') is-invalid @enderror">
-                    <label for="img" class="Field-label"><img id="preview" src="{{$user->img}}"></label>
+                    <label for="img" class="Field-label"><img id="preview" src="{{ route('imgProfile', $user->uuid) }}"></label>
                     <input id="img" name="img" class="Field-input" type="file">
                     @error('img')
                         <span class="Field-invalidFeedback" role="alert">{{ $message }}</span>
@@ -106,8 +106,30 @@
                     </section>
                 </div>
             </div>
+
+            
         
         </div>
+
+        <div class="ProfilEditionCard">
+                <h1 class="ProfilEditionCard-title little">Notifications email</h1>
+                <p class="ProfilEditionCard-desc">Dans quel cas faut-il vous envoyer un email?</p>
+                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                    @foreach($user->emailRules as $prefLetter => $prefDetails)
+                        <section class="Field checkbox @error('email_preferences['.$prefLetter.']') is-invalid @enderror">
+                            <span class="Field-title">{{ $prefDetails['title'] }}</span>
+                            <label class="Field-label" for="email_preferences[{{ $prefLetter }}]">
+                                <input class="Field-checkbox" id="email_preferences[{{ $prefLetter }}]" name="email_preferences[{{ $prefLetter }}]" type="checkbox" @if($user->isMailableFor($prefLetter)) checked @endif>
+                                {{ $prefDetails['desc'] }}
+                            </label>
+                            @error('email_preferences['.$prefLetter.']')
+                                <span class="Field-invalidFeedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </section>
+                    @endforeach
+                </div>
+            </div>
+
         <div class="ProfilEditionLayout-actions d-flex flex-column-reverse flex-md-row align-items-stretch justify-content-center">
             <a href="{{ route('showProfile') }}" class="btn btn-white backlink">Annuler</a>
             <button class="btn btn-success" type="submit">Enregistrer les modifications</button>

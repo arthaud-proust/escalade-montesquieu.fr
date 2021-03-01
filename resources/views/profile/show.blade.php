@@ -7,7 +7,7 @@
         <div class="ProfilCard">
             <section class="ProfilCard-identity d-flex flex-column align-items-center">
                 <div class="IdentityBloc">
-                    <img class="IdentityBloc-img" src="/profil/{{$user->uuid}}/img">
+                    <img class="IdentityBloc-img" src="{{ route('imgProfile', $user->uuid) }}">
                     <span id="role" class="IdentityBloc-role" data-level="{{$user->level}}"></span>
                     <h1 class="IdentityBloc-name">{{$user->name}}</h1>
                 </div>

@@ -31,7 +31,7 @@ class MentionnedInMessage extends Mailable
      */
     public function build()
     {
-        return $this->markdown('vendor.notifications.mentionned')
+        return $this->markdown('vendor.notifications.base')
                     ->subject($this->toAll==true?'Annonce à lire sur le forum':($this->message->author.' vous a mentionné dans un message'))
                     ->with([
                         'level' => 'primary',
