@@ -14,7 +14,7 @@ class UsersAddEmailPreferences extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('email_preferences')->nullable();
+            $table->string('email_preferences')->default(' ');
         });
     }
 
