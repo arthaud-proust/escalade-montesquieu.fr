@@ -1,4 +1,5 @@
 #!/usr/bin/env php
 
 <?php 
-exec('../php artisan queue:work --sansdaemon --tries=3');
+$output = shell_exec('cd .. & php artisan queue:work --sansdaemon --tries=3');
+echo "$output";

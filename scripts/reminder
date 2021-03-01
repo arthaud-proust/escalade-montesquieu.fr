@@ -1,4 +1,5 @@
 #!/usr/bin/env php
 
 <?php 
-exec('../php artisan notifications:checkreminder');
+$output = shell_exec('cd .. & php artisan notifications:checkreminder');
+echo "$output";
