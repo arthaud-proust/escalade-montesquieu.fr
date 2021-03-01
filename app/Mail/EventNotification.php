@@ -36,7 +36,7 @@ class EventNotification extends Mailable
         $diff = -round($datediff / (60 * 60 * 24));
         $days = $diff.($diff==1?' jour':' jours');
 
-        return $this->markdown('vendor.notifications.base')
+        return $this->markdown('vendor.notifications.mentionned')
                     ->subject('Nouvel évènement: '.$this->event->title)
                     ->with([
                         'level' => 'success',
