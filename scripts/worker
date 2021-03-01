@@ -1,0 +1,4 @@
+#!/usr/bin/env php
+
+<?php 
+exec('../php artisan queue:work --sansdaemon --tries=3');
