@@ -11,7 +11,7 @@
             <h1 class="PageIntro-title">
                 {{ $gallery->name }}
             </h1>
-            @if(Auth::check() && Auth::user()->level>2)
+            @if(Auth::check() && Auth::user()->level>1)
                 <div class="flex flex-row">
                     <a href="{{ route('editGallery', $gallery->slug) }}"><button class="btn btn-outline-success mb-2">Editer</button></a>
                     <a href="{{ route('createPhoto', ['gallery'=>$gallery->name]) }}"><button class="btn btn-success ml-2 mb-2">Ajouter une photo</button></a>
