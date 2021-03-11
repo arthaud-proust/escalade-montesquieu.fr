@@ -56,9 +56,9 @@
             <p>
                 Si l’Utilisateur souhaite savoir comment escalade-montesquieu.fr utilise ses Données
                 Personnelles, demander à les rectifier ou s’oppose à leur traitement, l’Utilisateur peut
-                contacter escalade-montesquieu.fr par écrit à l’adresse suivante :
+                contacter escalade-montesquieu.fr par mail à l’adresse suivante :
                 <pre>PROUST Arthaud – DPO,
-15 rue André Malraux 33520 Bruges.</pre>
+proust@arthaud.dev .</pre>
                 Dans ce cas, l’Utilisateur doit indiquer les Données Personnelles qu’il souhaiterait que
                 escalade-montesquieu.fr corrige, mette à jour ou supprime, en s’identifiant précisément avec une
                 copie d’une pièce d’identité (carte d’identité ou passeport).
@@ -83,7 +83,7 @@
             <p>
                 escalade-montesquieu.fr s’engage à prendre toutes les précautions nécessaires afin de préserver
                 la sécurité des Informations et notamment qu’elles ne soient pas communiquées à des
-                personnes non autorisées.
+                personnes non autorisées. <sub>&copy;Montes</sub>
                 <br>Cependant, si un incident impactant l’intégrité ou la
                 confidentialité des Informations du Client est portée à la connaissance de escalade-montesquieu.fr
                 celle-ci devra dans les meilleurs délais informer le Client et lui communiquer les mesures 

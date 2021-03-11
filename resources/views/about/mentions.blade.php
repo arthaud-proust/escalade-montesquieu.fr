@@ -11,7 +11,7 @@
             <h2>Présentation du site internet</h2>
             <p>
                 Propriétaire du site : Arthaud PROUST
-                <br>Le propriétaire est un particulier, domiciliant au 15 rue andré malraux 33520 Bruges. Il est possible de le contacter à l'adresse proust@arthaud.dev
+                <br>Le propriétaire est un particulier. Il est possible de le contacter à l'adresse proust@arthaud.dev
             </p>
             <p>
                 Hébergeur du site : OVH

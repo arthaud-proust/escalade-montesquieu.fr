@@ -102,7 +102,7 @@
                 Toute reproduction, copie ou publication de ces différents contenus sans l'autorisation préalable l’Éditeur du site est strictement interdite. L'Utilisateur s'engage à demander un accord écrit de l'Éditeur avant toute reproduction, copie ou publication de ces différents contenus.
             </p>
             <p>
-                L’Utilisateur est entièrement responsable de tout contenu qu’il met en ligne et il s’engage à ne pas porter atteinte à un tiers.
+                L’Utilisateur est entièrement responsable de tout contenu qu’il met en ligne et il s’engage à ne pas porter atteinte à un tiers.<sub>&copy;Montes</sub>
             </p>
             <p>
                 L’Éditeur du site se réserve le droit de modérer ou de supprimer librement et à tout moment les contenus mis en ligne par les utilisateurs, et ce sans justification.
@@ -120,7 +120,7 @@
                 <br><b>escalade-montesquieu.fr</b> garanti le respect de la vie privée de l’utilisateur, conformément à la loi n°78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés.
             </p>
             <p>
-                <stroke>Le site est déclaré auprès de la CNIL sous le numéro suivant : .</stroke>
+                Le site n'est pas déclaré auprès de la CNIL.
             </p>
             <p>
                 En vertu des articles 39 et 40 de la loi en date du 6 janvier 1978, l'Utilisateur dispose d'un droit d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur exerce ce droit via :
