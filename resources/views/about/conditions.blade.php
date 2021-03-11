@@ -126,7 +126,6 @@
                 En vertu des articles 39 et 40 de la loi en date du 6 janvier 1978, l'Utilisateur dispose d'un droit d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur exerce ce droit via :
                 <ul>
                     <li>Un mail à proust@arthaud.dev</li>
-                    <li>Par voie postale au 15 rue andré Malraux; 33520 Bruges</li>
                 </ul>
             </p>
         </section>
