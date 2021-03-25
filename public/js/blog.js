@@ -104,6 +104,12 @@ function participate(e) {
         rendPost(r.data, id);
         $('.join-post').click(participate);
         $('.unavailable-post').click(unavailable);
+    }).catch(e=>{
+        if(e.response.data.code == "full") {
+            document.querySelector(`#post-${id} .btn.join-post`).classList.add('disabled')
+            $(`#post-${id} .btn.join-post`).off( "click" );
+            createNotif('danger', e.response.data.error)
+        }
     });
 }
 
@@ -114,20 +120,20 @@ function unavailable(e) {
         rendPost(r.data, id);
         $('.join-post').click(participate);
         $('.unavailable-post').click(unavailable);
-    });
+    }).catch(e=>{console.log(e);});
 }
 
 $(()=>{
-
+    
     try {
         rendPosts(posts, true);
     } catch(e) {
-        console.warn('posts is not defined');
+        console.log(e)
+        // console.warn('posts is not defined');
     }
 
     try {
         $('.infoCard p.paraph').html(function(i, text) {
-            console.log('e');
             return anchorme({
                 input:text,
                 extensions: [

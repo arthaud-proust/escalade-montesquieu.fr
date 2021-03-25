@@ -121,7 +121,12 @@ class PostController extends Controller
 
         // décodage des listes json
         $availables = json_decode($post->availables, true);
-        $unavailables = json_decode($post->unavailables, true);
+        if(count($availables) >= $post->maxplaces) {
+            
+            return response()->json(["error"=>"Hé ho, toutes les places sont prises!", "code"=>"full"], 400);
+        }
+        
+        $unavailables = json_decode($post->unavailables, false);
 
         // mise à jour ou définition de l'utilisateur dans la liste "disponible"
         $availables[Auth::user()->name] = [Auth::user()->harness, Auth::user()->shoes];
@@ -136,7 +141,6 @@ class PostController extends Controller
         $post->unavailables = json_encode($unavailables);
 
         $post->save();
-
         return response()->json($post);
     }
 
@@ -147,7 +151,7 @@ class PostController extends Controller
 
         // décodage des listes json
         $availables = json_decode($post->availables, true);
-        $unavailables = json_decode($post->unavailables, true);
+        $unavailables = json_decode($post->unavailables, false);
 
         // retrait de l'utilisateur dans la liste "disponible"
         unset($availables[Auth::user()->name]);

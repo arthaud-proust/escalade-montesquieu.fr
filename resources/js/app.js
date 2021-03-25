@@ -81,4 +81,18 @@ $('[data-toggle="collapse"]').click(function(e) {
     $('footer').toggle();
 })
 
+window.createNotif = function(type, message) {
+    document.querySelector('main .container').innerHTML = 
+    `<div class="alert alert-${type} alert-dismissible fade show my-3" role="alert">
+        ${message}
+        <!--<a href="{{ session('alert-link-href') }}">{{ session('alert-link-title') }}</a>-->
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>`+document.querySelector('main').innerHTML;
+
+}
+
 })();
+
+
