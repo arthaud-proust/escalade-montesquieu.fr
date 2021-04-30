@@ -40,3 +40,5 @@ mix.minify('public/js/app.js');
 mix.minify('public/js/user.js');
 
 mix.copy('resources/js/lib', 'public/js/');
+
+mix.version();

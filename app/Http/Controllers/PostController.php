@@ -121,7 +121,7 @@ class PostController extends Controller
 
         // décodage des listes json
         $availables = json_decode($post->availables, true);
-        if(count($availables) >= $post->maxplaces) {
+        if(count($availables) >= $post->maxplaces && $post->maxplaces !== -1) {
             
             return response()->json(["error"=>"Hé ho, toutes les places sont prises!", "code"=>"full"], 400);
         }
