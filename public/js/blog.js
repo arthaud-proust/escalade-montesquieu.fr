@@ -28,7 +28,7 @@ function getPost(post) {
         extensions: [
             // an extension for mentions
             {
-                test: /@(\w|_)+/gi,
+                test: /@(\S|_)+/gi,
                 transform: (string) =>
                     `<a href="http://escalade-montesquieu.test:8000/profil/${string.substr(1).replace(/(_)+/gi," ")}">${string}</a>`,
             },
@@ -139,7 +139,7 @@ $(()=>{
                 extensions: [
                     // an extension for mentions
                     {
-                        test: /@(\w|_)+/gi,
+                        test: /@(\S|_)+/gi,
                         transform: (string) =>
                             `<a href="https://escalade-montesquieu.fr/profil/${string.substr(1).replace(/(_)+/gi," ")}">${string}</a>`,
                     },
