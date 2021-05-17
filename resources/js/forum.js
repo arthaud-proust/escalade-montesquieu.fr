@@ -118,7 +118,7 @@ function getMessage(message) {
                     `<a href="#">${string}</a>`,
             },
             {
-                test: /@(?!everyone)(\w|_)+/gi,
+                test: /@(?!everyone)(\S|_)+/gi,
                 transform: (string) =>
                     `<a href="http://escalade-montesquieu.fr/profil/${string.substr(1).replace(/(_)+/gi," ")}">${string}</a>`,
             }
