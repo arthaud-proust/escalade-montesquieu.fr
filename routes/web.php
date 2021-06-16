@@ -19,6 +19,7 @@ Route::view('/informations', 'about.informations')->name('informations');
 Route::view('/mentions-legales', 'about.mentions')->name('mentionsLegales');
 Route::view('/politique-rgpd', 'about.rgpd')->name('politiqueRgpd');
 Route::view('/conditions-utilisation', 'about.conditions')->name('conditionsUtilisation');
+Route::view('/room3d', 'room.show')->name('room3d');
 
 Route::get('/session', 'ProfileController@bySession')->name('session');
 
