@@ -19,9 +19,12 @@ Route::view('/informations', 'about.informations')->name('informations');
 Route::view('/mentions-legales', 'about.mentions')->name('mentionsLegales');
 Route::view('/politique-rgpd', 'about.rgpd')->name('politiqueRgpd');
 Route::view('/conditions-utilisation', 'about.conditions')->name('conditionsUtilisation');
-Route::view('/room3d', 'room.show')->name('room3d');
+Route::get('/la-salle', 'RouteController@room')->name('room');
+
 
 Route::get('/session', 'ProfileController@bySession')->name('session');
+
+
 
 Auth::routes();
 Route::group(['middleware' => ['level-user']], function()
@@ -36,7 +39,6 @@ Route::group(['middleware' => ['level-user']], function()
     Route::get('profil/{user_uuid}', 'ProfileController@show')->name('userProfile');
     Route::get('profil/{user_uuid}/img', 'ProfileController@img')->name('imgProfile');
     
-
     
     Route::post('post/{post}/participate', 'PostController@available');
     Route::delete('post/{post}/participate', 'PostController@unavailable');

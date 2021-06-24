@@ -7,11 +7,14 @@
 
 </script>
 <script>
-    const routesData = [
-        {diff:'6c',color:'purple', sectors:['r1','r2']},
-        {diff:'4a',color:'red', sectors:['r1']},
-        {diff:'5a',color:'green', sectors:['r2']},
-    ];
+    const routesData = <?= $routes->toJson() ?>;
+    @if(Auth::check() && Auth::user()->level>1)
+    window.adminVersion = true;
+    window.adminUrls = {
+        'create': ()=>`{{ route('route.create') }}`,
+        'edit': (n)=>`{{ route('route.edit', '') }}/${n}`,
+    };
+    @endif
 </script>
 <div id="renderer">
     <div id="partControls" class="needShow show">
@@ -27,6 +30,7 @@
         </div>
         <button id="sectorClose" class="btn"></button>
     </div>
+    <a id="addRoute" class="btn needShow" title="Ajouter une voie/bloc"></a>
 </div>
 
 

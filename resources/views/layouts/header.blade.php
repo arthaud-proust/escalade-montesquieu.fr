@@ -34,6 +34,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('galleries') }}">Photos</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('room') }}">Salle en 3D</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

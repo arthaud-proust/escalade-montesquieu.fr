@@ -114,15 +114,16 @@
 }
 
 
-#sectorClose {
+#sectorClose, #addRoute {
     cursor: pointer;
     bottom: 50px;
     left: 50%;
 }
+#addRoute::after {
+    background-image: url(/assets/svg/add.svg);
+}
 #sectorClose::after {
     background-image: url(/assets/svg/cross.svg);
-}
-#sectorClose:hover::after {
 }
 
 #sectorInfo {

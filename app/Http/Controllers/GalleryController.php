@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Gallery;
 use App\Photo;
-use JWTAuth;
 use Validator;
 use Response;
 use Illuminate\Http\Request;

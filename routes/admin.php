@@ -31,4 +31,11 @@ Route::group(['middleware' => ['level-admin']], function()
     Route::put('/user/{uuid}', 'AdminController@modifyUser')->name('adminModifyUser');
     Route::delete('/user/{uuid}', 'AdminController@destroyUser')->name('adminDeleteUser');
 
+
+    Route::get('/route/create', 'RouteController@create')->name('route.create');
+    Route::post('/route/create', 'RouteController@store')->name('route.store');
+    Route::get('/route/edit/{id}', 'RouteController@edit')->name('route.edit');
+    Route::post('/route/edit/{id}', 'RouteController@update')->name('route.update');
+    Route::delete('/route/edit/{id}', 'RouteController@delete')->name('route.delete');
+
 });
