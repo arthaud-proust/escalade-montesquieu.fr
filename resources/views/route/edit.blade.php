@@ -77,7 +77,7 @@ $sectors = [
                 @endfor
             </div>
 
-            <label class="Field-label mt-3">Traversé</label>
+            <label class="Field-label mt-3">Traversée</label>
             <div>
                 <!-- gérer le cas old!!! -->
                 @for($iRoute=1; $iRoute<=$sectors['traverse'];$iRoute++)
@@ -96,8 +96,17 @@ $sectors = [
 
     
 </form>
-<div class="container">
+<div class="container mt-5">
     <button class="mt-2 btn btn-dark float-right" type="submit" onclick="event.preventDefault(); document.getElementById('blog-form').submit();">Modifier</button>
     <a class="mt-2 btn btn-link float-right" href="{{ route('room') }}">Annuler</a>
+
+    <a class="btn m-2 btn-danger" href="{{ route('route.delete', $route->id) }}" onclick="event.preventDefault(); if(confirm('Supprimer cette voie/bloc?')) document.getElementById('delete-form').submit();">
+        Supprimer
+    </a>
+
+    <form id="delete-form" action="{{ route('route.delete', $route->id) }}" method="POST" style="display: none;">
+        @csrf
+        @method('delete')
+    </form>
 </div>
 @endsection

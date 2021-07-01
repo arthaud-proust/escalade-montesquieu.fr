@@ -77,7 +77,7 @@ $sectors = [
                 @endfor
             </div>
 
-            <label class="Field-label mt-3">Traversé</label>
+            <label class="Field-label mt-3">Traversée</label>
             <div>
                 <!-- gérer le cas old!!! -->
                 @for($iRoute=1; $iRoute<=$sectors['traverse'];$iRoute++)

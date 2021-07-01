@@ -102,7 +102,7 @@
             <script src="{{ asset('js/client.min.js') }}" defer></script>
         @endif
 
-        <link href="{{ asset('css/app.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @else
         @foreach($requirementsJs as $requirement)
             <script src="{{ asset('js/'.$requirement.'.js') }}" defer></script>

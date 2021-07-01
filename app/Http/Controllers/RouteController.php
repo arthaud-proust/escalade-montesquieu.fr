@@ -100,9 +100,9 @@ class RouteController extends Controller
 
 
 
-    public function destroy(Request $request, $slug)
+    public function delete(Request $request, $id)
     {
-        $route = route::where('id', $slug)->firstOrFail();
+        $route = route::where('id', $id)->firstOrFail();
         $route->delete();
         return redirect()->route('room')->with('status', 'success')->with('content', 'Voie/bloc supprimé');
     }

@@ -13,7 +13,7 @@ const mix = require('laravel-mix');
 
 mix.options({
     purifyCss: false,
-    //purifyCss: {},
+    // purifyCss: {},
     postCss: [require('autoprefixer')],
     clearConsole: false,
     cssNano: {
