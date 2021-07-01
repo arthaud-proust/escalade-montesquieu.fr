@@ -1,10 +1,12 @@
 {
     "/js/manifest.js": "/js/manifest.js?id=7db827d654313dce4250",
     "/js/vendor.js": "/js/vendor.js?id=dcab59bd4f1d022ea2f3",
-    "/js/app.js": "/js/app.js?id=ebb5f6fecafb03a28283",
+    "/js/app.js": "/js/app.js?id=7a1f06f27ff29887b07d",
     "/css/mobile.css": "/css/mobile.css?id=df53de7c0807747ed7c2",
     "/css/large.css": "/css/large.css?id=540593f92cd0c2824e02",
     "/css/app.css": "/css/app.css?id=caa0afef21a4573bee15",
+    "/css/room3d/large.css": "/css/room3d/large.css?id=db296862d78f63e249cf",
+    "/css/room3d/mobile.css": "/css/room3d/mobile.css?id=5dd2f545cce1448635b7",
     "/js/user.js": "/js/user.js?id=cf2f66b33cb31db431fc",
     "/js/client.js": "/js/client.js?id=d11057bcda19038df8a2",
     "/js/client.min.js": "/js/client.min.js?id=d11057bcda19038df8a2",
@@ -16,6 +18,6 @@
     "/js/blog.min.js": "/js/blog.min.js?id=f0e1053d4f9908e22cca",
     "/js/forum.js": "/js/forum.js?id=0263c8f17f96ddb64c4a",
     "/js/forum.min.js": "/js/forum.min.js?id=0263c8f17f96ddb64c4a",
-    "/js/app.min.js": "/js/app.min.js?id=ebb5f6fecafb03a28283",
+    "/js/app.min.js": "/js/app.min.js?id=7a1f06f27ff29887b07d",
     "/js/user.min.js": "/js/user.min.js?id=cf2f66b33cb31db431fc"
 }
