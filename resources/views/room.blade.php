@@ -3,10 +3,29 @@
 @section('title', 'Voir la salle')
 
 @section('content')
+
+@php
+$colors = [
+    'yellow'=> ['#FFDD00', '#000000'],
+    'red'=> ['#F93822', '#FFFFFF'],
+    'blue'=> ['#0A8FD4', '#FFFFFF'],
+    'black'=> ['#000000', '#FFFFFF'],
+    'orange'=> ['#F68D2E', '#FFFFFF'],
+    'green'=> ['#4DA358', '#FFFFFF'],
+    'purple'=> ['#BB29BB', '#FFFFFF'],
+    'white'=> ['#FFFFFF', '#000000'],
+    'grey'=> ['#6e6e6e', '#FFFFFF'],
+];
+
+@endphp
+
+
 <script>var link=document.createElement('link');link.rel='stylesheet';if(window.screen.width < 768) {link.href="/css/room3d/mobile.css";} else {link.href="/css/room3d/large.css";}document.getElementsByTagName('head')[0].appendChild(link)</script>   
 
 </script>
 <script>
+    const colorsData = <?= json_encode($colors, true) ?>;
+
     const routesData = <?= $routes->toJson() ?>;
     @if(Auth::check() && Auth::user()->level>1)
     window.adminVersion = true;
