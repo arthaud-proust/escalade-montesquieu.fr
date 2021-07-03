@@ -7,7 +7,7 @@ try {
 } catch (e) {}
 
 window.lazySizesConfig = window.lazySizesConfig || {};
-lazySizesConfig.loadMode = 1;
+lazySizesConfig.loadMode = 2;
 
 // modification de la lib originale pour fixer bug mode 3
 // avant: loadMode = 3 par défaut, voir: l.569 et l.590
