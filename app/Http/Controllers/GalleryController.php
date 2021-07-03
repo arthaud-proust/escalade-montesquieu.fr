@@ -22,7 +22,7 @@ class GalleryController extends Controller
 
 
     public function index() {
-        $galleries = gallery::all();
+        $galleries = gallery::all()->reverse();
         return view('photos.galleries', compact('galleries'));
     }
 
@@ -34,7 +34,7 @@ class GalleryController extends Controller
         {
             abort(404, 'gallery');
         }
-        $photos = photo::where('gallery', $gallery->slug)->get();
+        $photos = photo::where('gallery', $gallery->slug)->get()->reverse();
 
         return view('photos.gallery.show', compact('gallery', 'photos'));
     }

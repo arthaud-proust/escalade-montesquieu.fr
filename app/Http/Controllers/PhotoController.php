@@ -22,7 +22,7 @@ class PhotoController extends Controller
      */
     
     public function index(Request $request) {
-        $photos = photo::all();
+        $photos = photo::all()->reverse();
         return response()->json(compact('photos'), 200);
     }
 

@@ -1,16 +1,23 @@
 (()=>{
-    // window._ = require('lodash');
 
 try {
-    // window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
 } catch (e) {}
 
+window.lazySizesConfig = window.lazySizesConfig || {};
+lazySizesConfig.loadMode = 1;
+
+// modification de la lib originale pour fixer bug mode 3
+// avant: loadMode = 3 par défaut, voir: l.569 et l.590
+// maintenant: loadMode = mode définit ci-dessus l.10
 window.lazysizes = require('lazysizes');
+console.log(lazysizes.cfg.loadMode);
+console.log(lazysizes.cfg);
 window.axios = require('axios');
 window.anchorme = require("anchorme").default;
+
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
