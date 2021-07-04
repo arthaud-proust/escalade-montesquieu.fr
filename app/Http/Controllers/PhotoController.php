@@ -144,7 +144,7 @@ class PhotoController extends Controller
             $photo->save();
         }
 
-        return redirect()->route('showPhoto', $photo->slug)->with('status', 'success')->with('content', 'Photo modifiée');
+        return redirect()->route('showGallery', $photo->gallery)->with('status', 'success')->with('content', 'Photo modifiée');
     }
 
 
