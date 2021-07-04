@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Gallery;
 
 class Photo extends Model
 {
@@ -22,5 +23,8 @@ class Photo extends Model
 
 	public function scopeExposed($query) {
 		return $query->where('exposed', 1);
+	}
+	public function getGalleryObjAttribute() {
+		return gallery::firstWhere('slug', $this->gallery);
 	}
 }

@@ -23,15 +23,15 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
                     @endfor
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item rounded active">
+                    <div class="carousel-item rounded active" data-interval="2000">
                         <img class="m-auto d-block rounded mw-100 lazyload" style="max-height:90vh" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ asset('assets/img/hero.jpg') }}" alt=" ">
                     </div>
                     @foreach ($exposedPhotos as $photo)
-                        <div class="carousel-item rounded">
+                        <div class="carousel-item rounded" data-interval="6000">
                             <img class="m-auto d-block rounded mw-100 lazyload" style="max-height:55vh" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{$photo->src}}" alt=" ">
                             <div class="carousel-caption d-none d-md-block">
                                 @if($photo->name)<h5>{{$photo->name}}</h5>@endif
-                                @if($photo->text)<p>{{$photo->text}}</p>@endif
+                                <p>{{ $photo->galleryObj->name }}@if($photo->text) {{$photo->text}}@endif</p>
                                 @if(Auth::check())<a href="{{ route('editPhoto', $photo->slug) }}" class="card-link btn btn-success">Editer</a>@endif
                             </div>
                         </div>

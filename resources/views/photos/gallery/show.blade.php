@@ -25,7 +25,7 @@
     <div id="carousel" class="mb-5 pb-5 carousel slide carousel-fade" data-ride="carousel">
         <div class="carousel-inner">
             @foreach ($photos as $photo)
-                <div class="carousel-item rounded {{ $loop->index==0?'active':''}}" style="background:{{ $photo->background }}">
+                <div class="carousel-item rounded {{ $loop->index==0?'active':''}}" data-interval="10000" style="background:{{ $photo->background }}">
                     <img class="m-auto d-block rounded mw-100 lazyload" style="max-height:90vh" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{$photo->src}}" alt=" ">
                     <div class="carousel-caption d-none d-md-block">
                         @if($photo->name)<h5>{{$photo->name}}</h5>@endif
