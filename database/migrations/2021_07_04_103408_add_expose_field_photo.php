@@ -14,7 +14,7 @@ class AddExposeFieldPhoto extends Migration
     public function up()
     {
         Schema::table('photos', function (Blueprint $table) {
-            $table->boolean('expose')->default(false);
+            $table->boolean('exposed')->default(false);
         });
     }
 
