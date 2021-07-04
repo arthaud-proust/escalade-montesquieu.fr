@@ -61,6 +61,17 @@ window.removeDiacritics = function (str) {
     return str;
 }
 
+$('.carousel').carousel({
+    interval: 10000
+})
+$('.carouselShortcuts img').on('click', function(e){
+    console.log(this.dataset);
+    $(this).parents('.carouselShortcuts').prev('.carousel').carousel(parseInt(this.dataset.n));
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $('.carousel').offset().top-100
+    }, 500);
+})
+
 $('.Field-toggleVisibility').click(function() {
     let input = $(this).prev();
     if(input.attr('type')=='password') {
