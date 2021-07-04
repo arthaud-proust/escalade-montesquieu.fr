@@ -50,9 +50,9 @@
         @foreach ($photos as $photo)
         <div class="col-sm-4 py-3">
             <article class="card xs border-0">
-                <img class="card-img-top rounded lazyload" data-n="{{ $loop->index }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{$photo->src}}" alt=" ">
+                <img class="card-img-top rounded lazyload" data-n="{{ $loop->index }}" style="cursor:pointer" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{$photo->src}}" alt=" ">
                 <div class="card-body ">
-                    @if($photo->name)<h5 class="card-title"><a href="{{ route('showPhoto', $photo->slug) }}" class="text-dark">{{$photo->name}}</a></h5>@endif
+                    @if($photo->name)<h5 class="card-title">{{$photo->name}}</h5>@endif
                     @if($photo->text)<p class="card-text">{{$photo->text}}</p>@endif
                     @if(Auth::check())<a href="{{ route('editPhoto', $photo->slug) }}" class="card-link text-success">Editer</a>@endif
                 </div>
