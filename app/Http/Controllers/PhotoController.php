@@ -59,7 +59,7 @@ class PhotoController extends Controller
             'gallery' => 'required|string|max:255',
             'background' => 'required|string|max:255',
             'name' => 'nullable|unique:photos|string|max:255',
-            'date' => 'nullable|max:255',
+            'date' => 'nullable|max:255'
         ]);
         // return redirect('/')->with('status', 'danger')->with('content', 'Gallerie introuvable (lien invalide)');
 
@@ -84,6 +84,7 @@ class PhotoController extends Controller
             'name' => $request->get('name'),
             'date' => $request->get('date'),
             'text' => $request->get('text'),
+            'exposed' => $request->has('exposed')
         ]);
         return redirect()->route('showGallery', $request->get('gallery'))->with('status', 'success')->with('content', 'Photo ajoutée');
     }
@@ -114,7 +115,7 @@ class PhotoController extends Controller
             'img' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
             'background' => 'required|string|max:255',
             'name' => 'nullable|string|max:255',
-            'date' => 'nullable|max:255',
+            'date' => 'nullable|max:255'
         ]);
         if ($validator->fails()) {
             $error = $validator->errors();
@@ -131,12 +132,15 @@ class PhotoController extends Controller
             $photo->name = $request->get('name');
             $photo->date = $request->get('date');
             $photo->text = $request->get('text');
+            $photo->exposed = $request->has('exposed');
+
             $photo->save();
         } else {
             $photo->background = $request->get('background');
             $photo->name = $request->get('name');
             $photo->date = $request->get('date');
             $photo->text = $request->get('text');
+            $photo->exposed = $request->has('exposed');
             $photo->save();
         }
 

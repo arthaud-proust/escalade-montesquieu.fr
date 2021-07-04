@@ -22,6 +22,12 @@
             </div>
         </div>
         <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <input type="checkbox" class="ml-0 form-check-input" id="exposed" name="exposed" @if(old('exposed')?old('exposed'):$photo->exposed==true)checked @endif>
+                <label for="exposed" class="ml-4 form-check-label" style="user-select:none">Montrer la photo sur la page d'accueil</label>
+            </div>
+        </div>
+        <div class="form-row">
             <div class="col-md-3 mb-3">
                 <label for="background">Couleur de fond</label>
                 <select class="form-control" id="background" name="background">

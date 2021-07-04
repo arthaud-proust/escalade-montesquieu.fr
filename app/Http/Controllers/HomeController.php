@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Blog;
+use App\Photo;
 use App\Info;
 use App\Post;
 use App\Forum;
@@ -22,12 +23,20 @@ class HomeController extends Controller
         $current_datetime = strtotime(Carbon::now()->toDateString());
 
         $infos = Info::all();
+        // $comingPosts = Post::orderBy('datetime')->get()->filter(function ($post) use ($current_datetime) {
+        //     $diff = (strtotime(explode(" ", $post->datetime)[0])-$current_datetime)/172800; // 2semaines
+        //     return (0 <= $diff);
+        // })->values()->take(5);
+
         $comingPosts = Post::orderBy('datetime')->get()->filter(function ($post) use ($current_datetime) {
-            $diff = (strtotime(explode(" ", $post->datetime)[0])-$current_datetime)/172800; // 2semaines
+            $diff = (strtotime(explode(" ", $post->datetime)[0])-$current_datetime); // évènement pas encore passé
             return (0 <= $diff);
         })->values()->take(5);
+        
         $forums = Forum::all();
+        $exposedPhotos = Photo::exposed()->get();
+
         // return response()->json([$comingPosts]);
-        return view('home', compact('infos','comingPosts', 'forums'));
+        return view('home', compact('infos','comingPosts', 'forums', 'exposedPhotos'));
     }
 }

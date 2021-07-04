@@ -2,6 +2,9 @@
 
 @section('title', "Accueil")
 @section('content')
+@php
+// dd($exposedPhotos);
+@endphp
 <script>
 const posts = <?php echo $comingPosts ?>;
 const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth::user()->level}}} @else undefined @endif;
@@ -11,6 +14,29 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
         <div class="hero" id="hero">
             <div class="title-container">
                 <h1 class="title d-md-none">Lycée Montesquieu</title>
+            </div>
+            <div id="carousel" class="carousel slide mb-4 mb-md-0" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                    @for ($i=1;count($exposedPhotos)+1>$i;$i++)
+                    <li data-target="#carousel" data-slide-to="{{$i}}"></li>
+                    @endfor
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item rounded active">
+                        <img class="m-auto d-block rounded mw-100 lazyload" style="max-height:90vh" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ asset('assets/img/hero.jpg') }}" alt=" ">
+                    </div>
+                    @foreach ($exposedPhotos as $photo)
+                        <div class="carousel-item rounded">
+                            <img class="m-auto d-block rounded mw-100 lazyload" style="max-height:55vh" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{$photo->src}}" alt=" ">
+                            <div class="carousel-caption d-none d-md-block">
+                                @if($photo->name)<h5>{{$photo->name}}</h5>@endif
+                                @if($photo->text)<p>{{$photo->text}}</p>@endif
+                                @if(Auth::check())<a href="{{ route('editPhoto', $photo->slug) }}" class="card-link btn btn-success">Editer</a>@endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     @include('components.alert')
@@ -34,7 +60,7 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
                 @endif
 
                 <div class="events ">
-                    <h2 class="title">Évènements et sorties à venir</h2>
+                    <h2 class="title">Évènements à venir</h2>
                     <p class="paraph">Les évènements sont classés par deux catégories: réguliers ou occasionnels. Vous pouvez retrouver toutes les sorties et les événements prévus <a href="{{ route('blogs') }}">ici</a>.</p>
                     @include('components.alert-status')
 
@@ -71,11 +97,13 @@ const user = @if(Auth::check()) {'name':"{{Auth::user()->name}}", 'level':{{Auth
 </div>
 <script>
 if(window.screen.width >= 768) {
+    /* 
     var img=document.createElement('img');
     img.src='{{ asset('assets/img/hero.jpg') }}';
     img.setAttribute('alt',"");
     img.setAttribute('class',"hero-img");
     document.getElementById('hero').appendChild(img);
+    */
 }
 </script>
 @endsection

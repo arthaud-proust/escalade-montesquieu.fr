@@ -16,6 +16,11 @@ class Photo extends Model
 		'src',
 		'name',
 		'date',
-		'text'
+		'text',
+		'exposed',
 	];
+
+	public function scopeExposed($query) {
+		return $query->where('exposed', 1);
+	}
 }
