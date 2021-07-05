@@ -11,9 +11,13 @@ use App\User;
 use Validator;
 use Response;
 
+// use Illuminate\Support\Facades\Http;
+// use App\Mail\EventNotification;
+use App\Jehona\EventJehona;
+
 // use Illuminate\Support\Facades\Mail;
 // use App\Mail\EventNotification;
-use App\Jobs\EventEmailJob;
+// use App\Jobs\EventEmailJob;
 
 class PostController extends Controller
 {
@@ -55,16 +59,27 @@ class PostController extends Controller
         ]);
 
 
+
+
         // notify
-        $toNotify = User::mailableFor('event');
-        $emailJob = (new EventEmailJob($post, [
-            'bccEmails'=> $toNotify->pluck('email'), 
-            'bccNames' => $toNotify->pluck('name')
-        ]))->delay(now());
+        // $emailJob = (new EventEmailJob($post, [
+        //     'bccEmails'=> $toNotify->pluck('email'), 
+        //     'bccNames' => $toNotify->pluck('name')
+        // ]))->delay(now());
 
-        dispatch($emailJob);
-        // next is handle by worker
+        // $emailJob = (new EventEmailJob($post, [
+        //     'bccEmails'=> $toNotify->pluck('email'), 
+        //     'bccNames' => $toNotify->pluck('name')
+        // ]))->delay(now());
 
+        // dispatch($emailJob);
+        // // next is handle by worker
+
+
+        $eventJehona = new EventJehona($post);
+        
+        $eventJehona->dispatch();
+        
         // now we can return the route
         return redirect()->route('showBlog', request('blog'))->with('status', 'success')->with('content', 'Post créé');
     }

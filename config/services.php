@@ -19,6 +19,14 @@ return [
         'key' => env('PUSH_KEY', null)
     ],
 
+    'jehona' => [
+        'key' => env('JEHONA_KEY'),
+        'host' => env('JEHONA_HOST'),
+        'port' => env('JEHONA_PORT'),
+        'user' => env('JEHONA_USER'),
+        'pass' => env('JEHONA_PASS'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

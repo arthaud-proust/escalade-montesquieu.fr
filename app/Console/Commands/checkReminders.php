@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use App\Post;
 use App\User;
 use App\Jobs\ReminderEmailJob;
+use App\Jehona\ReminderJehona;
 
 class checkReminders extends Command
 {
@@ -47,15 +48,16 @@ class checkReminders extends Command
 
         $events = Post::where('datetime', 'LIKE', "%$strDate%")->get();
 
-        $toNotify = User::mailableFor('reminder');
-
         foreach($events as $event) {
-            $emailJob = (new ReminderEmailJob($event, [
-                'bccEmails'=> $toNotify->pluck('email'), 
-                'bccNames' => $toNotify->pluck('name')
-            ]))->delay(now());
+            $reminderJehona = new ReminderJehona($event);
+            $reminderJehona->dispatch();
+            
+            // $emailJob = (new ReminderEmailJob($event, [
+            //     'bccEmails'=> $toNotify->pluck('email'), 
+            //     'bccNames' => $toNotify->pluck('name')
+            // ]))->delay(now());
 
-            dispatch($emailJob);
+            // dispatch($emailJob);
         }
     }
 }

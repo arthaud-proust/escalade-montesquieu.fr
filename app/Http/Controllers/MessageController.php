@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Mail;
 use App\Message;
 use App\LatestMessage;
 use App\User;
-use App\Mail\MentionnedInMessage;
+
+// use App\Mail\MentionnedInMessage;
+use App\Jehona\ReminderJehona;
+
 use Validator;
 use Response;
 use GuzzleHttp;
@@ -97,12 +100,23 @@ class MessageController extends Controller
             $message->content = $mention;
             if($mention=="everyone") {
                 $bcclist = User::pluck('email');
-                $bccnamelist = User::pluck('name');
-                Mail::bcc($bcclist, $bccnamelist)
-                        ->send(new MentionnedInMessage($message, true));
-                break;
+
+                $mentionnedJehona = new MentionnedInMessageJehona($message, [
+                    'recipients' => $bcclist->toArray(),
+                    'toAll' => true
+                ]);
+                $mentionnedJehona->dispatch();
+                // $bccnamelist = User::pluck('name');
+                // Mail::bcc($bcclist, $bccnamelist)
+                //         ->send(new MentionnedInMessage($message, true));
+                // break;
             } else if($user = User::where('name', $mention)->first()) {
-                Mail::to($user->email, $user->name)->send(new MentionnedInMessage($message, false));
+                // Mail::to($user->email, $user->name)->send(new MentionnedInMessage($message, false));
+                $mentionnedJehona = new MentionnedInMessageJehona($message, [
+                    'recipients' => [$user->email],
+                    'toAll' => false
+                ]);
+                $mentionnedJehona->dispatch();
             }
             
         }
