@@ -11,7 +11,7 @@ use App\LatestMessage;
 use App\User;
 
 // use App\Mail\MentionnedInMessage;
-use App\Jehona\ReminderJehona;
+use App\Jehona\MentionnedInMessageJehona;
 
 use Validator;
 use Response;
